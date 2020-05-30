@@ -20,6 +20,7 @@ const ErrorMessages = {
     [ERR_LOGIN_INVALID]: 'Identification impossible : le couple email/mot de passe est introuvable.'
 }
 class Register extends Component {
+
     state = {
         email: '',
         password: '',
@@ -30,14 +31,15 @@ class Register extends Component {
 
     };
 
-    static navigationOptions = ({ navigation }) => ({
-        header: () => (
-            <View style={styles.containerConnect}>
+    static navigationOptions = ({ navigation }) => {
+        return {
+            header: (
+                <View style={styles.sectionlogin}>
 
-                <Text></Text>
-            </View>
-        ),
-    });
+
+                </View>)
+        }
+    }
     onChangeEmail = (email) => {
         this.setState({
             email
@@ -105,7 +107,7 @@ class Register extends Component {
         navigation.navigate('Login')
     }
     render() {
-        const { error, colorgris1, colorgris2, colorgris3 } = this.state
+        const { error } = this.state
         const isValidEmail = error == NO_ERROR
 
         return (
@@ -136,7 +138,7 @@ class Register extends Component {
                             placeholder={"Mot de passe"} />
 
                         <View style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'center' }}>
-                            <LinearGradient colors={[colorgris1, colorgris2, colorgris3]} style={styles.buttonconnexion} >
+                            <LinearGradient colors={['#FFD165', '#FFB347', '#FFB347']} style={styles.buttonconnexion} >
                                 <TouchableOpacity
                                     disabled={!isValidEmail}
                                     onPress={this.register}>

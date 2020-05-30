@@ -11,7 +11,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import LinearGradient from 'react-native-linear-gradient';
 import { ImageBackground } from 'react-native';
 import RechercheInput from '../components/RechercheInput'; //Intégration du composants Input
-
+import Searchlogo from '../data/image/search.svg';
 class HomeContainer extends Component {
     static navigationOptions = ({ navigation }) => ({
         header: props => (
@@ -30,6 +30,9 @@ class HomeContainer extends Component {
      */
 
     onPressSearch = () => {
+
+        const { navigation } = this.props
+        navigation.navigate('RechercheContainer')
     }
 
     render() {
@@ -55,7 +58,7 @@ class HomeContainer extends Component {
                                         placeholder={"Chercher une recette"} />
                                     <TouchableOpacity style={styles.bouttonSearch} onPress={this.onPressSearch}>
 
-                                        <Text>search</Text>
+                                        <Searchlogo style={styles.start} size={80} />
 
 
                                     </TouchableOpacity>

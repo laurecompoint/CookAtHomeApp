@@ -10,13 +10,13 @@ import {
 import styles from '../styles/styles';
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { Actions } from '../actions';
+
 import LinearGradient from 'react-native-linear-gradient';
 import { ImageBackground } from 'react-native';
-import CardRecherche from '../components/CardRecherche';
+import Recette from '../components/Recette';
 import RechercheInput from '../components/RechercheInput';
-
-
+import { requestGetListings, Actions } from '../actions';
+import Searchlogo from '../data/image/search.svg';
 class RechercheContainer extends Component {
     static navigationOptions = ({ navigation }) => ({
         header: props => (
@@ -31,7 +31,13 @@ class RechercheContainer extends Component {
 
     });
 
+    componentDidMount() {
+        const { requestGetListings } = this.props;
+        return requestGetListings()
+    }
+
     render() {
+        const { recettes } = this.props;
         return (
             <LinearGradient colors={['#507E96', '#F7F8F8']} style={{ flex: 1 }} >
                 <ImageBackground style={styles.imgBackground}
@@ -51,13 +57,13 @@ class RechercheContainer extends Component {
                                     placeholder={"Chercher une recette"} />
                                 <TouchableOpacity style={styles.bouttonSearch} onPress={this.onPressSearch}>
 
-                                    <Text>search</Text>
+                                    <Searchlogo style={styles.searchlogo} size={80} />
 
 
                                 </TouchableOpacity>
 
                             </View>
-                            <CardRecherche></CardRecherche>
+                            <Recette recettes={recettes} />
 
 
                         </View>
@@ -73,6 +79,14 @@ class RechercheContainer extends Component {
 
 
 }
+const mapStateToProps = state => ({
+    recettes: state.listings.recettes,
+    isLoading: state.app.isLoading,
+});
 
-export default RechercheContainer;
+const mapDispatchToProps = dispatch => ({
+    requestGetListings: () => dispatch(requestGetListings())
+});
+export default connect(mapStateToProps, mapDispatchToProps)(RechercheContainer);
+
 

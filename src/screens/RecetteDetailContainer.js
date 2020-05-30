@@ -10,14 +10,17 @@ import styles from '../styles/styles';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import LinearGradient from 'react-native-linear-gradient';
 import { ImageBackground } from 'react-native';
-
+import GoBack from '../data/image/goback.svg';
 
 class RecetteDetailContainer extends Component {
+    state = {
+
+    };
 
     onPressGoToBack = () => {
 
         const { navigation } = this.props
-        navigation.goBack()
+        navigation.navigate('Home')
     }
     render() {
 
@@ -31,9 +34,7 @@ class RecetteDetailContainer extends Component {
                     <View>
 
                         <TouchableOpacity style={styles.buttonGoToBack} onPress={this.onPressGoToBack}>
-
-                            <Text style={[styles.textGoToBack, styles.textPolice]}>retour</Text>
-
+                            <GoBack style={[styles.textGoToBack]} size={25} />
                         </TouchableOpacity>
                     </View>
 

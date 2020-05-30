@@ -24,11 +24,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  croix: {
-    color: Colors.white,
-    fontSize: 40,
-    margin: 'auto',
-  },
   connect: {
     color: '#FFFFFF',
     fontWeight: 'bold',
@@ -134,10 +129,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     position: 'absolute'
   },
-  icongo: {
-    paddingTop: 5,
-    color: Colors.white,
-  },
+
   textShowPassword: {
     color: '#B6B6B6',
 
@@ -212,10 +204,15 @@ const styles = StyleSheet.create({
     fontFamily: "Calibri"
   },
   //page favorie recette
-  cardExp: {
+  cardFav: {
     margin: 10,
     flex: 1,
     width: 327,
+
+    flexDirection: 'column',
+  },
+  marginfav: {
+    marginTop: 15,
   },
   imageExp: {
     borderTopLeftRadius: 20,
@@ -311,7 +308,7 @@ const styles = StyleSheet.create({
   titlerecette: {
     flex: 1,
     textAlign: 'center',
-    marginTop: 150,
+    marginTop: 110,
     color: 'white',
     fontSize: 35,
     fontFamily: "Calibri",
@@ -339,6 +336,10 @@ const styles = StyleSheet.create({
   buttonGoToBack: {
     paddingLeft: 15,
     paddingTop: 10,
+  },
+  textGoToBack: {
+    width: 20,
+    color: 'white',
   },
   //inputrecherche
   textRechercheInput: {
@@ -368,6 +369,23 @@ const styles = StyleSheet.create({
 
     height: 48.5,
     width: 65,
+  },
+  //card
+  start: {
+    color: '#FFB347',
+    width: 15,
+    height: 10,
+    textAlign: 'left',
+    paddingTop: 5,
+    marginTop: 10,
+    marginLeft: 45,
+
+  },
+  searchlogo: {
+    textAlign: 'left',
+    marginLeft: 25,
+    width: 105,
+    height: 10,
   },
 
 });

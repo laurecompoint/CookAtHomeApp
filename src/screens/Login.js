@@ -24,14 +24,15 @@ class Login extends Component {
     error: null
   };
 
-  static navigationOptions = ({ navigation }) => ({
-    header: () => (
-      <View style={styles.containerConnect}>
+  static navigationOptions = ({ navigation }) => {
+    return {
+      header: (
+        <View style={styles.sectionlogin}>
 
-        <Text>test</Text>
-      </View>
-    ),
-  });
+
+        </View>)
+    }
+  }
   onChangeEmail = (email) => {
     this.setState({
       email
@@ -117,7 +118,7 @@ class Login extends Component {
               placeholder={"Mot de passe"} />
 
             <View style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'center' }}>
-              <LinearGradient colors={['#DEDEDE', '#EFEFEF', '#FFFFFF']} style={styles.buttonconnexion} >
+              <LinearGradient colors={['#FFD165', '#FFB347', '#FFB347']} style={styles.buttonconnexion} >
                 <TouchableOpacity
                   disabled={!isValidEmail}
                   onPress={this.login}>

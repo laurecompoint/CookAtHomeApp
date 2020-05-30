@@ -10,8 +10,9 @@ import styles from '../styles/styles';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import LinearGradient from 'react-native-linear-gradient';
 import { ImageBackground } from 'react-native';
-import CardFavorie from '../components/CardFavorie';
-
+import RecetteFavorie from '../components/RecetteFavorie';
+import { connect } from 'react-redux';
+import { requestGetRecetteFavories, Actions } from '../actions';
 
 class FavorieRecetteContainer extends Component {
   static navigationOptions = ({ navigation }) => ({
@@ -34,44 +35,46 @@ class FavorieRecetteContainer extends Component {
     navigation.navigate('RecetteDetailContainer')
   }
 
+  componentDidMount() {
+    const { requestGetRecetteFavories } = this.props;
+    return requestGetRecetteFavories()
+  }
 
   render() {
-
+    const { favorierecette } = this.props;
     return (
       <LinearGradient colors={['#507E96', '#F7F8F8']} style={{ flex: 1 }} >
         <ImageBackground style={styles.imgBackground}
           resizeMode='cover'
           source={require('../data/image/imagefond.png')}>
-          <View style={{ flex: 1 }}>
+          <ScrollView>
+            <View style={{ flex: 1 }, styles.structGlobal}>
 
-            <ScrollView>
-              <View>
-
-                <View style={styles.structGlobal} >
-                  <Image
-                    style={styles.LogoCookAtHome}
-                    source={require('../data/image/logocookathome.png')}
-                  />
-                  <Text style={styles.titre}>Vos recette préférer</Text>
-
-                  <CardFavorie></CardFavorie>
-
-                </View>
+              <Image
+                style={styles.LogoCookAtHome}
+                source={require('../data/image/logocookathome.png')}
+              />
+              <Text style={styles.titre}>Vos recette préférer</Text>
 
 
+              <RecetteFavorie favorierecette={favorierecette} />
 
-
-              </View>
-
-            </ScrollView>
-
-
-          </View>
+            </View>
+          </ScrollView>
         </ImageBackground>
-      </LinearGradient>
+      </LinearGradient >
+
     );
 
   }
 }
+const mapStateToProps = state => ({
+  favorierecette: state.favories.favorierecette,
+  isLoading: state.app.isLoading,
+});
 
-export default FavorieRecetteContainer;
+const mapDispatchToProps = dispatch => ({
+  requestGetRecetteFavories: () => dispatch(requestGetRecetteFavories())
+});
+export default connect(mapStateToProps, mapDispatchToProps)(FavorieRecetteContainer);
+
