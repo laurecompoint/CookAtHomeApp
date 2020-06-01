@@ -62,16 +62,16 @@ class RechercheContainer extends Component {
                             </View>
                             <View style={styles.structFiltre} >
 
-                                <TouchableOpacity style={styles.filtretype} title={""} onPress={() => filterRecettes(filter, "title")}>
+                                <TouchableOpacity style={styles.filtretype} title={""} onPress={() => filterRecettes("apero", "type-apero")}>
                                     <Filtreapero style={styles.searchlogo} />
                                 </TouchableOpacity >
-                                <TouchableOpacity style={styles.filtretype} title={""} onPress={() => filterRecettes(filter, "title")}>
+                                <TouchableOpacity style={styles.filtretype} title={""} onPress={() => filterRecettes("entree", "type-entree")}>
                                     <Filtreentree style={styles.searchlogo} />
                                 </TouchableOpacity >
-                                <TouchableOpacity style={styles.filtretype} title={""} onPress={() => filterRecettes(filter, "title")}>
+                                <TouchableOpacity style={styles.filtretype} title={""} onPress={() => filterRecettes("plats", "type-plats")}>
                                     <Filtre style={styles.searchlogo} />
                                 </TouchableOpacity >
-                                <TouchableOpacity style={styles.filtretype} title={""} onPress={() => filterRecettes(filter, "type")}>
+                                <TouchableOpacity style={styles.filtretype} title={""} onPress={() => filterRecettes("dessert", "type-dessert")}>
                                     <Filtredessert style={styles.searchlogo} />
                                 </TouchableOpacity >
 
