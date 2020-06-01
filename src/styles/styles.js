@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
     fontFamily: "Calibri",
   },
   containerHome: {
-    width: 390,
+    width: 350,
     height: 332,
     flex: 1,
     justifyContent: 'center',
@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
   },
   textboutton: {
     textAlign: 'center',
-    marginTop: 9,
+    marginTop: 12,
     color: 'white',
   },
   textinfo: {
@@ -165,7 +165,7 @@ const styles = StyleSheet.create({
     height: 45,
     borderBottomRightRadius: 25,
     borderTopRightRadius: 25,
-    marginRight: 300,
+    marginLeft: 30,
   },
   infoprofil: {
     width: 130,
@@ -182,12 +182,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignContent: 'center',
     padding: 20,
+
   },
   AvatarCookAtHome: {
     width: 99,
     height: 102,
     flexDirection: 'row',
     alignContent: 'center',
+    marginLeft: 30,
   },
   boutonmodif: {
     width: 110,
@@ -241,12 +243,12 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 20,
   },
   cardRecherche: {
-    margin: 10,
+
     flex: 1 / 2,
     width: 400,
 
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'center',
 
     flexWrap: 'wrap',
 
@@ -358,8 +360,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
+    marginTop: 10,
+  },
+  structFiltre: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
     padding: 20,
-    paddingLeft: 35,
+    paddingLeft: 5,
   },
   bouttonSearch: {
     backgroundColor: 'white',
@@ -384,9 +393,20 @@ const styles = StyleSheet.create({
   searchlogo: {
     textAlign: 'left',
     marginLeft: 25,
-    width: 105,
-    height: 10,
+    marginTop: 3,
+
   },
+  goback: {
+    textAlign: 'left',
+    marginLeft: 15,
+    marginTop: 20,
+  },
+  filtretype: {
+    width: 60,
+    height: 40,
+
+  },
+
 
 });
 export default styles;

@@ -4,8 +4,12 @@ import {
     View,
     ScrollView,
     TouchableOpacity,
-    Image
+    Image,
+    TextInput
 } from 'react-native';
+import { connect } from 'react-redux';
+import { filterRecettes } from '../reducers/recipe';
+import { requestGetListings, Actions } from '../actions';
 import styles from '../styles/styles';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import LinearGradient from 'react-native-linear-gradient';
@@ -23,7 +27,10 @@ class HomeContainer extends Component {
             </View>
         )
     });
-
+    componentDidMount() {
+        const { requestGetListings } = this.props;
+        return requestGetListings()
+    }
     /**
      * Nous n'avons plus besoin d'initialiser un state local au component.
      * isLoading erst 
@@ -36,7 +43,7 @@ class HomeContainer extends Component {
     }
 
     render() {
-
+        const { recettes, filterRecettes, filter } = this.props;
         return (
             <LinearGradient colors={['#507E96', '#F7F8F8']} style={{ flex: 1 }} >
                 <ImageBackground style={styles.imgBackground}
@@ -51,14 +58,11 @@ class HomeContainer extends Component {
                                     source={require('../data/image/logocookathome.png')}
                                 />
                                 <View style={styles.structInputRecherche} >
-                                    <RechercheInput
-                                        ref={ref => { this.refPassword = ref }}
-                                        textContentType={'search'}
-                                        onChangeText={this.onChangePassword}
-                                        placeholder={"Chercher une recette"} />
+
+                                    <TextInput placeholder={"Chercher une recette"} style={styles.textRechercheInput} defaultValue={filter} onChangeText={filterRecettes}></TextInput>
                                     <TouchableOpacity style={styles.bouttonSearch} onPress={this.onPressSearch}>
 
-                                        <Searchlogo style={styles.start} size={80} />
+                                        <Searchlogo style={styles.searchlogo} />
 
 
                                     </TouchableOpacity>
@@ -110,5 +114,16 @@ class HomeContainer extends Component {
 
     }
 }
+const mapStateToProps = state => ({
+    recettes: filterRecettes(state),
+    isLoading: state.app.isLoading,
+    filter: state.listings.filter,
+});
 
-export default HomeContainer;
+const mapDispatchToProps = dispatch => ({
+    requestGetListings: () => dispatch(requestGetListings()),
+    filterRecettes: (criteria, sort) => dispatch(Actions.filterRecettes(criteria, sort))
+});
+export default connect(mapStateToProps, mapDispatchToProps)(HomeContainer);
+//export default HomeContainer
+

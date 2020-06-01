@@ -1,9 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="12.914" height="13.914" viewBox="0 0 12.914 13.914">
-  <g id="Groupe_28" data-name="Groupe 28" transform="translate(1.414)">
-    <g id="Ellipse_1" data-name="Ellipse 1" transform="translate(1.5)" fill="#fff" stroke="#ffb548" stroke-width="2">
-      <circle cx="5" cy="5" r="5" stroke="none"/>
-      <circle cx="5" cy="5" r="4" fill="none"/>
-    </g>
-    <line id="Ligne_1" data-name="Ligne 1" x1="4" y2="4" transform="translate(0 8.5)" fill="none" stroke="#ffb548" stroke-linecap="round" stroke-width="2"/>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="23.186" height="23.092" viewBox="0 0 15.186 15.092">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#ffd165"/>
+      <stop offset="0.719" stop-color="#ffb347"/>
+      <stop offset="1" stop-color="#ffb347"/>
+    </linearGradient>
+  </defs>
+  <g id="noun_Search_856445" transform="translate(0.005 -1.54)">
+    <path id="Tracé_91" data-name="Tracé 91" d="M128.654,3.363a3.947,3.947,0,1,1-3.947,3.948,3.947,3.947,0,0,1,3.947-3.948m0-1.823a5.77,5.77,0,1,0,2.247.455,5.771,5.771,0,0,0-2.247-.455h0Z" transform="translate(-119.246 0)" fill="url(#linear-gradient)"/>
+    <path id="Tracé_92" data-name="Tracé 92" d="M.215,352.865l3.039-3.039a.759.759,0,0,1,1.07,0l.219.219a.759.759,0,0,1,0,1.07L1.5,354.154a.759.759,0,0,1-1.07,0l-.219-.219a.759.759,0,0,1,0-1.07Z" transform="translate(0 -337.743)" fill="url(#linear-gradient)"/>
   </g>
 </svg>

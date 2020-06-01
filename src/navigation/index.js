@@ -1,7 +1,7 @@
 
 import Login from '../screens/Login';
 import Register from '../screens/Register';
-import Recherche from '../screens/RechercheContainer';
+import RechercheContainer from '../screens/RechercheContainer';
 import RechercheDetailContainer from '../screens/RecetteDetailContainer';
 import AuthLoadingScreen from '../screens/AuthLoading';
 import LoggedInTabNavigator from '../navigation/LoggedInTabNavigator';
@@ -19,7 +19,7 @@ const MainStackNavigator = createSwitchNavigator(
     AuthLoading: { screen: AuthLoadingScreen },
     Auth: AuthNavigator,
     ExploreContainer: { screen: LoggedInTabNavigator },
-    RechercheContainer: { screen: Recherche },
+    RechercheContainer: { screen: RechercheContainer },
     RecetteDetailContainer: { screen: RechercheDetailContainer },
 
   },

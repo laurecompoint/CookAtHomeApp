@@ -5,6 +5,7 @@ export const Types = {
   LOADING: 'LOADING',
   LOGOUT: 'LOGOUT',
   LOGIN: 'LOGIN',
+  FILTER_RECETTES: 'FILTER_RECETTES'
 };
 export const Actions = {
   setListings: results => ({
@@ -15,6 +16,7 @@ export const Actions = {
     type: Types.SET_FAVORIES,
     payload: resultsfav,
   }),
+
   loading: (isLoading) => ({
     type: Types.LOADING,
     payload: {
@@ -30,7 +32,14 @@ export const Actions = {
       email,
       token
     }
-  })
+  }),
+  filterRecettes: (criteria, sortCriteria) => ({
+    type: Types.FILTER_RECETTES,
+    payload: {
+      criteria,
+      sort: sortCriteria
+    }
+  }),
 };
 export function requestGetListings() {
   return (dispatch) => {

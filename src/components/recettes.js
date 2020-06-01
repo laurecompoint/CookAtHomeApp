@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Text, View, Image, ScrollView, TouchableOpacity } from 'react-native';
 import styles from '../styles/styles.js';
-import CardRecherche from '../components/CardRecherche';
+import CardRecherche from './CardRecherche';
 import photos from '../data/photos/index';
 
 
-export default class Recette extends Component {
+export default class Recettes extends Component {
     render() {
         const { recettes } = this.props;
         return (

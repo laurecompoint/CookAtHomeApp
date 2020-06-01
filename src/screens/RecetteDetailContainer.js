@@ -2,12 +2,10 @@ import React, { Component } from 'react';
 import {
     Text,
     View,
-    Image,
     ScrollView,
     TouchableOpacity
 } from 'react-native';
 import styles from '../styles/styles';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import LinearGradient from 'react-native-linear-gradient';
 import { ImageBackground } from 'react-native';
 import GoBack from '../data/image/goback.svg';

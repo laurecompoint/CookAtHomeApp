@@ -6,43 +6,45 @@ import {
     ScrollView,
     TouchableOpacity,
     ActivityIndicator,
+    TextInput,
+    Button,
 } from 'react-native';
 import styles from '../styles/styles';
 import { connect } from 'react-redux';
-import Icon from 'react-native-vector-icons/FontAwesome';
-
 import LinearGradient from 'react-native-linear-gradient';
-import { ImageBackground } from 'react-native';
-import Recette from '../components/Recette';
-import RechercheInput from '../components/RechercheInput';
-import { requestGetListings, Actions } from '../actions';
 import Searchlogo from '../data/image/search.svg';
+import Filtreentree from '../data/image/filtrentree.svg';
+import Filtredessert from '../data/image/filtredessert.svg';
+import Filtreapero from '../data/image/filtreapero.svg';
+import Filtre from '../data/image/testplats.svg';
+import { ImageBackground } from 'react-native';
+import Recettes from '../components/recettes';
+import { requestGetListings, Actions } from '../actions';
+import { filterRecettes } from '../reducers/recipe';
+import Goback from '../data/image/goback.svg';
 class RechercheContainer extends Component {
-    static navigationOptions = ({ navigation }) => ({
-        header: props => (
-            <View style={styles.containerConnect}>
-                <Icon size={20} style={styles.iconclose} name="close"></Icon>
-                <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-                    <Text style={styles.connect}>Connexion</Text>
-                </TouchableOpacity>
-
-            </View>
-        ),
-
-    });
 
     componentDidMount() {
         const { requestGetListings } = this.props;
         return requestGetListings()
     }
+    onPressGoToBack = () => {
 
+        const { navigation } = this.props
+        navigation.navigate('Home')
+    }
     render() {
-        const { recettes } = this.props;
+        const { recettes, filterRecettes, filter } = this.props;
         return (
             <LinearGradient colors={['#507E96', '#F7F8F8']} style={{ flex: 1 }} >
                 <ImageBackground style={styles.imgBackground}
                     resizeMode='cover'
                     source={require('../data/image/imagefond.png')}>
+                    <TouchableOpacity onPress={this.onPressGoToBack}>
+                        <Goback style={styles.goback} />
+                    </TouchableOpacity>
+
+
                     <ScrollView >
                         <View style={styles.structGlobal}>
                             <Image
@@ -50,20 +52,31 @@ class RechercheContainer extends Component {
                                 source={require('../data/image/logocookathome.png')}
                             />
                             <View style={styles.structInputRecherche} >
-                                <RechercheInput
-                                    ref={ref => { this.refPassword = ref }}
-                                    textContentType={'search'}
-                                    onChangeText={this.onChangePassword}
-                                    placeholder={"Chercher une recette"} />
-                                <TouchableOpacity style={styles.bouttonSearch} onPress={this.onPressSearch}>
+                                <TextInput placeholder={"Chercher une recette"} style={styles.textRechercheInput} defaultValue={filter} onChangeText={filterRecettes}></TextInput>
+                                <View style={styles.bouttonSearch}>
 
-                                    <Searchlogo style={styles.searchlogo} size={80} />
+                                    <Searchlogo style={styles.searchlogo} />
 
 
-                                </TouchableOpacity>
+                                </View>
+                            </View>
+                            <View style={styles.structFiltre} >
+
+                                <TouchableOpacity style={styles.filtretype} title={""} onPress={() => filterRecettes(filter, "title")}>
+                                    <Filtreapero style={styles.searchlogo} />
+                                </TouchableOpacity >
+                                <TouchableOpacity style={styles.filtretype} title={""} onPress={() => filterRecettes(filter, "title")}>
+                                    <Filtreentree style={styles.searchlogo} />
+                                </TouchableOpacity >
+                                <TouchableOpacity style={styles.filtretype} title={""} onPress={() => filterRecettes(filter, "title")}>
+                                    <Filtre style={styles.searchlogo} />
+                                </TouchableOpacity >
+                                <TouchableOpacity style={styles.filtretype} title={""} onPress={() => filterRecettes(filter, "type")}>
+                                    <Filtredessert style={styles.searchlogo} />
+                                </TouchableOpacity >
 
                             </View>
-                            <Recette recettes={recettes} />
+                            <Recettes recettes={recettes} />
 
 
                         </View>
@@ -72,7 +85,7 @@ class RechercheContainer extends Component {
 
 
                 </ImageBackground>
-            </LinearGradient>
+            </LinearGradient >
 
         );
     }
@@ -80,12 +93,14 @@ class RechercheContainer extends Component {
 
 }
 const mapStateToProps = state => ({
-    recettes: state.listings.recettes,
+    recettes: filterRecettes(state),
     isLoading: state.app.isLoading,
+    filter: state.listings.filter,
 });
 
 const mapDispatchToProps = dispatch => ({
-    requestGetListings: () => dispatch(requestGetListings())
+    requestGetListings: () => dispatch(requestGetListings()),
+    filterRecettes: (criteria, sort) => dispatch(Actions.filterRecettes(criteria, sort))
 });
 export default connect(mapStateToProps, mapDispatchToProps)(RechercheContainer);
 

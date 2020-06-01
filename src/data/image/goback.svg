@@ -1,5 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="58.387" height="94.848" viewBox="0 0 58.387 94.848">
-  <g id="noun_Arrow_3134100" transform="translate(-20.81 -2.692)">
-    <path id="Tracé_90" data-name="Tracé 90" d="M79.2,13.983a11.25,11.25,0,0,0-19.2-8l-35.89,35.93a11.23,11.23,0,0,0-3.29,8c0,.13,0,.25,0,.37A11.2,11.2,0,0,0,24.1,58.6l35.91,35.84a11.25,11.25,0,0,0,15.9-15.91l-28.3-28.3,28.3-28.3a11.23,11.23,0,0,0,3.29-7.95Z" transform="translate(0)"/>
-  </g>
+<svg id="noun_Arrow_1920906" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="19.734" height="32.599" viewBox="0 0 19.734 32.599">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#ffd165"/>
+      <stop offset="0.719" stop-color="#ffb347"/>
+      <stop offset="1" stop-color="#ffb347"/>
+    </linearGradient>
+  </defs>
+  <path id="Tracé_93" data-name="Tracé 93" d="M37.57,35.074a3.514,3.514,0,0,0,2.436-.995,3.458,3.458,0,0,0,0-4.871L29.611,18.779,40.006,8.35a3.445,3.445,0,1,0-4.871-4.871L22.27,16.343a3.4,3.4,0,0,0-.995,2.436,3.543,3.543,0,0,0,.995,2.436L35.134,34.079A3.576,3.576,0,0,0,37.57,35.074Z" transform="translate(-21.275 -2.475)" fill="url(#linear-gradient)"/>
 </svg>

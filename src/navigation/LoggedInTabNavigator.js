@@ -7,12 +7,9 @@ import RecettefavorieIcon from '../data/image/recettefavorie.svg';
 import HomeIcon from '../data/image/home.svg';
 import RecettePlusIcon from '../data/image/recetteplus.svg';
 import ProfilIcon from '../data/image/profil.svg';
-import { StyleSheet, View, Image } from 'react-native';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import React from 'react'
-import { NavigationEvents } from 'react-navigation';
-import Recherche from '../screens/RechercheContainer';
+
+
 
 
 export default createBottomTabNavigator(

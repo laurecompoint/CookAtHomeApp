@@ -17,7 +17,7 @@ export default class CardFavorie extends Component {
         const { colorTitleCard } = this.props;
         return (
             <View style={styles.marginfav}>
-                <Image style={styles.imageExp} source={require('../data/image/imagedessert.png')} />
+                <Image style={styles.imageExp} source={imageCard} />
                 <TouchableOpacity onPress={this.gotodetailrecipe}>
                     <Text style={styles.titlerecipe}>{paragraphe}</Text>
                 </TouchableOpacity>
