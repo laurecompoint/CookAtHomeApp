@@ -13,14 +13,20 @@ export default class Recette extends Component {
             <View style={styles.cardFav}>
 
                 {favorierecette.map((recette, index) => (
+
+
                     <CardFavorie
                         key={`recette-item-${index}`}
                         imageCard={photos[recette.photo]}
-                        cuissonrecette={recette.cuisson}
                         paragraphe={recette.title}
 
+
                     ></CardFavorie>
-                ))}
+                ))
+                }
+
+
+
             </View>
         );
     }

@@ -1,12 +1,19 @@
 import { login as loginService } from "../services"
+import { register as registerService } from "../services"
+import { favorie as recetteService } from "../services"
+import { AsyncStorage } from 'react-native';
+import user from "../reducers/user"
 export const Types = {
   SET_LISTINGS: 'SET_LISTINGS',
   SET_FAVORIES: 'SET_FAVORIES',
+  SET_RECETTEUSER: 'SET_RECETTEUSER',
   LOADING: 'LOADING',
   LOGOUT: 'LOGOUT',
   LOGIN: 'LOGIN',
+  REGISTER: 'REGISTER',
   FILTER_RECETTES: 'FILTER_RECETTES'
 };
+
 export const Actions = {
   setListings: results => ({
     type: Types.SET_LISTINGS,
@@ -15,6 +22,10 @@ export const Actions = {
   setFavories: resultsfav => ({
     type: Types.SET_FAVORIES,
     payload: resultsfav,
+  }),
+  setRecetteUser: resultsuser => ({
+    type: Types.SET_RECETTEUSER,
+    payload: resultsuser,
   }),
 
   loading: (isLoading) => ({
@@ -33,6 +44,13 @@ export const Actions = {
       token
     }
   }),
+  register: (email, token) => ({
+    type: Types.REGISTER,
+    payload: {
+      email,
+      token
+    }
+  }),
   filterRecettes: (criteria, sortCriteria) => ({
     type: Types.FILTER_RECETTES,
     payload: {
@@ -41,56 +59,6 @@ export const Actions = {
     }
   }),
 };
-export function requestGetListings() {
-  return (dispatch) => {
-    dispatch(Actions.loading(true))
-    //Récupération des données contenus dans l'URL
-    return fetch('https://cookathomeapi.herokuapp.com/api/recettes') // requête vers l'API
-      .then((response) => {
-        // Si un code erreur a été détecté on déclenche une erreur
-        if (!response.ok) {
-          throw Error(response.statusText);
-        }
-        return response;
-      })
-      .then(response => response.json())
-      .then(response => {
-        // On cache le loading spinner à la fin de la requête
-        dispatch(Actions.loading(false))
-        dispatch(Actions.setListings(response))
-      })
-      .catch((err) => {
-        console.log('An error occured', err)
-        // En cas d'erreur on cache le loading spinner également
-        dispatch(Actions.loading(false))
-      })
-  }
-}
-export function requestGetRecetteFavories() {
-  return (dispatch) => {
-    dispatch(Actions.loading(true))
-    //Récupération des données contenus dans l'URL
-    return fetch('https://cookathomeapi.herokuapp.com/api/recettes') // requête vers l'API
-      .then((response) => {
-        // Si un code erreur a été détecté on déclenche une erreur
-        if (!response.ok) {
-          throw Error(response.statusText);
-        }
-        return response;
-      })
-      .then(response => response.json())
-      .then(response => {
-        // On cache le loading spinner à la fin de la requête
-        dispatch(Actions.loading(false))
-        dispatch(Actions.setFavories(response))
-      })
-      .catch((err) => {
-        console.log('An error occured', err)
-        // En cas d'erreur on cache le loading spinner également
-        dispatch(Actions.loading(false))
-      })
-  }
-}
 export function requestLogin(email, password) {
   return function (dispatch) {
     dispatch(Actions.loading(true))
@@ -108,3 +76,21 @@ export function requestLogin(email, password) {
       })
   }
 }
+export function requestRegister(email, password, name) {
+  return function (dispatch) {
+    dispatch(Actions.loading(true))
+    return registerService(email, password, name)
+      .then((response) => {
+        // On cache le loader
+        dispatch(Actions.loading(false))
+
+        // On sauvegarde du token dans le local storage
+        dispatch(Actions.register(response.user.email, response.authorization))
+      })
+      .catch((err) => {
+        dispatch(Actions.loading(false))
+        throw err
+      })
+  }
+}
+

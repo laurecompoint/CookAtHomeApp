@@ -13,6 +13,8 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { Actions } from '../actions';
 import LinearGradient from 'react-native-linear-gradient';
 import { ImageBackground } from 'react-native';
+import StartEmpty from '../data/image/logout.svg';
+import RecettesUser from '../components/recetteuser';
 
 class ProfileContainer extends Component {
 
@@ -27,6 +29,42 @@ class ProfileContainer extends Component {
     ),
   });
 
+  componentDidMount() {
+    // const { requestGetRecetteCreatedByUser } = this.props;
+    //return requestGetRecetteCreatedByUser()
+    const { setRecetteUser, loading, token } = this.props;
+    loading(true)
+    var bearer_token = token;
+    console.log('TEST' + token);
+    var bearer = 'Bearer ' + bearer_token;
+    return fetch('https://cookathomeapp.herokuapp.com/api/recettebyuser', {
+      method: 'GET',
+      withCredentials: true,
+      credentials: 'include',
+      headers: {
+        'Authorization': bearer,
+        'Content-Type': 'application/json'
+      }
+    }) // requête vers l'API
+      .then((response) => {
+        // Si un code erreur a été détecté on déclenche une erreur
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+        return response;
+      })
+      .then(response => response.json())
+      .then(response => {
+        // On cache le loading spinner à la fin de la requête
+        loading(false)
+        setRecetteUser(response);
+      })
+      .catch((err) => {
+        console.log('An error occured', err)
+        // En cas d'erreur on cache le loading spinner également
+        loading(false)
+      })
+  }
   doLogout = () => {
     const { logout, navigation } = this.props
     logout()
@@ -39,7 +77,7 @@ class ProfileContainer extends Component {
   }
 
   render() {
-    const { email } = this.props
+    const { userrecette, email, token, isLoading } = this.props
     return (
       <LinearGradient colors={['#507E96', '#F7F8F8']} style={{ flex: 1 }} >
         <ImageBackground style={styles.imgBackground}
@@ -47,17 +85,18 @@ class ProfileContainer extends Component {
           source={require('../data/image/imagefond.png')}>
           <ScrollView>
             <View style={styles.structGlobal}>
+
+              <TouchableOpacity style={styles.boutonlogout} onPress={this.doLogout}>
+                <StartEmpty style={styles.start} size={80} />
+              </TouchableOpacity>
+
               <Image
                 style={styles.LogoCookAtHome}
                 source={require('../data/image/logocookathome.png')}
               />
               <Text style={styles.titre}>Votre compte</Text>
               <View style={styles.structProfil}>
-                <LinearGradient colors={['#800F00', '#400800']} style={styles.boutonlogout}>
-                  <TouchableOpacity onPress={this.doLogout}>
-                    <Text style={styles.textPolice, styles.textboutton}>Déconnexion</Text>
-                  </TouchableOpacity>
-                </LinearGradient>
+
                 <LinearGradient colors={['white', 'white']} style={styles.infoprofil}>
 
                   <Text style={styles.textPolice, styles.textinfo}>Infos</Text>
@@ -66,7 +105,7 @@ class ProfileContainer extends Component {
 
               </View>
               <View style={styles.viewRowInfo}>
-                <View style={{ width: 150, height: 150 }}>
+                <View style={{ width: 150, }}>
                   <Image
                     style={styles.AvatarCookAtHome}
                     source={require('../data/image/avatar.png')}
@@ -74,10 +113,11 @@ class ProfileContainer extends Component {
 
 
                 </View>
-                <View style={{ width: 190, height: 150 }}>
+                <View style={{ width: 190, }}>
 
                   <Text >Nom : Cookathome</Text>
                   <Text >Email : {email}</Text>
+                  <Text >Email : {token}</Text>
                   <LinearGradient colors={['#4F147B', '#704C8B']} style={styles.boutonmodif}>
                     <TouchableOpacity onPress={this.modifInfo}>
                       <Text style={styles.boutontext}>Modifier</Text>
@@ -87,6 +127,18 @@ class ProfileContainer extends Component {
                 </View>
 
               </View>
+
+              <View style={styles.structProfil}>
+
+                <LinearGradient colors={['white', 'white']} style={styles.infoprofil}>
+
+                  <Text style={styles.textPolice, styles.textinfo}>Vos recettes</Text>
+
+                </LinearGradient>
+
+              </View>
+
+              <RecettesUser userrecette={userrecette} />
 
             </View>
           </ScrollView>
@@ -98,10 +150,15 @@ class ProfileContainer extends Component {
 
 
 const mapStateToProps = state => ({
-  email: state.user.email
+  email: state.user.email,
+  token: state.user.token,
+  userrecette: state.usercreatedbyuser.userrecette,
 });
 
 const mapDispatchToProps = dispatch => ({
-  logout: () => dispatch(Actions.logout())
+  logout: () => dispatch(Actions.logout()),
+  setRecetteUser: results => dispatch(Actions.setRecetteUser(results)),
+  loading: (isLoading) => dispatch(Actions.loading(isLoading)),
+  //requestGetRecetteCreatedByUser: () => dispatch(requestGetRecetteCreatedByUser())
 });
 export default connect(mapStateToProps, mapDispatchToProps)(ProfileContainer)

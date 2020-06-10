@@ -9,6 +9,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import { ImageBackground } from 'react-native';
 
 
+
 const MAIL_REGEXP = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
 const ERR_EMAIL_INVALID = 'ERR_EMAIL_INVALID'
 const ERR_LOGIN_INVALID = 'ERR_LOGIN_INVALID'
@@ -56,6 +57,7 @@ class Login extends Component {
     }
   };
   login = () => {
+
     const { requestLogin } = this.props
     const { password, email } = this.state
 
@@ -127,7 +129,7 @@ class Login extends Component {
               </LinearGradient>
               <TouchableOpacity style={styles.buttonGoToInscription} onPress={this.onPressGoToInscription}>
 
-                <Text style={[styles.textGoToInscription, styles.textPolice]}>Vous n’avez pas encore de compte,
+                <Text style={[styles.textGoToInscription, styles.textPolice]}>Vous n’avez pas encore de compte ?
                 cliquer ici pour vous inscrire
                 </Text>
 

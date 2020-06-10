@@ -12,7 +12,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import { ImageBackground } from 'react-native';
 import RecetteFavorie from '../components/RecetteFavorie';
 import { connect } from 'react-redux';
-import { requestGetRecetteFavories, Actions } from '../actions';
+import { Actions } from '../actions';
 
 class FavorieRecetteContainer extends Component {
   static navigationOptions = ({ navigation }) => ({
@@ -35,13 +35,48 @@ class FavorieRecetteContainer extends Component {
     navigation.navigate('RecetteDetailContainer')
   }
 
+
+
   componentDidMount() {
-    const { requestGetRecetteFavories } = this.props;
-    return requestGetRecetteFavories()
+    //const { requestGetRecetteFavories } = this.props;
+    //return requestGetRecetteFavories()
+    const { setFavories, loading, token } = this.props;
+    loading(true)
+    var bearer_token = token;
+    console.log('TEST' + token);
+    var bearer = 'Bearer ' + bearer_token;
+    return fetch('https://cookathomeapp.herokuapp.com/api/favories', {
+      method: 'GET',
+      withCredentials: true,
+      credentials: 'include',
+      headers: {
+        'Authorization': bearer,
+        'Content-Type': 'application/json'
+      }
+    }) // requête vers l'API
+      .then((response) => {
+        // Si un code erreur a été détecté on déclenche une erreur
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+        return response;
+      })
+      .then(response => response.json())
+      .then(response => {
+        // On cache le loading spinner à la fin de la requête
+        loading(false)
+        setFavories(response);
+      })
+      .catch((err) => {
+        console.log('An error occured', err)
+        // En cas d'erreur on cache le loading spinner également
+        loading(false)
+      })
   }
 
   render() {
-    const { favorierecette } = this.props;
+    const { email } = this.props
+    const { favorierecette, isLoading } = this.props;
     return (
       <LinearGradient colors={['#507E96', '#F7F8F8']} style={{ flex: 1 }} >
         <ImageBackground style={styles.imgBackground}
@@ -71,10 +106,14 @@ class FavorieRecetteContainer extends Component {
 const mapStateToProps = state => ({
   favorierecette: state.favories.favorierecette,
   isLoading: state.app.isLoading,
+  email: state.user.email,
+  token: state.user.token,
 });
 
 const mapDispatchToProps = dispatch => ({
-  requestGetRecetteFavories: () => dispatch(requestGetRecetteFavories())
+  setFavories: results => dispatch(Actions.setFavories(results)),
+  loading: (isLoading) => dispatch(Actions.loading(isLoading)),
+  //requestGetRecetteFavories: () => dispatch(requestGetRecetteFavories())
 });
 export default connect(mapStateToProps, mapDispatchToProps)(FavorieRecetteContainer);
 

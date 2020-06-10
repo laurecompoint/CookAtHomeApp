@@ -13,7 +13,7 @@ class AuthLoadingScreen extends React.Component {
         const { token } = this.props
         // This will switch to the ExploreContainer screen or Auth screen 
         // screen will be unmounted and thrown away.
-        this.props.navigation.navigate(token ? 'Home' : 'Login');
+        this.props.navigation.navigate(token ? 'Home' : 'TutoCookContainer');
     };
 
     // Render any loading content that you like here

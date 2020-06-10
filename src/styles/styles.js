@@ -44,7 +44,37 @@ const styles = StyleSheet.create({
     textAlignVertical: 'center',
     fontWeight: 'bold',
     marginTop: 30,
-    marginBottom: 30,
+
+    fontFamily: "Calibri",
+  },
+  titretuto: {
+    fontSize: 18,
+    color: '#FFC256',
+    textAlignVertical: 'center',
+    fontWeight: 'bold',
+
+    fontFamily: "Calibri",
+
+  },
+  arrowcarousel: {
+    marginLeft: 300,
+    left: 0,
+    right: 0,
+    top: 130,
+    bottom: 0,
+    position: 'absolute'
+  },
+
+  slogant: {
+    fontSize: 25,
+    color: 'black',
+    textAlignVertical: 'center',
+    fontWeight: 'bold',
+    marginTop: 30,
+    marginBottom: 50,
+    width: 240,
+    textAlign: 'center',
+    fontFamily: "Calibri",
   },
   titres: {
     fontSize: 30,
@@ -52,6 +82,14 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     color: 'black',
 
+  },
+  textcarousel: {
+    fontSize: 20,
+    fontWeight: '300',
+    marginTop: 10,
+    width: 160,
+    color: 'black',
+    textAlign: 'center',
   },
   titresExp: {
     fontSize: 25,
@@ -101,6 +139,17 @@ const styles = StyleSheet.create({
 
 
   },
+  buttonstart: {
+
+    width: 207,
+    height: 40,
+    borderRadius: 20,
+    marginBottom: 55,
+
+
+
+
+  },
 
   textInput: {
     backgroundColor: 'white',
@@ -115,6 +164,11 @@ const styles = StyleSheet.create({
     height: 132,
 
   },
+  LogoCarouselCookAtHome: {
+    width: 90,
+    height: 132,
+
+  },
   textGoToInscription: {
     width: 230,
     marginTop: 80,
@@ -122,7 +176,6 @@ const styles = StyleSheet.create({
 
   },
   showPassword: {
-    backgroundColor: 'red',
     left: 0,
     right: 0,
     top: 50,
@@ -159,13 +212,14 @@ const styles = StyleSheet.create({
   textinfo: {
     textAlign: 'center',
     marginTop: 10,
+    marginLeft: 7,
   },
   boutonlogout: {
-    width: 130,
+    width: 60,
     height: 45,
     borderBottomRightRadius: 25,
     borderTopRightRadius: 25,
-    marginLeft: 30,
+    marginLeft: 255,
   },
   infoprofil: {
     width: 130,
@@ -181,12 +235,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignContent: 'center',
-    padding: 20,
+
 
   },
   AvatarCookAtHome: {
-    width: 99,
-    height: 102,
+    width: 85,
+    height: 90,
     flexDirection: 'row',
     alignContent: 'center',
     marginLeft: 30,
@@ -196,6 +250,14 @@ const styles = StyleSheet.create({
     height: 40,
     borderRadius: 20,
     marginTop: 15,
+
+  },
+  boutonmodifrecette: {
+    width: 110,
+    height: 40,
+    borderRadius: 20,
+    marginLeft: 120,
+
 
   },
   boutontext: {
@@ -302,6 +364,17 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
   },
+  viewRowrecetteUser: {
+    flex: 1,
+    flexDirection: 'column',
+    padding: 10,
+    backgroundColor: 'white',
+    height: 60,
+    width: 157,
+    textAlign: 'left',
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
+  },
   //detail de recette
   imgrecetteBackground: {
     width: 399,
@@ -376,16 +449,22 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 30,
     paddingTop: 11,
 
-    height: 48.5,
+    height: 48.8,
     width: 65,
   },
   //card
   start: {
-    color: '#FFB347',
+
     width: 15,
     height: 10,
     textAlign: 'left',
     paddingTop: 5,
+    marginTop: 10,
+    marginLeft: 45,
+
+  },
+  startfav: {
+
     marginTop: 10,
     marginLeft: 45,
 
@@ -406,7 +485,24 @@ const styles = StyleSheet.create({
     height: 40,
 
   },
+  //ajouter une recette
 
+  textInputAddRecette: {
+    backgroundColor: 'white',
+    color: 'black',
+    fontSize: 14,
+    borderRadius: 22,
+    width: 309,
+    paddingLeft: 20,
+    marginTop: 20,
+  },
+  addRecette: {
+    width: 209,
+    height: 45,
+    marginTop: 20,
+    color: 'white',
+    borderRadius: 20,
+  },
 
 });
 export default styles;

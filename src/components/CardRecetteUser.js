@@ -5,8 +5,8 @@ import LinearGradient from 'react-native-linear-gradient';
 import StartEmpty from '../data/image/startempty.svg';
 import StartNoEmpty from '../data/image/startnoempty.svg';
 import { Actions, requestFavorie } from "../actions"
-
-export default class CardRecherche extends Component {
+import Edit from '../data/image/edit.svg';
+export default class CardRecetteUser extends Component {
     constructor(props) {
         super(props);
         const {
@@ -17,11 +17,9 @@ export default class CardRecherche extends Component {
 
         };
     }
-    addfavorie = () => {
+    updatebutton = () => {
 
-        this.setState({
-            secureTextEntry: !this.state.secureTextEntry
-        });
+
     }
     render() {
         const {
@@ -36,16 +34,15 @@ export default class CardRecherche extends Component {
 
             <View style={styles.card}>
                 <Image style={styles.imageRecherche} source={imageCard} />
-                <View style={styles.viewRowrecette}>
+                <View style={styles.viewRowrecetteUser}>
                     <Text style={styles.titlereciperechercher}> {paragraphe} </Text>
                     <View style={styles.bouttonfavorie}>
-                        <LinearGradient colors={['#DEDEDE', '#EFEFEF', '#FFFFFF']} style={styles.cuisson} >
-                            <Text style={styles.titlecuisson}>{cuissonrecette} min</Text>
-                        </LinearGradient>
-                        <TouchableOpacity style={styles.filtretype} onPress={this.addfavorie}>
-                            <Text style={styles.startfav} >{secureTextEntry ? <StartEmpty style={styles.start} size={80} /> : <StartNoEmpty style={styles.start} size={80} />}</Text>
 
+
+                        <TouchableOpacity onPress={this.modifInfo} style={styles.boutonmodifrecette}>
+                            <Edit size={25} />
                         </TouchableOpacity>
+
                     </View>
                 </View>
             </View>

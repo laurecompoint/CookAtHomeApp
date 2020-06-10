@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import { Text, View, TouchableOpacity, Image } from 'react-native';
-import AsyncStorage from '@react-native-community/async-storage';
 import styles from '../styles/styles';
 import Input from '../components/Input'; //Intégration du composants Input
 import Error from '../components/Error'; //Intégration du composants Input
-import Icon from 'react-native-vector-icons/FontAwesome';
-import { Actions } from "../actions"
+import { Actions, requestRegister } from "../actions"
 import { connect } from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
 import { ImageBackground } from 'react-native';
-import { login } from "../services"
+import { register } from "../services"
 
 const MAIL_REGEXP = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
 const ERR_EMAIL_INVALID = 'ERR_EMAIL_INVALID'
@@ -22,6 +20,7 @@ const ErrorMessages = {
 class Register extends Component {
 
     state = {
+        name: '',
         email: '',
         password: '',
         error: null,
@@ -39,6 +38,11 @@ class Register extends Component {
 
                 </View>)
         }
+    }
+    onChangeName = (name) => {
+        this.setState({
+            name
+        })
     }
     onChangeEmail = (email) => {
         this.setState({
@@ -64,13 +68,13 @@ class Register extends Component {
     };
     register = () => {
         const { loading, setToken } = this.props
-        const { password, email } = this.state
+        const { password, email, name } = this.state
 
         // On affiche le loader
         loading(true)
 
 
-        return login(email, password)
+        return register(email, password, name)
             .then((response) => {
 
                 // On cache le loader
@@ -127,6 +131,13 @@ class Register extends Component {
                             ref={ref => { this.refEmail = ref }}
                             onSubmitEditing={this.validateAndFocus}
                             onBlur={this.validateAndFocus}
+                            textContentType={'name'}
+                            onChangeText={this.onChangeName}
+                            placeholder={"Name"} />
+                        <Input
+                            ref={ref => { this.refEmail = ref }}
+                            onSubmitEditing={this.validateAndFocus}
+                            onBlur={this.validateAndFocus}
                             textContentType={'emailAddress'}
                             onChangeText={this.onChangeEmail}
                             placeholder={"E-mail"} />
@@ -147,7 +158,7 @@ class Register extends Component {
                             </LinearGradient>
                             <TouchableOpacity style={styles.buttonGoToInscription} onPress={this.onPressGoToInscription}>
 
-                                <Text style={[styles.textGoToInscription, styles.textPolice]}>Vous avez déja un compte,
+                                <Text style={[styles.textGoToInscription, styles.textPolice]}>Vous avez déja un compte ?
                                 cliquer ici pour vous connecter
                 </Text>
 
@@ -167,5 +178,6 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     loading: (isLoading) => dispatch(Actions.loading(isLoading)),
     setToken: (token) => dispatch(Actions.login(token)),
+    requestRegister: (email, password, name) => dispatch(requestRegister(email, password, name)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Register);
