@@ -76,7 +76,7 @@ class FavorieRecetteContainer extends Component {
 
   render() {
     const { email } = this.props
-    const { favorierecette, isLoading } = this.props;
+    const { favorierecette, isLoading, navigation } = this.props;
     return (
       <LinearGradient colors={['#507E96', '#F7F8F8']} style={{ flex: 1 }} >
         <ImageBackground style={styles.imgBackground}
@@ -92,7 +92,7 @@ class FavorieRecetteContainer extends Component {
               <Text style={styles.titre}>Vos recette préférer</Text>
 
 
-              <RecetteFavorie favorierecette={favorierecette} />
+              <RecetteFavorie favorierecette={favorierecette} onPress={(recette) => navigation.navigate("RecetteDetailContainer", recette)} />
 
             </View>
           </ScrollView>

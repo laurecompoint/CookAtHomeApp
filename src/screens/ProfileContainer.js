@@ -73,11 +73,11 @@ class ProfileContainer extends Component {
 
   modifInfo = () => {
     const { navigation } = this.props
-    navigation.navigate('RecetteDetailContainer')
+    navigation.navigate('UpdateProfilContainer')
   }
 
   render() {
-    const { userrecette, email, token, isLoading } = this.props
+    const { userrecette, email, token, isLoading, navigation } = this.props
     return (
       <LinearGradient colors={['#507E96', '#F7F8F8']} style={{ flex: 1 }} >
         <ImageBackground style={styles.imgBackground}
@@ -117,7 +117,6 @@ class ProfileContainer extends Component {
 
                   <Text >Nom : Cookathome</Text>
                   <Text >Email : {email}</Text>
-                  <Text >Email : {token}</Text>
                   <LinearGradient colors={['#4F147B', '#704C8B']} style={styles.boutonmodif}>
                     <TouchableOpacity onPress={this.modifInfo}>
                       <Text style={styles.boutontext}>Modifier</Text>
@@ -138,7 +137,7 @@ class ProfileContainer extends Component {
 
               </View>
 
-              <RecettesUser userrecette={userrecette} />
+              <RecettesUser userrecette={userrecette} onPress={(recette) => navigation.navigate("RecetteDetailContainer", recette)} />
 
             </View>
           </ScrollView>

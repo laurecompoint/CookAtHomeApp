@@ -7,12 +7,13 @@ import photos from '../data/photos/index';
 
 export default class RecettesUser extends Component {
     render() {
-        const { userrecette } = this.props;
+        const { userrecette, onPress } = this.props;
         return (
             <View style={styles.cardRecherche}>
 
                 {userrecette.map((recette, index) => (
                     <CardRecetteUser
+                        onPress={() => onPress(recette)}
                         key={`recette-item-${index}`}
                         imageCard={photos[recette.photo]}
                         cuissonrecette={recette.cuisson}

@@ -66,7 +66,7 @@ class HomeContainer extends Component {
         navigation.navigate('Home')
     }
     render() {
-        const { recettes, filterRecettes, filter, isLoading } = this.props;
+        const { recettes, filterRecettes, filter, isLoading, navigation } = this.props;
         return (
             <LinearGradient colors={['#507E96', '#F7F8F8']} style={{ flex: 1 }} >
                 <ImageBackground style={styles.imgBackground}
@@ -104,7 +104,7 @@ class HomeContainer extends Component {
                                 </TouchableOpacity >
 
                             </View>
-                            <Recettes recettes={recettes} />
+                            <Recettes recettes={recettes} onPress={(recette) => navigation.navigate("RecetteDetailContainer", recette)} />
 
 
                         </View>

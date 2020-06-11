@@ -28,13 +28,13 @@ export default class CardRecherche extends Component {
             imageCard,
             paragraphe,
             favorieid,
+            onPress,
             cuissonrecette,
         } = this.props;
         const { secureTextEntry } = this.state;
-        const { colorTitleCard } = this.props;
         return (
 
-            <View style={styles.card}>
+            <TouchableOpacity style={styles.card} onPress={onPress}>
                 <Image style={styles.imageRecherche} source={imageCard} />
                 <View style={styles.viewRowrecette}>
                     <Text style={styles.titlereciperechercher}> {paragraphe} </Text>
@@ -48,7 +48,7 @@ export default class CardRecherche extends Component {
                         </TouchableOpacity>
                     </View>
                 </View>
-            </View>
+            </TouchableOpacity>
 
 
         );

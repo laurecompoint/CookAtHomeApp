@@ -9,7 +9,7 @@ import styles from '../styles/styles';
 import LinearGradient from 'react-native-linear-gradient';
 import { ImageBackground } from 'react-native';
 import GoBack from '../data/image/goback.svg';
-
+import photos from '../data/photos/index';
 class RecetteDetailContainer extends Component {
     state = {
 
@@ -21,13 +21,13 @@ class RecetteDetailContainer extends Component {
         navigation.navigate('Home')
     }
     render() {
-
+        const { navigation } = this.props
         return (
             <LinearGradient colors={['#507E96', '#F7F8F8']} style={{ flex: 1 }} >
 
                 <ImageBackground style={styles.imgrecetteBackground}
                     resizeMode='cover'
-                    source={require('../data/image/imagedessert.png')}>
+                    source={photos[navigation.getParam('photo', '[MISSING_PHOTO]')]}>
 
                     <View>
 
@@ -36,7 +36,7 @@ class RecetteDetailContainer extends Component {
                         </TouchableOpacity>
                     </View>
 
-                    <Text style={styles.titlerecette}>Titre recette</Text>
+                    <Text style={styles.titlerecette}>{navigation.getParam('title', '[MISSING_TITLE]')}</Text>
                 </ImageBackground>
 
                 <ScrollView >
@@ -49,12 +49,12 @@ class RecetteDetailContainer extends Component {
                         </LinearGradient>
 
                         <View style={styles.structIngredient}>
-                            <Text>ingredients 1</Text>
-                            <Text>ingredients 1</Text>
-                            <Text>ingredients 1</Text>
-                            <Text>ingredients 1</Text>
-                            <Text>ingredients 1</Text>
-                            <Text>ingredients 1</Text>
+                            <Text>{navigation.getParam('ingredient1', '[MISSING_INGREDIENT]')}</Text>
+                            <Text>{navigation.getParam('ingredient2', '[MISSING_INGREDIENT]')}</Text>
+                            <Text>{navigation.getParam('ingredient3', '[MISSING_INGREDIENT]')}</Text>
+                            <Text>{navigation.getParam('ingredient4', '[MISSING_INGREDIENT]')}</Text>
+                            <Text>{navigation.getParam('ingredient5', '[MISSING_INGREDIENT]')}</Text>
+                            <Text>{navigation.getParam('ingredient6', '[MISSING_INGREDIENT]')}</Text>
                         </View>
 
                         <LinearGradient colors={['white', 'white']} style={styles.detailingredients}>
@@ -65,11 +65,31 @@ class RecetteDetailContainer extends Component {
 
                         <View style={styles.structIngredient}>
                             <Text>Etape 1</Text>
+                            <Text style={styles.etapeespace}>
+                                {navigation.getParam('preparation1', '[MISSING_INGREDIENT]')}
+
+                            </Text>
                             <Text>Etape 2</Text>
+                            <Text style={styles.etapeespace}>
+                                {navigation.getParam('preparation2', '[MISSING_INGREDIENT]')}
+
+                            </Text>
                             <Text>Etape 3</Text>
+                            <Text style={styles.etapeespace}>
+                                {navigation.getParam('preparation3', '[MISSING_INGREDIENT]')}
+
+                            </Text>
                             <Text>Etape 4</Text>
+                            <Text style={styles.etapeespace}>
+                                {navigation.getParam('preparation4', '[MISSING_INGREDIENT]')}
+
+                            </Text>
                             <Text>Etape 5</Text>
-                            <Text>Etape 6</Text>
+                            <Text style={styles.etapeespace}>
+                                {navigation.getParam('preparation5', '[MISSING_INGREDIENT]')}
+
+                            </Text>
+
                         </View>
 
                     </View>

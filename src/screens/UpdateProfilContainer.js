@@ -3,11 +3,11 @@ import { Text, View, TouchableOpacity, Image } from 'react-native';
 import styles from '../styles/styles';
 import Input from '../components/Input'; //Intégration du composants Input
 import Error from '../components/Error'; //Intégration du composants Input
-import { Actions, requestRegister } from "../actions"
+import { Actions } from "../actions"
 import { connect } from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
 import { ImageBackground } from 'react-native';
-import { register } from "../services"
+import GoBack from '../data/image/goback.svg';
 
 const MAIL_REGEXP = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
 const ERR_EMAIL_INVALID = 'ERR_EMAIL_INVALID'
@@ -17,17 +17,13 @@ const ErrorMessages = {
     [ERR_EMAIL_INVALID]: 'Email non valide !',
     [ERR_LOGIN_INVALID]: 'Identification impossible : le couple email/mot de passe est introuvable.'
 }
-class Register extends Component {
+class UpdateProfilContainer extends Component {
 
     state = {
         name: '',
         email: '',
         password: '',
         error: null,
-        colorgris1: '#DEDEDE',
-        colorgris2: '#EFEFEF',
-        colorgris3: '#FFFFFF',
-
     };
 
     static navigationOptions = ({ navigation }) => {
@@ -70,45 +66,12 @@ class Register extends Component {
         const { loading, setToken } = this.props
         const { password, email, name } = this.state
 
-        // On affiche le loader
-        loading(true)
 
-
-        return register(email, password, name)
-            .then((response) => {
-
-                // On cache le loader
-                loading(false)
-
-                // On efface les erreurs
-                this.setState({
-                    error: NO_ERROR
-                })
-
-                // On sauvegarde du token dans le local storage
-                setToken(response.authorization)
-                this.props.navigation.navigate('ExploreContainer')
-
-            })
-
-            // Toutes les erreurs sont traitées dans le catch
-            .catch(() => {
-
-                // On cache le loader
-                loading(false)
-
-                // On stocke d'erreur
-                this.setState({
-                    error: ERR_LOGIN_INVALID
-                })
-                alert(ErrorMessages[ERR_LOGIN_INVALID])
-
-            })
     }
-    onPressGoToInscription = () => {
+    onPressGoToBack = () => {
 
         const { navigation } = this.props
-        navigation.navigate('Login')
+        navigation.navigate('Home')
     }
     render() {
         const { error } = this.state
@@ -121,12 +84,18 @@ class Register extends Component {
                     resizeMode='cover'
                     source={require('../data/image/imagefond.png')}>
 
+                    <View>
+
+                        <TouchableOpacity style={styles.buttonGoToBack} onPress={this.onPressGoToBack}>
+                            <GoBack style={[styles.textGoToBack]} size={25} />
+                        </TouchableOpacity>
+                    </View>
                     <View style={styles.structGlobal} >
                         <Image
                             style={styles.LogoCookAtHome}
                             source={require('../data/image/logocookathome.png')}
                         />
-                        <Text style={[styles.titreauth, styles.textPolice]}>Veuillez vous s'inscrire</Text>
+                        <Text style={[styles.titreauth, styles.textPolice]}>Modifier vos informations</Text>
                         <Input
                             ref={ref => { this.refEmail = ref }}
                             onSubmitEditing={this.validateAndFocus}
@@ -134,6 +103,7 @@ class Register extends Component {
                             textContentType={'name'}
                             onChangeText={this.onChangeName}
                             placeholder={"Name"} />
+                        <Error style={{ paddingTop: 7, }} message={error ? ErrorMessages[error] : null} />
                         <Input
                             ref={ref => { this.refEmail = ref }}
                             onSubmitEditing={this.validateAndFocus}
@@ -141,7 +111,7 @@ class Register extends Component {
                             textContentType={'emailAddress'}
                             onChangeText={this.onChangeEmail}
                             placeholder={"E-mail"} />
-                        <Error message={error ? ErrorMessages[error] : null} />
+
                         <Input
                             ref={ref => { this.refPassword = ref }}
                             textContentType={'password'}
@@ -153,16 +123,10 @@ class Register extends Component {
                                 <TouchableOpacity
                                     disabled={!isValidEmail}
                                     onPress={this.register}>
-                                    <Text size={35} style={{ color: 'gray', textAlign: 'center', fontSize: 20, marginTop: 5, color: 'black', fontFamily: "Calibri" }} name="angle-right">Inscription</Text>
+                                    <Text size={35} style={{ color: 'gray', textAlign: 'center', fontSize: 20, marginTop: 5, color: 'black', fontFamily: "Calibri" }} name="angle-right">Validé</Text>
                                 </TouchableOpacity>
                             </LinearGradient>
-                            <TouchableOpacity style={styles.buttonGoToInscription} onPress={this.onPressGoToInscription}>
 
-                                <Text style={[styles.textGoToInscription, styles.textPolice]}>Vous avez déja un compte ?
-                                cliquer ici pour vous connecter
-                </Text>
-
-                            </TouchableOpacity>
                         </View>
                     </View>
                 </ImageBackground>
@@ -178,6 +142,6 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     loading: (isLoading) => dispatch(Actions.loading(isLoading)),
     setToken: (token) => dispatch(Actions.login(token)),
-    requestRegister: (email, password, name) => dispatch(requestRegister(email, password, name)),
+
 });
-export default connect(mapStateToProps, mapDispatchToProps)(Register);
+export default connect(mapStateToProps, mapDispatchToProps)(UpdateProfilContainer);

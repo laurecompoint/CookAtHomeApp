@@ -101,7 +101,7 @@ class Login extends Component {
               style={styles.LogoCookAtHome}
               source={require('../data/image/logocookathome.png')}
             />
-            <Text style={[styles.titre, styles.textPolice]}>Veuillez vous connecter</Text>
+            <Text style={[styles.titreauth, styles.textPolice]}>Veuillez vous connecter</Text>
             <Error message={error ? ErrorMessages[error] : null} />
             <Input
 

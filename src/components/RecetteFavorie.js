@@ -8,7 +8,7 @@ import photos from '../data/photos/index';
 
 export default class Recette extends Component {
     render() {
-        const { favorierecette } = this.props;
+        const { favorierecette, onPress } = this.props;
         return (
             <View style={styles.cardFav}>
 
@@ -16,6 +16,7 @@ export default class Recette extends Component {
 
 
                     <CardFavorie
+                        onPress={() => onPress(recette)}
                         key={`recette-item-${index}`}
                         imageCard={photos[recette.photo]}
                         paragraphe={recette.title}

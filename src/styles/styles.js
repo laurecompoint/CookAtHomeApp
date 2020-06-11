@@ -47,6 +47,15 @@ const styles = StyleSheet.create({
 
     fontFamily: "Calibri",
   },
+  titreauth: {
+    fontSize: 25,
+    color: 'black',
+    textAlignVertical: 'center',
+    fontWeight: 'bold',
+    marginTop: 30,
+    marginBottom: 60,
+    fontFamily: "Calibri",
+  },
   titretuto: {
     fontSize: 18,
     color: '#FFC256',
@@ -415,6 +424,11 @@ const styles = StyleSheet.create({
   textGoToBack: {
     width: 20,
     color: 'white',
+  },
+  etapeespace: {
+    marginTop: 10,
+    marginBottom: 10,
+    textAlign: 'justify',
   },
   //inputrecherche
   textRechercheInput: {

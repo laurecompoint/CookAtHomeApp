@@ -3,6 +3,7 @@ import Login from '../screens/Login';
 import Register from '../screens/Register';
 import TutoCookContainer from '../screens/TutoCookContainer';
 import RechercheDetailContainer from '../screens/RecetteDetailContainer';
+import UpdateProfilContainer from '../screens/UpdateProfilContainer';
 import AuthLoadingScreen from '../screens/AuthLoading';
 import LoggedInTabNavigator from '../navigation/LoggedInTabNavigator';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
@@ -20,8 +21,8 @@ const MainStackNavigator = createSwitchNavigator(
     AuthLoading: { screen: AuthLoadingScreen },
     Auth: AuthNavigator,
     ExploreContainer: { screen: LoggedInTabNavigator },
-
     RecetteDetailContainer: { screen: RechercheDetailContainer },
+    UpdateProfilContainer: { screen: UpdateProfilContainer },
 
   },
   {
