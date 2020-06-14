@@ -50,6 +50,8 @@ export default createBottomTabNavigator(
     swipeEnabled: false,
     tabBarOptions: {
       showLabel: false,
+      borderTopLeftRadius: 150,
+      borderTopRightRadius: 150,
 
       activeTintColor: '#FFB347',
       tabStyle: {

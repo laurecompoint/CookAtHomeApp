@@ -17,6 +17,9 @@ const photos = {
     tartefraise: require('./tartefraise.png'),
     cake: require('./cake.png'),
     humberger: require('./humberger.png'),
+    salade: require('./salade.jpeg'),
+    poisson: require('./poisson.jpeg'),
+    photodefault: require('./defaultimage.png'),
 
 }
 

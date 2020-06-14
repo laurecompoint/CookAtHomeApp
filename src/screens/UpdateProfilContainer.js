@@ -8,15 +8,8 @@ import { connect } from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
 import { ImageBackground } from 'react-native';
 import GoBack from '../data/image/goback.svg';
+import * as axios from 'axios';
 
-const MAIL_REGEXP = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
-const ERR_EMAIL_INVALID = 'ERR_EMAIL_INVALID'
-const ERR_LOGIN_INVALID = 'ERR_LOGIN_INVALID'
-const NO_ERROR = ''
-const ErrorMessages = {
-    [ERR_EMAIL_INVALID]: 'Email non valide !',
-    [ERR_LOGIN_INVALID]: 'Identification impossible : le couple email/mot de passe est introuvable.'
-}
 class UpdateProfilContainer extends Component {
 
     state = {
@@ -50,18 +43,40 @@ class UpdateProfilContainer extends Component {
             password
         })
     }
-    validateAndFocus = () => {
-        const { email } = this.state
-        console.log('email', email)
-        if (!MAIL_REGEXP.test(email)) {
-            console.log('email invalide')
-            this.setState({ error: ERR_EMAIL_INVALID });
-        } else {
-            console.log('email valide')
-            this.setState({ error: NO_ERROR });
-            this.refPassword.focus()
-        }
-    };
+    updaterecette = () => {
+
+        const { name, email, password } = this.state
+
+        const { token } = this.props;
+        var bearer_token = token;
+        console.log('TESTupdate' + token);
+        var bearer = 'Bearer ' + bearer_token;
+        let data = JSON.stringify({
+            name: name,
+            email: email,
+            password: password,
+        })
+        axios.post('https://cookathomeapp.herokuapp.com/api/updateuser', data, {
+            headers: {
+                'Authorization': bearer,
+                'Content-Type': 'application/json'
+            },
+        })
+            .then(function (response) {
+
+                console.log(response);
+            })
+            .catch(function (error) {
+
+                console.log(error);
+            });
+
+        const { navigation } = this.props
+        navigation.navigate('Profile')
+
+    }
+
+
     register = () => {
         const { loading, setToken } = this.props
         const { password, email, name } = this.state
@@ -74,8 +89,9 @@ class UpdateProfilContainer extends Component {
         navigation.navigate('Home')
     }
     render() {
-        const { error } = this.state
-        const isValidEmail = error == NO_ERROR
+
+        const { email, token, name } = this.props
+
 
         return (
 
@@ -101,16 +117,18 @@ class UpdateProfilContainer extends Component {
                             onSubmitEditing={this.validateAndFocus}
                             onBlur={this.validateAndFocus}
                             textContentType={'name'}
+                            defaultValue={name}
                             onChangeText={this.onChangeName}
-                            placeholder={"Name"} />
-                        <Error style={{ paddingTop: 7, }} message={error ? ErrorMessages[error] : null} />
+                            placeholder={name} />
+
                         <Input
                             ref={ref => { this.refEmail = ref }}
                             onSubmitEditing={this.validateAndFocus}
                             onBlur={this.validateAndFocus}
                             textContentType={'emailAddress'}
                             onChangeText={this.onChangeEmail}
-                            placeholder={"E-mail"} />
+                            defaultValue={email}
+                            placeholder={email} />
 
                         <Input
                             ref={ref => { this.refPassword = ref }}
@@ -121,8 +139,8 @@ class UpdateProfilContainer extends Component {
                         <View style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'center' }}>
                             <LinearGradient colors={['#FFD165', '#FFB347', '#FFB347']} style={styles.buttonconnexion} >
                                 <TouchableOpacity
-                                    disabled={!isValidEmail}
-                                    onPress={this.register}>
+
+                                    onPress={this.updaterecette}>
                                     <Text size={35} style={{ color: 'gray', textAlign: 'center', fontSize: 20, marginTop: 5, color: 'black', fontFamily: "Calibri" }} name="angle-right">Validé</Text>
                                 </TouchableOpacity>
                             </LinearGradient>
@@ -137,6 +155,9 @@ class UpdateProfilContainer extends Component {
 }
 const mapStateToProps = state => ({
     isLoading: state.app.isLoading,
+    email: state.user.email,
+    token: state.user.token,
+    name: state.user.name,
 });
 
 const mapDispatchToProps = dispatch => ({

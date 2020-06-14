@@ -12,10 +12,11 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import LinearGradient from 'react-native-linear-gradient';
 import InputAddRecette from '../components/InputAddRecette';
 import * as axios from 'axios';
+import GoBack from '../data/image/goback.svg';
 import { connect } from 'react-redux';
 import { Actions } from '../actions';
 import { ImageBackground } from 'react-native';
-class RecettePlusContainer extends Component {
+class RecetteUpdateContainer extends Component {
 
     state = {
         title: '',
@@ -37,16 +38,12 @@ class RecettePlusContainer extends Component {
         error: null
     };
 
-    static navigationOptions = ({ navigation }) => ({
-        header: props => (
-            <View style={styles.containerConnect}>
-                <Icon size={20} style={styles.iconclose} name="close"></Icon>
-                <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-                    <Text style={styles.connect}>Connexion</Text>
-                </TouchableOpacity>
-            </View>
-        ),
-    });
+
+    onPressGoToBack = () => {
+
+        const { navigation } = this.props
+        navigation.navigate('Home')
+    }
 
     onChangeTitle = (title) => {
         this.setState({
@@ -119,46 +116,18 @@ class RecettePlusContainer extends Component {
             type
         })
     }
-    onChangeCuisson = (cuisson) => {
-        this.setState({
-            cuisson
-        })
-    }
-    onChangeNbpersonne = (nbpersonne) => {
-        this.setState({
-            nbpersonne
-        })
-    }
 
-    addrecette = () => {
 
-        const { title, ingredient1, ingredient2, ingredient3, ingredient4, ingredient5, ingredient6, preparation1, preparation2, preparation3, preparation4, preparation5, cuisson, type, nbpersonne } = this.state
+    Updaterecette = () => {
+        const { navigation } = this.props
+        const { title, photo, ingredient1, ingredient2, ingredient3, ingredient4, ingredient5, ingredient6, preparation1, preparation2, preparation3, preparation4, preparation5, cuisson, type, nbpersonne } = this.state
 
-        if (title == "") {
-            alert('Error: le titre de la recette ne peut pas etre vide');
-        }
-        if (ingredient1 == "" & ingredient2 == "" & ingredient3 == "" & ingredient4 == "" & ingredient5 == "" & ingredient6 == "") {
-            alert('Error: aucun des ingredients de la recette ne peut pas etre vide');
-        }
-        if (preparation1 == "" & preparation2 == "" & preparation3 == "" & preparation4 == "" & preparation5 == "") {
-            alert('Error: aucun des preparations de la recette ne peut pas etre vide');
-        }
-        if (type == "") {
-            alert('Error: le type de la recette ne peut pas etre vide');
-        }
-        if (cuisson == "") {
-            alert('Error: le temps de cuisson de la recette ne peut pas etre vide');
-        }
-        if (cuisson == "") {
-            alert('Error: pour combien de personne, la recette est réalisable ne peut pas etre vide');
-        }
         const { token } = this.props;
         var bearer_token = token;
         console.log('TEST' + token);
         var bearer = 'Bearer ' + bearer_token;
         let data = JSON.stringify({
             title: title,
-            photo: "photodefault",
             ingredient1: ingredient1,
             ingredient2: ingredient2,
             ingredient3: ingredient3,
@@ -170,31 +139,34 @@ class RecettePlusContainer extends Component {
             preparation3: preparation3,
             preparation4: preparation4,
             preparation5: preparation5,
-            cuisson: cuisson,
+            cuisson: 10,
             type: type,
-            nbpersonne: nbpersonne,
+            nbpersonne: 3,
         })
-        axios.post('https://cookathomeapp.herokuapp.com/api/recettes', data, {
-            headers: {
-                'Authorization': bearer,
-                'Content-Type': 'application/json'
-            },
-
-
-        })
+        axios.post('https://cookathomeapp.herokuapp.com/api/updaterecette/' + navigation.getParam('id', '[MISSING_ID]'), data,
+            {
+                headers: {
+                    'Authorization': bearer,
+                    'Content-Type': 'application/json'
+                },
+            })
             .then(function (response) {
 
                 console.log(response);
+
             })
             .catch(function (error) {
 
                 console.log(error);
             });
-        const { navigation } = this.props
+
+
         navigation.navigate('Home')
+
     }
 
     render() {
+        const { navigation } = this.props
         return (
             <LinearGradient colors={['#507E96', '#F7F8F8']} style={{ flex: 1 }} >
 
@@ -202,91 +174,102 @@ class RecettePlusContainer extends Component {
                     resizeMode='cover'
                     source={require('../data/image/imagefond.png')}>
 
+                    <View>
+
+                        <TouchableOpacity style={styles.buttonGoToBack} onPress={this.onPressGoToBack}>
+                            <GoBack style={[styles.textGoToBack]} size={25} />
+                        </TouchableOpacity>
+                    </View>
+
                     <View style={styles.structGlobal} >
                         <Image
                             style={styles.LogoCookAtHome}
                             source={require('../data/image/logocookathome.png')}
                         />
-                        <Text style={styles.titre}>Ajouter une recette</Text>
+                        <Text style={styles.titre}>Modifier une recette </Text>
                         <ScrollView>
                             <InputAddRecette
                                 ref={ref => { this.refTitle = ref }}
                                 onChangeText={this.onChangeTitle}
-                                placeholder={"Titre de la recette"} />
+                                defaultValue={navigation.getParam('title', '[MISSING_TITLE]')}
+                                placeholder={navigation.getParam('title', '[MISSING_TITLE]')} />
 
                             <InputAddRecette
                                 ref={ref => { this.refIngredient1 = ref }}
                                 onChangeText={this.onChangeIngredient1}
-                                placeholder={"Ingredient 1"} />
+                                defaultValue={navigation.getParam('ingredient1', '[MISSING_INGREDIENT]')}
+                                placeholder={navigation.getParam('ingredient1', '[MISSING_INGREDIENT]')} />
 
                             <InputAddRecette
                                 ref={ref => { this.refIngredient2 = ref }}
                                 onChangeText={this.onChangeIngredient2}
-                                placeholder={"Ingredient 2"} />
+                                defaultValue={navigation.getParam('ingredient2', '[MISSING_INGREDIENT]')}
+                                placeholder={navigation.getParam('ingredient2', '[MISSING_INGREDIENT]')} />
 
                             <InputAddRecette
                                 ref={ref => { this.refIngredient3 = ref }}
                                 onChangeText={this.onChangeIngredient3}
-                                placeholder={"Ingredient 3"} />
+                                defaultValue={navigation.getParam('ingredient3', '[MISSING_INGREDIENT]')}
+                                placeholder={navigation.getParam('ingredient3', '[MISSING_INGREDIENT]')} />
 
                             <InputAddRecette
                                 ref={ref => { this.refIngredient4 = ref }}
                                 onChangeText={this.onChangeIngredient4}
-                                placeholder={"Ingredient 4"} />
+                                defaultValue={navigation.getParam('ingredient4', '[MISSING_INGREDIENT]')}
+                                placeholder={navigation.getParam('ingredient4', '[MISSING_INGREDIENT]')} />
 
                             <InputAddRecette
                                 ref={ref => { this.refIngredient5 = ref }}
                                 onChangeText={this.onChangeIngredient5}
-                                placeholder={"Ingredient 5"} />
+                                defaultValue={navigation.getParam('ingredient5', '[MISSING_INGREDIENT]')}
+                                placeholder={navigation.getParam('ingredient5', '[MISSING_INGREDIENT]')} />
 
                             <InputAddRecette
                                 ref={ref => { this.refIngredient6 = ref }}
                                 onChangeText={this.onChangeIngredient6}
-                                placeholder={"Ingredient 6"} />
+                                defaultValue={navigation.getParam('ingredient6', '[MISSING_INGREDIENT]')}
+                                placeholder={navigation.getParam('ingredient6', '[MISSING_INGREDIENT]')} />
 
                             <InputAddRecette
                                 ref={ref => { this.refPreparation1 = ref }}
                                 onChangeText={this.onChangePreparation1}
-                                placeholder={"Preparation : etape 1"} />
+                                defaultValue={navigation.getParam('preparation1', '[MISSING_PREPARATION]')}
+                                placeholder={navigation.getParam('preparation1', '[MISSING_PREPARATION]')} />
 
                             <InputAddRecette
                                 ref={ref => { this.refPreparation2 = ref }}
                                 onChangeText={this.onChangePreparation2}
-                                placeholder={"Preparation : etape 2"} />
+                                defaultValue={navigation.getParam('preparation2', '[MISSING_PREPARATION]')}
+                                placeholder={navigation.getParam('preparation2', '[MISSING_PREPARATION]')} />
                             <InputAddRecette
                                 ref={ref => { this.refPreparation3 = ref }}
                                 onChangeText={this.onChangePreparation3}
-                                placeholder={"Preparation : etape 3"} />
+                                defaultValue={navigation.getParam('preparation3', '[MISSING_PREPARATION]')}
+                                placeholder={navigation.getParam('preparation3', '[MISSING_PREPARATION]')} />
 
                             <InputAddRecette
                                 ref={ref => { this.refPreparation4 = ref }}
                                 onChangeText={this.onChangePreparation4}
-                                placeholder={"Preparation : etape 4"} />
+                                defaultValue={navigation.getParam('preparation4', '[MISSING_PREPARATION]')}
+                                placeholder={navigation.getParam('preparation4', '[MISSING_PREPARATION]')} />
 
                             <InputAddRecette
                                 ref={ref => { this.refPreparation5 = ref }}
                                 onChangeText={this.onChangePreparation5}
-                                placeholder={"Preparation : etape 5"} />
+                                defaultValue={navigation.getParam('preparation5', '[MISSING_PREPARATION]')}
+                                placeholder={navigation.getParam('preparation5', '[MISSING_PREPARATION]')} />
 
                             <InputAddRecette
                                 ref={ref => { this.refType = ref }}
                                 onChangeText={this.onChangeType}
-                                placeholder={"Type de la recette"} />
-
-                            <InputAddRecette
-                                ref={ref => { this.refCuisson = ref }}
-                                onChangeText={this.onChangeCuisson}
-                                placeholder={"Cuisson"} />
-
-                            <InputAddRecette
-                                ref={ref => { this.refNbpersonne = ref }}
-                                onChangeText={this.onChangeNbpersonne}
-                                placeholder={"Combien de personne"} />
+                                defaultValue={navigation.getParam('type', '[MISSING_TYPE]')}
+                                placeholder={navigation.getParam('type', '[MISSING_TYPE]')} />
                         </ScrollView>
+
                         <LinearGradient colors={['#4F147B', '#704C8B']} style={styles.addRecette}>
                             <TouchableOpacity
-                                onPress={this.addrecette}>
-                                <Text style={{ textAlign: 'center', fontSize: 16, marginTop: 9, color: 'white', fontFamily: "Calibri" }}>Ajouter une recette</Text>
+                                onPress={this.Updaterecette}>
+                                <Text style={{ textAlign: 'center', fontSize: 16, marginTop: 9, color: 'white', fontFamily: "Calibri" }}>Modifier</Text>
                             </TouchableOpacity>
                         </LinearGradient>
                     </View>
@@ -305,4 +288,4 @@ const mapDispatchToProps = dispatch => ({
     loading: (isLoading) => dispatch(Actions.loading(isLoading)),
     //requestGetRecetteFavories: () => dispatch(requestGetRecetteFavories())
 });
-export default connect(mapStateToProps, mapDispatchToProps)(RecettePlusContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(RecetteUpdateContainer);

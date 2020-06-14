@@ -7,7 +7,7 @@ import { Actions, requestRegister } from "../actions"
 import { connect } from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
 import { ImageBackground } from 'react-native';
-import { register } from "../services"
+
 
 const MAIL_REGEXP = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
 const ERR_EMAIL_INVALID = 'ERR_EMAIL_INVALID'
@@ -67,15 +67,11 @@ class Register extends Component {
         }
     };
     register = () => {
-        const { loading, setToken } = this.props
+        const { requestRegister, loading } = this.props
         const { password, email, name } = this.state
 
-        // On affiche le loader
-        loading(true)
-
-
-        return register(email, password, name)
-            .then((response) => {
+        return requestRegister(email, password, name)
+            .then(() => {
 
                 // On cache le loader
                 loading(false)
@@ -85,23 +81,20 @@ class Register extends Component {
                     error: NO_ERROR
                 })
 
-                // On sauvegarde du token dans le local storage
-                setToken(response.authorization)
-                this.props.navigation.navigate('ExploreContainer')
+
+                this.props.navigation.navigate('Home')
 
             })
 
             // Toutes les erreurs sont traitées dans le catch
             .catch(() => {
 
-                // On cache le loader
-                loading(false)
 
                 // On stocke d'erreur
                 this.setState({
                     error: ERR_LOGIN_INVALID
                 })
-                alert(ErrorMessages[ERR_LOGIN_INVALID])
+
 
             })
     }

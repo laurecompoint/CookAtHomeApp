@@ -5,8 +5,10 @@ import LinearGradient from 'react-native-linear-gradient';
 import StartEmpty from '../data/image/startempty.svg';
 import StartNoEmpty from '../data/image/startnoempty.svg';
 import { Actions, requestFavorie } from "../actions"
+import { withNavigation } from 'react-navigation';
 import Edit from '../data/image/edit.svg';
-export default class CardRecetteUser extends Component {
+import CardRecherche from './CardRecherche';
+class CardRecetteUser extends Component {
     constructor(props) {
         super(props);
         const {
@@ -17,9 +19,11 @@ export default class CardRecetteUser extends Component {
 
         };
     }
+
     updatebutton = () => {
 
-
+        const { navigation } = this.props
+        navigation.navigate('RecetteUpdateContainer')
     }
     render() {
         const {
@@ -27,6 +31,8 @@ export default class CardRecetteUser extends Component {
             paragraphe,
             favorieid,
             onPress,
+            recette,
+            navigation,
             cuissonrecette,
         } = this.props;
         const { secureTextEntry } = this.state;
@@ -40,9 +46,9 @@ export default class CardRecetteUser extends Component {
                     <View style={styles.bouttonfavorie}>
 
 
-                        <TouchableOpacity onPress={this.modifInfo} style={styles.boutonmodifrecette}>
-                            <Edit size={25} />
-                        </TouchableOpacity>
+
+                        <Edit style={styles.boutonmodifrecette} size={25} />
+
 
                     </View>
                 </View>
@@ -52,3 +58,4 @@ export default class CardRecetteUser extends Component {
         );
     }
 }
+export default withNavigation(CardRecetteUser)

@@ -77,7 +77,7 @@ class ProfileContainer extends Component {
   }
 
   render() {
-    const { userrecette, email, token, isLoading, navigation } = this.props
+    const { userrecette, email, name, token, isLoading, navigation } = this.props
     return (
       <LinearGradient colors={['#507E96', '#F7F8F8']} style={{ flex: 1 }} >
         <ImageBackground style={styles.imgBackground}
@@ -115,7 +115,7 @@ class ProfileContainer extends Component {
                 </View>
                 <View style={{ width: 190, }}>
 
-                  <Text >Nom : Cookathome</Text>
+                  <Text >Nom : {name}</Text>
                   <Text >Email : {email}</Text>
                   <LinearGradient colors={['#4F147B', '#704C8B']} style={styles.boutonmodif}>
                     <TouchableOpacity onPress={this.modifInfo}>
@@ -137,7 +137,7 @@ class ProfileContainer extends Component {
 
               </View>
 
-              <RecettesUser userrecette={userrecette} onPress={(recette) => navigation.navigate("RecetteDetailContainer", recette)} />
+              <RecettesUser userrecette={userrecette} onPress={(recette) => navigation.navigate("RecetteUpdateContainer", recette)} />
 
             </View>
           </ScrollView>
@@ -150,6 +150,7 @@ class ProfileContainer extends Component {
 
 const mapStateToProps = state => ({
   email: state.user.email,
+  name: state.user.name,
   token: state.user.token,
   userrecette: state.usercreatedbyuser.userrecette,
 });

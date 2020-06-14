@@ -392,7 +392,7 @@ const styles = StyleSheet.create({
   titlerecette: {
     flex: 1,
     textAlign: 'center',
-    marginTop: 110,
+    marginTop: -30,
     color: 'white',
     fontSize: 35,
     fontFamily: "Calibri",
@@ -429,6 +429,10 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10,
     textAlign: 'justify',
+  },
+  favorieid: {
+    textAlign: 'left',
+    marginLeft: 265,
   },
   //inputrecherche
   textRechercheInput: {

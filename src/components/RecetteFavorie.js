@@ -12,7 +12,7 @@ export default class Recette extends Component {
         return (
             <View style={styles.cardFav}>
 
-                {favorierecette.map((recette, index) => (
+                {favorierecette.recettes.map((recette, index) => (
 
 
                     <CardFavorie

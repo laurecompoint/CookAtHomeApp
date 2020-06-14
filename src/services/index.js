@@ -21,7 +21,7 @@ export const login = (email, password) => {
         })
         .then(response => response.json())
 }
-export const register = (email, password) => {
+export const register = (name, email, password) => {
     // https://cookathomeapi.herokuapp.com/api/login
     // https://bbnb-booking.app2b.now.sh/api/users/signIn
     return fetch('https://cookathomeapp.herokuapp.com/api/register', {

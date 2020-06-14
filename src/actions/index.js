@@ -11,7 +11,8 @@ export const Types = {
   LOGOUT: 'LOGOUT',
   LOGIN: 'LOGIN',
   REGISTER: 'REGISTER',
-  FILTER_RECETTES: 'FILTER_RECETTES'
+  FILTER_RECETTES: 'FILTER_RECETTES',
+  SET_FAVORIEBYRECETTE: 'SET_FAVORIEBYRECETTE'
 };
 
 export const Actions = {
@@ -23,11 +24,14 @@ export const Actions = {
     type: Types.SET_FAVORIES,
     payload: resultsfav,
   }),
+  setFavoriebyrecette: resultsbyrecette => ({
+    type: Types.SET_FAVORIEBYRECETTE,
+    payload: resultsbyrecette,
+  }),
   setRecetteUser: resultsuser => ({
     type: Types.SET_RECETTEUSER,
     payload: resultsuser,
   }),
-
   loading: (isLoading) => ({
     type: Types.LOADING,
     payload: {
@@ -44,9 +48,10 @@ export const Actions = {
       token
     }
   }),
-  register: (email, token) => ({
+  register: (name, email, token) => ({
     type: Types.REGISTER,
     payload: {
+      name,
       email,
       token
     }

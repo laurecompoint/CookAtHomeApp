@@ -42,10 +42,7 @@ export default class CardRecherche extends Component {
                         <LinearGradient colors={['#DEDEDE', '#EFEFEF', '#FFFFFF']} style={styles.cuisson} >
                             <Text style={styles.titlecuisson}>{cuissonrecette} min</Text>
                         </LinearGradient>
-                        <TouchableOpacity style={styles.filtretype} onPress={this.addfavorie}>
-                            <Text style={styles.startfav} >{secureTextEntry ? <StartEmpty style={styles.start} size={80} /> : <StartNoEmpty style={styles.start} size={80} />}</Text>
 
-                        </TouchableOpacity>
                     </View>
                 </View>
             </TouchableOpacity>

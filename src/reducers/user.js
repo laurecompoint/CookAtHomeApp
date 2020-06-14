@@ -1,6 +1,7 @@
 import { Types } from "../actions"
 const initialState = {
-    token: null
+    token: null,
+
 };
 
 
@@ -17,7 +18,17 @@ export default (state = initialState, action) => {
                 ...state,
                 token: action.payload.token,
                 email: action.payload.email,
+                name: "cookathome",
             }
+
+        case Types.REGISTER:
+            return {
+                ...state,
+                token: action.payload.token,
+                email: action.payload.email,
+                name: action.payload.name,
+            }
+
         default:
             return state;
     }
