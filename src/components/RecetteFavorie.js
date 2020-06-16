@@ -6,13 +6,13 @@ import photos from '../data/photos/index';
 
 
 
-export default class Recette extends Component {
+export default class RecetteFavorie extends Component {
     render() {
         const { favorierecette, onPress } = this.props;
         return (
             <View style={styles.cardFav}>
 
-                {favorierecette.recettes.map((recette, index) => (
+                {favorierecette.map((recette, index) => (
 
 
                     <CardFavorie

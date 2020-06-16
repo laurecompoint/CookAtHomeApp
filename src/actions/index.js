@@ -81,16 +81,16 @@ export function requestLogin(email, password) {
       })
   }
 }
-export function requestRegister(email, password, name) {
+export function requestRegister(name, email, password) {
   return function (dispatch) {
     dispatch(Actions.loading(true))
-    return registerService(email, password, name)
+    return registerService(name, email, password)
       .then((response) => {
         // On cache le loader
         dispatch(Actions.loading(false))
 
         // On sauvegarde du token dans le local storage
-        dispatch(Actions.register(response.user.email, response.authorization))
+        dispatch(Actions.register(response.user.name, response.user.email, response.authorization))
       })
       .catch((err) => {
         dispatch(Actions.loading(false))

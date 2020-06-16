@@ -20,6 +20,7 @@ const photos = {
     salade: require('./salade.jpeg'),
     poisson: require('./poisson.jpeg'),
     photodefault: require('./defaultimage.png'),
+    clafoutis: require('./clafoutis.png'),
 
 }
 

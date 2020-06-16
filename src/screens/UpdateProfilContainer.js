@@ -117,7 +117,7 @@ class UpdateProfilContainer extends Component {
                             onSubmitEditing={this.validateAndFocus}
                             onBlur={this.validateAndFocus}
                             textContentType={'name'}
-                            defaultValue={name}
+                            value={name}
                             onChangeText={this.onChangeName}
                             placeholder={name} />
 

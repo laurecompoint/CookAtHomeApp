@@ -18,7 +18,7 @@ export default (state = initialState, action) => {
                 ...state,
                 token: action.payload.token,
                 email: action.payload.email,
-                name: "cookathome",
+                name: action.payload.name,
             }
 
         case Types.REGISTER:

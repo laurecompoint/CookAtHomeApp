@@ -24,9 +24,7 @@ class Register extends Component {
         email: '',
         password: '',
         error: null,
-        colorgris1: '#DEDEDE',
-        colorgris2: '#EFEFEF',
-        colorgris3: '#FFFFFF',
+
 
     };
 
@@ -70,7 +68,7 @@ class Register extends Component {
         const { requestRegister, loading } = this.props
         const { password, email, name } = this.state
 
-        return requestRegister(email, password, name)
+        return requestRegister(name, email, password)
             .then(() => {
 
                 // On cache le loader
@@ -87,13 +85,13 @@ class Register extends Component {
             })
 
             // Toutes les erreurs sont traitées dans le catch
-            .catch(() => {
+            .catch((error) => {
 
-
-                // On stocke d'erreur
-                this.setState({
-                    error: ERR_LOGIN_INVALID
-                })
+                console.log(error)
+                // // On stocke d'erreur
+                // this.setState({
+                //     error: ERR_LOGIN_INVALID
+                // })
 
 
             })
@@ -171,6 +169,6 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     loading: (isLoading) => dispatch(Actions.loading(isLoading)),
     setToken: (token) => dispatch(Actions.login(token)),
-    requestRegister: (email, password, name) => dispatch(requestRegister(email, password, name)),
+    requestRegister: (name, email, password) => dispatch(requestRegister(name, email, password)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Register);

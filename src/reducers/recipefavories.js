@@ -12,7 +12,7 @@ export default (state = initialState, action) => {
             return {
                 ...state,
 
-                favorierecette: action.payload,
+                favorierecette: action.payload.recettes,
 
             };
         default:

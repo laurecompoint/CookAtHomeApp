@@ -8,8 +8,6 @@ import { connect } from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
 import { ImageBackground } from 'react-native';
 
-
-
 const MAIL_REGEXP = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
 const ERR_EMAIL_INVALID = 'ERR_EMAIL_INVALID'
 const ERR_LOGIN_INVALID = 'ERR_LOGIN_INVALID'
