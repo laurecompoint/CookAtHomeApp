@@ -5,6 +5,7 @@ import listings from "./recipe"
 import app from "./app"
 import user from "./user"
 import favoriebyrecette from "./favoriebyrecette"
+import recettebycommentaire from "./recipebycommentaire"
 
 
 export default combineReducers({
@@ -12,6 +13,7 @@ export default combineReducers({
   usercreatedbyuser,
   listings,
   app,
+  recettebycommentaire,
   favoriebyrecette,
   user,
 

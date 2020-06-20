@@ -12,7 +12,7 @@ export default (state = initialState, action) => {
             return {
                 ...state,
 
-                favoriebyrecetteid: action.payload,
+                favoriebyrecetteid: action.payload.favorie,
             }
 
         default:

@@ -10,6 +10,12 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     padding: 20,
   },
+  structGlobalModal: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
+    padding: 20,
+  },
   structProfil: {
     flex: 1,
     justifyContent: 'flex-start',
@@ -53,7 +59,7 @@ const styles = StyleSheet.create({
     textAlignVertical: 'center',
     fontWeight: 'bold',
     marginTop: 30,
-    marginBottom: 60,
+    marginBottom: 20,
     fontFamily: "Calibri",
   },
   titretuto: {
@@ -254,6 +260,7 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     marginLeft: 30,
   },
+
   boutonmodif: {
     width: 110,
     height: 40,
@@ -521,6 +528,47 @@ const styles = StyleSheet.create({
     color: 'white',
     borderRadius: 20,
   },
+  //commentaire modal
 
+  textInputAddCommentaire: {
+    backgroundColor: 'white',
+    color: 'black',
+    fontSize: 14,
+    borderRadius: 22,
+    width: 309,
+    paddingLeft: 20,
+    marginTop: 20,
+  },
+  commentaire: {
+    backgroundColor: 'white',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    flexDirection: 'row',
+    width: 300,
+    marginTop: 20,
+
+  },
+  commentaireview: {
+
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    flexDirection: 'column',
+    width: 230,
+  },
+  commentairecontent: {
+    textAlign: 'justify',
+  },
+  AvatarCookAtHomeUser: {
+    width: 55,
+    height: 60,
+    flexDirection: 'row',
+    alignContent: 'center',
+    marginRight: 10,
+  },
+  buttonGoToModal: {
+    paddingLeft: 15,
+    paddingBottom: 20,
+
+  },
 });
 export default styles;

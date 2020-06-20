@@ -3,18 +3,24 @@ import {
     Text,
     View,
     ScrollView,
-    TouchableOpacity
+    Modal,
+    TouchableHighlight,
+    TouchableOpacity,
+    Image,
 } from 'react-native';
 import styles from '../styles/styles';
 import LinearGradient from 'react-native-linear-gradient';
 import { ImageBackground } from 'react-native';
 import GoBack from '../data/image/goback.svg';
+import CommentaireModal from '../data/image/commentaire.svg';
 import photos from '../data/photos/index';
 import { connect } from 'react-redux';
 import { Actions } from '../actions';
 import * as axios from 'axios';
+import RecetteCommentaire from '../components/recettecommentaire';
 import StartEmpty from '../data/image/startempty.svg';
 import StartNoEmpty from '../data/image/startnoempty.svg';
+import InputAddCommentaire from '../components/InputAddCommentaire';
 class RecetteDetailContainer extends Component {
 
     constructor(props) {
@@ -23,19 +29,47 @@ class RecetteDetailContainer extends Component {
         this.state = {
 
             secureTextEntry: '',
-
+            modalVisible: false,
         };
 
 
     }
+    setModalVisible(visible) {
+        this.setState({ modalVisible: visible });
+        const { token, setRecetteCommentaire } = this.props;
+        const { navigation } = this.props
+        var bearer_token = token;
+        var bearer = 'Bearer ' + bearer_token;
+        return fetch('https://cookathomeapp.herokuapp.com/api/commentaire/' + navigation.getParam('id', '[MISSING_ID]'), {
+            method: 'GET',
+            withCredentials: true,
+            credentials: 'include',
+            headers: {
+                'Authorization': bearer,
+                'Content-Type': 'application/json'
+            }
+        })
+            .then((response) => {
+                if (!response.ok) {
+                    throw Error(response.statusText);
+                }
+                return response;
+            })
+            .then(response => response.json())
+            .then(response => {
+                console.log(response)
+                setRecetteCommentaire(response);
+
+            })
+            .catch((err) => {
+                console.log('An error occured', err)
+            });
+    }
+
     componentDidMount() {
-        //const { requestGetRecetteFavories } = this.props;
-        //return requestGetRecetteFavories()
         const { token, setFavoriebyrecette } = this.props;
         const { navigation } = this.props
-
         var bearer_token = token;
-        console.log('TEST' + token);
         var bearer = 'Bearer ' + bearer_token;
         return fetch('https://cookathomeapp.herokuapp.com/api/favoriebyrecette/' + navigation.getParam('id', '[MISSING_ID]'), {
             method: 'GET',
@@ -58,10 +92,9 @@ class RecetteDetailContainer extends Component {
                 setFavoriebyrecette(response);
 
             })
-
             .catch((err) => {
                 console.log('An error occured', err)
-            })
+            });
     }
 
     addfavorie = () => {
@@ -130,13 +163,68 @@ class RecetteDetailContainer extends Component {
         navigation.navigate('Home')
     }
     render() {
-        const { secureTextEntry } = this.state;
-        const { navigation, favoriebyrecetteid } = this.props
-        console.log('testtest' + favoriebyrecetteid)
+
+        const { navigation, favoriebyrecetteid, commentaire } = this.props
+
         this.secureTextEntry = favoriebyrecetteid
-        console.log('secureTextEntry' + this.secureTextEntry)
+
+
         return (
             <LinearGradient colors={['#507E96', '#F7F8F8']} style={{ flex: 1 }} >
+
+                <Modal
+                    animationType="slide"
+                    transparent={false}
+                    visible={this.state.modalVisible}
+                    onRequestClose={() => {
+                        Alert.alert('Modal has been closed.');
+                    }}>
+                    <View>
+                        <LinearGradient colors={['#507E96', '#F7F8F8']}  >
+
+                            <View style={{ height: 800 }}>
+
+                                <TouchableOpacity
+                                    onPress={() => {
+
+                                        this.setModalVisible(!this.state.modalVisible);
+                                        //this.state.tache = '';
+                                    }}>
+                                    <View style={styles.buttonGoToBack}>
+                                        <GoBack style={[styles.textGoToBack]} size={25} />
+                                    </View>
+                                </TouchableOpacity>
+
+                                <View style={styles.structGlobalModal}>
+                                    <Image
+                                        style={styles.LogoCookAtHome}
+                                        source={require('../data/image/logocookathome.png')}
+                                    />
+
+                                    <InputAddCommentaire
+                                        ref={ref => { this.refTitle = ref }}
+                                        onChangeText={this.onChangeCommentaire}
+                                        placeholder={"Votre commentaire"}
+                                    />
+                                    <LinearGradient colors={['#4F147B', '#704C8B']} style={styles.addRecette}>
+                                        <TouchableOpacity
+                                            onPress={this.Updaterecette}>
+                                            <Text style={{ textAlign: 'center', fontSize: 16, marginTop: 9, color: 'white', fontFamily: "Calibri" }}>Envoyer</Text>
+                                        </TouchableOpacity>
+                                    </LinearGradient>
+
+
+                                    <RecetteCommentaire commentaire={commentaire} />
+
+
+                                </View>
+
+
+
+                            </View>
+                        </LinearGradient>
+                    </View>
+                </Modal>
 
                 <ImageBackground style={styles.imgrecetteBackground}
                     resizeMode='cover'
@@ -162,7 +250,15 @@ class RecetteDetailContainer extends Component {
 
                     <Text style={styles.titlerecette}>{navigation.getParam('title', '[MISSING_TITLE]')} </Text>
 
-                    <Text>{favoriebyrecetteid}</Text>
+                    <TouchableOpacity style={styles.buttonGoToModal}
+                        onPress={() => {
+                            this.setModalVisible(true);
+                        }}>
+
+
+                        <CommentaireModal style={styles.textGoToBack} size={25} />
+                    </TouchableOpacity>
+
 
                 </ImageBackground>
 
@@ -252,11 +348,13 @@ class RecetteDetailContainer extends Component {
 const mapStateToProps = state => ({
     isLoading: state.app.isLoading,
     token: state.user.token,
+    commentaire: state.recettebycommentaire.commentaire,
     favoriebyrecetteid: state.favoriebyrecette.favoriebyrecetteid,
 });
 
 const mapDispatchToProps = dispatch => ({
     setFavoriebyrecette: results => dispatch(Actions.setFavoriebyrecette(results)),
+    setRecetteCommentaire: results => dispatch(Actions.setRecetteCommentaire(results)),
     loading: (isLoading) => dispatch(Actions.loading(isLoading)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(RecetteDetailContainer);

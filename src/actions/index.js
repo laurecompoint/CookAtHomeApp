@@ -7,6 +7,7 @@ export const Types = {
   SET_LISTINGS: 'SET_LISTINGS',
   SET_FAVORIES: 'SET_FAVORIES',
   SET_RECETTEUSER: 'SET_RECETTEUSER',
+  SET_COMMENTAIRE: 'SET_COMMENTAIRE',
   LOADING: 'LOADING',
   LOGOUT: 'LOGOUT',
   LOGIN: 'LOGIN',
@@ -31,6 +32,10 @@ export const Actions = {
   setRecetteUser: resultsuser => ({
     type: Types.SET_RECETTEUSER,
     payload: resultsuser,
+  }),
+  setRecetteCommentaire: resultscommentaire => ({
+    type: Types.SET_COMMENTAIRE,
+    payload: resultscommentaire,
   }),
   loading: (isLoading) => ({
     type: Types.LOADING,
@@ -73,7 +78,7 @@ export function requestLogin(email, password) {
         dispatch(Actions.loading(false))
 
         // On sauvegarde du token dans le local storage
-        dispatch(Actions.login(response.user.email, response.authorization))
+        dispatch(Actions.login(response.user.name, response.authorization))
       })
       .catch((err) => {
         dispatch(Actions.loading(false))
@@ -90,7 +95,7 @@ export function requestRegister(name, email, password) {
         dispatch(Actions.loading(false))
 
         // On sauvegarde du token dans le local storage
-        dispatch(Actions.register(response.user.name, response.user.email, response.authorization))
+        dispatch(Actions.register(response.user.email, response.authorization))
       })
       .catch((err) => {
         dispatch(Actions.loading(false))
