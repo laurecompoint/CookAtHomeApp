@@ -10,7 +10,7 @@ import {
 import styles from '../styles/styles';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import LinearGradient from 'react-native-linear-gradient';
-import InputAddRecette from '../components/InputAddRecette';
+import InputAdd from '../components/InputAdd';
 import * as axios from 'axios';
 import GoBack from '../data/image/goback.svg';
 import { connect } from 'react-redux';
@@ -188,82 +188,93 @@ class RecetteUpdateContainer extends Component {
                         />
                         <Text style={styles.titre}>Modifier une recette </Text>
                         <ScrollView>
-                            <InputAddRecette
+                            <InputAdd
                                 ref={ref => { this.refTitle = ref }}
                                 onChangeText={this.onChangeTitle}
-                                defaultValue={navigation.getParam('title', '[MISSING_TITLE]')}
-                                placeholder={navigation.getParam('title', '[MISSING_TITLE]')} />
+                                defaultValue={1}
+                            />
 
-                            <InputAddRecette
+                            <InputAdd
                                 ref={ref => { this.refIngredient1 = ref }}
                                 onChangeText={this.onChangeIngredient1}
                                 defaultValue={navigation.getParam('ingredient1', '[MISSING_INGREDIENT]')}
                                 placeholder={navigation.getParam('ingredient1', '[MISSING_INGREDIENT]')} />
 
-                            <InputAddRecette
+                            <InputAdd
                                 ref={ref => { this.refIngredient2 = ref }}
                                 onChangeText={this.onChangeIngredient2}
                                 defaultValue={navigation.getParam('ingredient2', '[MISSING_INGREDIENT]')}
                                 placeholder={navigation.getParam('ingredient2', '[MISSING_INGREDIENT]')} />
 
-                            <InputAddRecette
+                            <InputAdd
                                 ref={ref => { this.refIngredient3 = ref }}
                                 onChangeText={this.onChangeIngredient3}
                                 defaultValue={navigation.getParam('ingredient3', '[MISSING_INGREDIENT]')}
                                 placeholder={navigation.getParam('ingredient3', '[MISSING_INGREDIENT]')} />
 
-                            <InputAddRecette
+                            <InputAdd
                                 ref={ref => { this.refIngredient4 = ref }}
                                 onChangeText={this.onChangeIngredient4}
                                 defaultValue={navigation.getParam('ingredient4', '[MISSING_INGREDIENT]')}
                                 placeholder={navigation.getParam('ingredient4', '[MISSING_INGREDIENT]')} />
 
-                            <InputAddRecette
+                            <InputAdd
                                 ref={ref => { this.refIngredient5 = ref }}
                                 onChangeText={this.onChangeIngredient5}
                                 defaultValue={navigation.getParam('ingredient5', '[MISSING_INGREDIENT]')}
                                 placeholder={navigation.getParam('ingredient5', '[MISSING_INGREDIENT]')} />
 
-                            <InputAddRecette
+                            <InputAdd
                                 ref={ref => { this.refIngredient6 = ref }}
                                 onChangeText={this.onChangeIngredient6}
                                 defaultValue={navigation.getParam('ingredient6', '[MISSING_INGREDIENT]')}
                                 placeholder={navigation.getParam('ingredient6', '[MISSING_INGREDIENT]')} />
 
-                            <InputAddRecette
+                            <InputAdd
                                 ref={ref => { this.refPreparation1 = ref }}
                                 onChangeText={this.onChangePreparation1}
                                 defaultValue={navigation.getParam('preparation1', '[MISSING_PREPARATION]')}
-                                placeholder={navigation.getParam('preparation1', '[MISSING_PREPARATION]')} />
+                                placeholder={navigation.getParam('preparation1', '[MISSING_PREPARATION]')}
+                                multiline={true}
+                                numberOfLines={4} />
 
-                            <InputAddRecette
+                            <InputAdd
                                 ref={ref => { this.refPreparation2 = ref }}
                                 onChangeText={this.onChangePreparation2}
                                 defaultValue={navigation.getParam('preparation2', '[MISSING_PREPARATION]')}
-                                placeholder={navigation.getParam('preparation2', '[MISSING_PREPARATION]')} />
-                            <InputAddRecette
+                                placeholder={navigation.getParam('preparation2', '[MISSING_PREPARATION]')}
+                                multiline={true}
+                                numberOfLines={4} />
+                            <InputAdd
                                 ref={ref => { this.refPreparation3 = ref }}
                                 onChangeText={this.onChangePreparation3}
                                 defaultValue={navigation.getParam('preparation3', '[MISSING_PREPARATION]')}
-                                placeholder={navigation.getParam('preparation3', '[MISSING_PREPARATION]')} />
+                                placeholder={navigation.getParam('preparation3', '[MISSING_PREPARATION]')}
+                                multiline={true}
+                                numberOfLines={4} />
 
-                            <InputAddRecette
+                            <InputAdd
                                 ref={ref => { this.refPreparation4 = ref }}
                                 onChangeText={this.onChangePreparation4}
                                 defaultValue={navigation.getParam('preparation4', '[MISSING_PREPARATION]')}
-                                placeholder={navigation.getParam('preparation4', '[MISSING_PREPARATION]')} />
+                                placeholder={navigation.getParam('preparation4', '[MISSING_PREPARATION]')}
+                                multiline={true}
+                                numberOfLines={4} />
 
-                            <InputAddRecette
+                            <InputAdd
                                 ref={ref => { this.refPreparation5 = ref }}
                                 onChangeText={this.onChangePreparation5}
                                 defaultValue={navigation.getParam('preparation5', '[MISSING_PREPARATION]')}
-                                placeholder={navigation.getParam('preparation5', '[MISSING_PREPARATION]')} />
+                                placeholder={navigation.getParam('preparation5', '[MISSING_PREPARATION]')}
+                                multiline={true}
+                                numberOfLines={4} />
 
-                            <InputAddRecette
+                            <InputAdd
                                 ref={ref => { this.refType = ref }}
                                 onChangeText={this.onChangeType}
                                 defaultValue={navigation.getParam('type', '[MISSING_TYPE]')}
-                                placeholder={navigation.getParam('type', '[MISSING_TYPE]')} />
+                                placeholder={navigation.getParam('type', '[MISSING_TYPE]')}
+                            />
                         </ScrollView>
 
                         <LinearGradient colors={['#4F147B', '#704C8B']} style={styles.addRecette}>

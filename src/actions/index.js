@@ -1,24 +1,23 @@
 import { login as loginService } from "../services"
 import { register as registerService } from "../services"
-import { favorie as recetteService } from "../services"
-import { AsyncStorage } from 'react-native';
-import user from "../reducers/user"
+
 export const Types = {
-  SET_LISTINGS: 'SET_LISTINGS',
+  SET_RECETTES: 'SET_RECETTES',
   SET_FAVORIES: 'SET_FAVORIES',
   SET_RECETTEUSER: 'SET_RECETTEUSER',
   SET_COMMENTAIRE: 'SET_COMMENTAIRE',
   LOADING: 'LOADING',
   LOGOUT: 'LOGOUT',
   LOGIN: 'LOGIN',
+  USERPROFIL: 'USERPROFIL',
   REGISTER: 'REGISTER',
   FILTER_RECETTES: 'FILTER_RECETTES',
   SET_FAVORIEBYRECETTE: 'SET_FAVORIEBYRECETTE'
 };
 
 export const Actions = {
-  setListings: results => ({
-    type: Types.SET_LISTINGS,
+  setRecettes: results => ({
+    type: Types.SET_RECETTES,
     payload: results,
   }),
   setFavories: resultsfav => ({
@@ -36,6 +35,10 @@ export const Actions = {
   setRecetteCommentaire: resultscommentaire => ({
     type: Types.SET_COMMENTAIRE,
     payload: resultscommentaire,
+  }),
+  setUserProfil: resultsprofil => ({
+    type: Types.USERPROFIL,
+    payload: resultsprofil,
   }),
   loading: (isLoading) => ({
     type: Types.LOADING,
@@ -78,7 +81,7 @@ export function requestLogin(email, password) {
         dispatch(Actions.loading(false))
 
         // On sauvegarde du token dans le local storage
-        dispatch(Actions.login(response.user.name, response.authorization))
+        dispatch(Actions.login(response.user.email, response.authorization, response.user.name))
       })
       .catch((err) => {
         dispatch(Actions.loading(false))
@@ -95,7 +98,7 @@ export function requestRegister(name, email, password) {
         dispatch(Actions.loading(false))
 
         // On sauvegarde du token dans le local storage
-        dispatch(Actions.register(response.user.email, response.authorization))
+        dispatch(Actions.register(response.user.email, response.user.name, response.authorization,))
       })
       .catch((err) => {
         dispatch(Actions.loading(false))

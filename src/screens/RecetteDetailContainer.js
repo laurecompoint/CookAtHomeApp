@@ -20,7 +20,7 @@ import * as axios from 'axios';
 import RecetteCommentaire from '../components/recettecommentaire';
 import StartEmpty from '../data/image/startempty.svg';
 import StartNoEmpty from '../data/image/startnoempty.svg';
-import InputAddCommentaire from '../components/InputAddCommentaire';
+import InputAdd from '../components/InputAdd';
 class RecetteDetailContainer extends Component {
 
     constructor(props) {
@@ -28,8 +28,9 @@ class RecetteDetailContainer extends Component {
         super(props);
         this.state = {
 
-            secureTextEntry: '',
+            favorieRecette: '',
             modalVisible: false,
+            comment: '',
         };
 
 
@@ -64,6 +65,11 @@ class RecetteDetailContainer extends Component {
             .catch((err) => {
                 console.log('An error occured', err)
             });
+    }
+    onChangeComment = (comment) => {
+        this.setState({
+            comment
+        })
     }
 
     componentDidMount() {
@@ -130,8 +136,6 @@ class RecetteDetailContainer extends Component {
 
         const { navigation } = this.props
         const { token } = this.props;
-
-        console.log("test" + token)
         var bearer_token = token;
         var bearer = 'Bearer ' + bearer_token;
         let data = JSON.stringify({
@@ -157,6 +161,40 @@ class RecetteDetailContainer extends Component {
         navigation.navigate('Home')
 
     }
+    addcomment = () => {
+
+        const { comment } = this.state
+        if (comment == "") {
+            alert('Error: Vous devez écrire un commentaire');
+        }
+        const { token, navigation } = this.props;
+        var bearer_token = token;
+        var bearer = 'Bearer ' + bearer_token;
+        let data = JSON.stringify({
+            content: comment,
+            recette_id: navigation.getParam('id', '[MISSING_ID]'),
+
+        })
+        axios.post('https://cookathomeapp.herokuapp.com/api/commentaire-add', data, {
+            headers: {
+                'Authorization': bearer,
+                'Content-Type': 'application/json'
+            },
+
+
+        })
+            .then(function (response) {
+
+                console.log(response);
+
+            })
+            .catch(function (error) {
+
+                console.log(error);
+            });
+
+        this.setModalVisible(!this.state.modalVisible);
+    }
     onPressGoToBack = () => {
 
         const { navigation } = this.props
@@ -166,7 +204,7 @@ class RecetteDetailContainer extends Component {
 
         const { navigation, favoriebyrecetteid, commentaire } = this.props
 
-        this.secureTextEntry = favoriebyrecetteid
+        this.favorieRecette = favoriebyrecetteid
 
 
         return (
@@ -201,14 +239,15 @@ class RecetteDetailContainer extends Component {
                                         source={require('../data/image/logocookathome.png')}
                                     />
 
-                                    <InputAddCommentaire
-                                        ref={ref => { this.refTitle = ref }}
-                                        onChangeText={this.onChangeCommentaire}
+                                    <InputAdd
+                                        ref={ref => { this.refcomment = ref }}
+                                        onChangeText={this.onChangeComment}
                                         placeholder={"Votre commentaire"}
-                                    />
+                                        multiline={true}
+                                        numberOfLines={4} />
                                     <LinearGradient colors={['#4F147B', '#704C8B']} style={styles.addRecette}>
                                         <TouchableOpacity
-                                            onPress={this.Updaterecette}>
+                                            onPress={this.addcomment}>
                                             <Text style={{ textAlign: 'center', fontSize: 16, marginTop: 9, color: 'white', fontFamily: "Calibri" }}>Envoyer</Text>
                                         </TouchableOpacity>
                                     </LinearGradient>
@@ -236,7 +275,7 @@ class RecetteDetailContainer extends Component {
                             <GoBack style={[styles.textGoToBack]} size={25} />
                         </TouchableOpacity>
                         <View style={styles.favorieid}>
-                            {this.secureTextEntry ?
+                            {this.favorieRecette ?
 
                                 <TouchableOpacity style={styles.filtretype} onPress={this.deletefavorie}>
                                     <StartNoEmpty style={styles.start} size={80} />

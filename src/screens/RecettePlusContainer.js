@@ -10,7 +10,7 @@ import {
 import styles from '../styles/styles';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import LinearGradient from 'react-native-linear-gradient';
-import InputAddRecette from '../components/InputAddRecette';
+import InputAdd from '../components/InputAdd';
 import * as axios from 'axios';
 import { connect } from 'react-redux';
 import { Actions } from '../actions';
@@ -209,76 +209,86 @@ class RecettePlusContainer extends Component {
                         />
                         <Text style={styles.titre}>Ajouter une recette</Text>
                         <ScrollView>
-                            <InputAddRecette
+                            <InputAdd
                                 ref={ref => { this.refTitle = ref }}
                                 onChangeText={this.onChangeTitle}
                                 placeholder={"Titre de la recette"} />
 
-                            <InputAddRecette
+                            <InputAdd
                                 ref={ref => { this.refIngredient1 = ref }}
                                 onChangeText={this.onChangeIngredient1}
                                 placeholder={"Ingredient 1"} />
 
-                            <InputAddRecette
+                            <InputAdd
                                 ref={ref => { this.refIngredient2 = ref }}
                                 onChangeText={this.onChangeIngredient2}
                                 placeholder={"Ingredient 2"} />
 
-                            <InputAddRecette
+                            <InputAdd
                                 ref={ref => { this.refIngredient3 = ref }}
                                 onChangeText={this.onChangeIngredient3}
                                 placeholder={"Ingredient 3"} />
 
-                            <InputAddRecette
+                            <InputAdd
                                 ref={ref => { this.refIngredient4 = ref }}
                                 onChangeText={this.onChangeIngredient4}
                                 placeholder={"Ingredient 4"} />
 
-                            <InputAddRecette
+                            <InputAdd
                                 ref={ref => { this.refIngredient5 = ref }}
                                 onChangeText={this.onChangeIngredient5}
                                 placeholder={"Ingredient 5"} />
 
-                            <InputAddRecette
+                            <InputAdd
                                 ref={ref => { this.refIngredient6 = ref }}
                                 onChangeText={this.onChangeIngredient6}
                                 placeholder={"Ingredient 6"} />
 
-                            <InputAddRecette
+                            <InputAdd
                                 ref={ref => { this.refPreparation1 = ref }}
                                 onChangeText={this.onChangePreparation1}
-                                placeholder={"Preparation : etape 1"} />
+                                placeholder={"Preparation : etape 1"}
+                                multiline={true}
+                                numberOfLines={4} />
 
-                            <InputAddRecette
+                            <InputAdd
                                 ref={ref => { this.refPreparation2 = ref }}
                                 onChangeText={this.onChangePreparation2}
-                                placeholder={"Preparation : etape 2"} />
-                            <InputAddRecette
+                                placeholder={"Preparation : etape 2"}
+                                multiline={true}
+                                numberOfLines={4} />
+                            <InputAdd
                                 ref={ref => { this.refPreparation3 = ref }}
                                 onChangeText={this.onChangePreparation3}
-                                placeholder={"Preparation : etape 3"} />
+                                placeholder={"Preparation : etape 3"}
+                                multiline={true}
+                                numberOfLines={4} />
 
-                            <InputAddRecette
+                            <InputAdd
                                 ref={ref => { this.refPreparation4 = ref }}
                                 onChangeText={this.onChangePreparation4}
-                                placeholder={"Preparation : etape 4"} />
+                                placeholder={"Preparation : etape 4"}
+                                multiline={true}
+                                numberOfLines={4} />
 
-                            <InputAddRecette
+                            <InputAdd
                                 ref={ref => { this.refPreparation5 = ref }}
                                 onChangeText={this.onChangePreparation5}
-                                placeholder={"Preparation : etape 5"} />
+                                placeholder={"Preparation : etape 5"}
+                                multiline={true}
+                                numberOfLines={4} />
 
-                            <InputAddRecette
+                            <InputAdd
                                 ref={ref => { this.refType = ref }}
                                 onChangeText={this.onChangeType}
                                 placeholder={"Type de la recette"} />
 
-                            <InputAddRecette
+                            <InputAdd
                                 ref={ref => { this.refCuisson = ref }}
                                 onChangeText={this.onChangeCuisson}
                                 placeholder={"Cuisson"} />
 
-                            <InputAddRecette
+                            <InputAdd
                                 ref={ref => { this.refNbpersonne = ref }}
                                 onChangeText={this.onChangeNbpersonne}
                                 placeholder={"Combien de personne"} />

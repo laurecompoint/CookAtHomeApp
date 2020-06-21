@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Text, TextInput, View, TouchableOpacity } from 'react-native';
 import styles from '../styles/styles.js';
 
-export default class InputAddRecette extends Component {
+export default class InputAdd extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -13,7 +13,7 @@ export default class InputAddRecette extends Component {
 
 
     render() {
-        const { textContentType, onChangeText, placeholder, onSubmitEditing, onBlur } = this.props;
+        const { textContentType, multiline, numberOfLines, onChangeText, placeholder, onSubmitEditing, onBlur } = this.props;
         const { secureTextEntry } = this.state;
         return (
             <View style={[styles.champ]}>
@@ -27,7 +27,12 @@ export default class InputAddRecette extends Component {
                     style={[styles.textInputAddRecette]}
                     placeholder={placeholder}
                     onChangeText={onChangeText}
+                    multiline={multiline}
+                    numberOfLines={numberOfLines}
+
                 />
+
+
 
 
             </View>

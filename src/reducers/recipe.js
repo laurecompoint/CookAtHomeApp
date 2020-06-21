@@ -16,7 +16,7 @@ export default (state = initialState, action) => {
                 filter: action.payload.criteria,
                 sort: action.payload.sort,
             }
-        case Types.SET_LISTINGS:
+        case Types.SET_RECETTES:
             return {
                 ...state,
 
@@ -29,25 +29,25 @@ export default (state = initialState, action) => {
 };
 
 export function filterRecettes(state) {
-    const { listings } = state
-    const { filter, sort } = listings
-    const filteredRecettes = listings.recettes.filter((recette) => {
+    const { recipe } = state
+    const { filter, sort } = recipe
+    const filteredRecettes = recipe.recettes.filter((recette) => {
         return recette.title.toUpperCase().indexOf(filter.toUpperCase()) > -1
 
     })
-    const filteredTypesPlats = listings.recettes.filter((recette) => {
+    const filteredTypesPlats = recipe.recettes.filter((recette) => {
         return recette.type.toUpperCase().indexOf(filter.toUpperCase()) > -1
 
     })
-    const filteredTypesDessert = listings.recettes.filter((recette) => {
+    const filteredTypesDessert = recipe.recettes.filter((recette) => {
         return recette.type.toUpperCase().indexOf(filter.toUpperCase()) > -1
 
     })
-    const filteredTypesApero = listings.recettes.filter((recette) => {
+    const filteredTypesApero = recipe.recettes.filter((recette) => {
         return recette.type.toUpperCase().indexOf(filter.toUpperCase()) > -1
 
     })
-    const filteredTypesEntree = listings.recettes.filter((recette) => {
+    const filteredTypesEntree = recipe.recettes.filter((recette) => {
         return recette.type.toUpperCase().indexOf(filter.toUpperCase()) > -1
 
     })

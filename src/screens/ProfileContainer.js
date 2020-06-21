@@ -15,6 +15,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import { ImageBackground } from 'react-native';
 import StartEmpty from '../data/image/logout.svg';
 import RecettesUser from '../components/recetteuser';
+import ProfilRecetteUser from '../components/ProfilRecetteUser';
 
 class ProfileContainer extends Component {
 
@@ -30,12 +31,9 @@ class ProfileContainer extends Component {
   });
 
   componentDidMount() {
-    // const { requestGetRecetteCreatedByUser } = this.props;
-    //return requestGetRecetteCreatedByUser()
     const { setRecetteUser, loading, token } = this.props;
     loading(true)
     var bearer_token = token;
-    console.log('TEST' + token);
     var bearer = 'Bearer ' + bearer_token;
     return fetch('https://cookathomeapp.herokuapp.com/api/recettebyuser', {
       method: 'GET',
@@ -114,9 +112,7 @@ class ProfileContainer extends Component {
 
                 </View>
                 <View style={{ width: 190, }}>
-
-                  <Text >Nom : {name}</Text>
-                  <Text >Email : {email}</Text>
+                  <ProfilRecetteUser></ProfilRecetteUser>
                   <LinearGradient colors={['#4F147B', '#704C8B']} style={styles.boutonmodif}>
                     <TouchableOpacity onPress={this.modifInfo}>
                       <Text style={styles.boutontext}>Modifier</Text>
@@ -124,6 +120,7 @@ class ProfileContainer extends Component {
                   </LinearGradient>
 
                 </View>
+
 
               </View>
 

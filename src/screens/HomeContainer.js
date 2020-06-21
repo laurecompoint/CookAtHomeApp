@@ -21,13 +21,13 @@ import { ImageBackground } from 'react-native';
 import Recettes from '../components/recettes';
 import { Actions } from '../actions';
 import { filterRecettes } from '../reducers/recipe';
-import Goback from '../data/image/goback.svg';
+
 class HomeContainer extends Component {
 
     componentDidMount() {
         //const { requestGetListings } = this.props;
         // return requestGetListings()
-        const { setListings, loading, token } = this.props;
+        const { setRecettes, loading, token } = this.props;
         loading(true)
         var bearer_token = token;
         console.log('TEST' + token);
@@ -52,7 +52,7 @@ class HomeContainer extends Component {
             .then(response => {
                 // On cache le loading spinner à la fin de la requête
                 loading(false)
-                setListings(response);
+                setRecettes(response);
             })
             .catch((err) => {
                 console.log('An error occured', err)
@@ -123,14 +123,13 @@ class HomeContainer extends Component {
 const mapStateToProps = state => ({
     recettes: filterRecettes(state),
     isLoading: state.app.isLoading,
-    filter: state.listings.filter,
+    filter: state.recipe.filter,
     token: state.user.token,
 });
 
 const mapDispatchToProps = dispatch => ({
-    setListings: results => dispatch(Actions.setListings(results)),
+    setRecettes: results => dispatch(Actions.setRecettes(results)),
     loading: (isLoading) => dispatch(Actions.loading(isLoading)),
-    // requestGetListings: () => dispatch(requestGetListings()),
     filterRecettes: (criteria, sort) => dispatch(Actions.filterRecettes(criteria, sort))
 });
 export default connect(mapStateToProps, mapDispatchToProps)(HomeContainer);
