@@ -13,6 +13,7 @@ export default (state = initialState, action) => {
                 ...state,
 
                 commentaire: action.payload,
+                commentaireuser: action.payload.user
 
             };
         default:

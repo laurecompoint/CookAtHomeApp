@@ -202,7 +202,7 @@ class RecetteDetailContainer extends Component {
     }
     render() {
 
-        const { navigation, favoriebyrecetteid, commentaire } = this.props
+        const { navigation, favoriebyrecetteid, commentaire, commentaireuser } = this.props
 
         this.favorieRecette = favoriebyrecetteid
 
@@ -219,48 +219,55 @@ class RecetteDetailContainer extends Component {
                     }}>
                     <View>
                         <LinearGradient colors={['#507E96', '#F7F8F8']}  >
+                            <ScrollView >
+                                <View style={{ height: 800 }}>
+                                    <ImageBackground style={styles.imgBackground}
+                                        resizeMode='cover'
+                                        source={require('../data/image/imagefond.png')}>
 
-                            <View style={{ height: 800 }}>
-
-                                <TouchableOpacity
-                                    onPress={() => {
-
-                                        this.setModalVisible(!this.state.modalVisible);
-                                        //this.state.tache = '';
-                                    }}>
-                                    <View style={styles.buttonGoToBack}>
-                                        <GoBack style={[styles.textGoToBack]} size={25} />
-                                    </View>
-                                </TouchableOpacity>
-
-                                <View style={styles.structGlobalModal}>
-                                    <Image
-                                        style={styles.LogoCookAtHome}
-                                        source={require('../data/image/logocookathome.png')}
-                                    />
-
-                                    <InputAdd
-                                        ref={ref => { this.refcomment = ref }}
-                                        onChangeText={this.onChangeComment}
-                                        placeholder={"Votre commentaire"}
-                                        multiline={true}
-                                        numberOfLines={4} />
-                                    <LinearGradient colors={['#4F147B', '#704C8B']} style={styles.addRecette}>
                                         <TouchableOpacity
-                                            onPress={this.addcomment}>
-                                            <Text style={{ textAlign: 'center', fontSize: 16, marginTop: 9, color: 'white', fontFamily: "Calibri" }}>Envoyer</Text>
+                                            onPress={() => {
+
+                                                this.setModalVisible(!this.state.modalVisible);
+                                                //this.state.tache = '';
+                                            }}>
+                                            <View style={styles.buttonGoToBack}>
+                                                <GoBack style={[styles.textGoToBack]} size={25} />
+                                            </View>
                                         </TouchableOpacity>
-                                    </LinearGradient>
 
 
-                                    <RecetteCommentaire commentaire={commentaire} />
+
+                                        <View style={styles.structGlobalModal}>
+                                            <Image
+                                                style={styles.LogoCookAtHome}
+                                                source={require('../data/image/logocookathome.png')}
+                                            />
+
+                                            <InputAdd
+                                                ref={ref => { this.refcomment = ref }}
+                                                onChangeText={this.onChangeComment}
+                                                placeholder={"Votre commentaire"}
+                                                multiline={true}
+                                                numberOfLines={4} />
+                                            <LinearGradient colors={['#4F147B', '#704C8B']} style={styles.addRecette}>
+                                                <TouchableOpacity
+                                                    onPress={this.addcomment}>
+                                                    <Text style={{ textAlign: 'center', fontSize: 16, marginTop: 9, color: 'white', fontFamily: "Calibri" }}>Envoyer</Text>
+                                                </TouchableOpacity>
+                                            </LinearGradient>
+                                            <Text style={styles.titre}>Voir les autres commentaire : </Text>
+
+                                            <RecetteCommentaire commentaire={commentaire} />
+
+
+                                        </View>
+
+                                    </ImageBackground>
 
 
                                 </View>
-
-
-
-                            </View>
+                            </ScrollView>
                         </LinearGradient>
                     </View>
                 </Modal>

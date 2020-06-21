@@ -7,20 +7,18 @@ import photos from '../data/photos/index';
 
 export default class RecetteCommentaire extends Component {
     render() {
-        const { commentaire, onPress } = this.props;
+        const { commentaire, commentaireuser, onPress } = this.props;
         return (
-            <View style={styles.cardRecherche}>
+            <View style={styles.cardCommentaire}>
 
                 {commentaire.map((commentairebyrecette, index) => (
                     <CardCommentaire
-
                         key={`recette-item-${index}`}
-
                         content={commentairebyrecette.content}
-
-
+                        user={commentairebyrecette.user.name}
                     ></CardCommentaire>
                 ))}
+
             </View>
         );
     }

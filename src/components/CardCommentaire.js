@@ -11,9 +11,11 @@ export default class CardCommentaire extends Component {
     render() {
         const {
             content,
+            user
         } = this.props;
         const { colorTitleCard } = this.props;
         return (
+
             <View style={styles.commentaire}>
 
                 <Image
@@ -21,11 +23,12 @@ export default class CardCommentaire extends Component {
                     source={require('../data/image/avatar.png')}
                 />
                 <View style={styles.commentaireview}>
-                    <Text style={styles.commentairecontent}>USER</Text>
+                    <Text style={styles.commentairecontent}>{user}</Text>
                     <Text style={styles.commentairecontent}>{content}</Text>
                 </View>
 
             </View>
+
         );
     }
 }

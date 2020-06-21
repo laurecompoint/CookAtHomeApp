@@ -540,12 +540,16 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   commentaire: {
-    backgroundColor: 'white',
+
     justifyContent: 'space-around',
+
     alignItems: 'center',
     flexDirection: 'row',
     width: 300,
     marginTop: 20,
+    borderRadius: 15,
+    backgroundColor: 'white',
+
 
   },
   commentaireview: {
@@ -556,7 +560,7 @@ const styles = StyleSheet.create({
     width: 230,
   },
   commentairecontent: {
-    textAlign: 'justify',
+    textAlign: 'left',
   },
   AvatarCookAtHomeUser: {
     width: 55,
@@ -568,6 +572,18 @@ const styles = StyleSheet.create({
   buttonGoToModal: {
     paddingLeft: 15,
     paddingBottom: 20,
+
+  },
+  cardCommentaire: {
+
+    flex: 1 / 2,
+    width: 400,
+
+    flexDirection: 'row',
+    justifyContent: 'center',
+
+    backgroundColor: 'white',
+    flexWrap: 'wrap',
 
   },
 });
