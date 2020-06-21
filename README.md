@@ -1,4 +1,4 @@
-<p align="center" ><img src="public/images/cookathome.png" width="900"></p>
+<p align="center" ><img src="src/data/image/cookathome.png" width="900"></p>
 
 
 
