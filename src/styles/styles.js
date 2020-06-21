@@ -397,12 +397,37 @@ const styles = StyleSheet.create({
     height: 332,
   },
   titlerecette: {
-    flex: 1,
+
     textAlign: 'center',
-    marginTop: -30,
     color: 'white',
     fontSize: 35,
+    fontFamily: 'Calibri',
+    marginTop: -60,
+  },
+  userrecette: {
+    textAlign: 'center',
+    color: 'black',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#FFFFFF',
+    height: 22,
+    width: 130,
+    borderRadius: 10,
+
+
     fontFamily: "Calibri",
+  },
+  usertitlerecette: {
+
+    textAlign: 'center',
+
+    color: 'black',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+
+
+
   },
   detailingredients: {
     width: 180,
@@ -410,7 +435,7 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 30,
     borderTopRightRadius: 30,
     marginRight: 300,
-    marginTop: 15,
+    marginTop: 35,
   },
   textinfoingredients: {
     textAlign: 'center',
