@@ -151,8 +151,6 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     marginTop: 50,
 
-
-
   },
   buttonstart: {
 
@@ -160,10 +158,6 @@ const styles = StyleSheet.create({
     height: 40,
     borderRadius: 20,
     marginBottom: 55,
-
-
-
-
   },
 
   textInput: {
@@ -184,9 +178,15 @@ const styles = StyleSheet.create({
     height: 132,
 
   },
-  textGoToInscription: {
+  textGoToRegister: {
     width: 230,
-    marginTop: 80,
+    marginTop: 170,
+    textAlign: 'center',
+
+  },
+  textGoToLogin: {
+    width: 230,
+    marginTop: 100,
     textAlign: 'center',
 
   },

@@ -7,7 +7,7 @@ const photos = {
     recette3: require('./chouquette.png'),
     recetteplat1: require('./paella.png'),
     recetteentree1: require('./quichethon.png'),
-    recetteapero1: require('./minipizza.png'),
+    recetteapero1: require('./pizza.jpg'),
     citrouillechevre: require('./citrouillechevre.jpeg'),
     tartepommes: require('./tartepomme.png'),
     tartefraise: require('./tartefraise.png'),

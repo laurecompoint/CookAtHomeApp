@@ -149,7 +149,7 @@ class Register extends Component {
                             </LinearGradient>
                             <TouchableOpacity style={styles.buttonGoToInscription} onPress={this.onPressGoToInscription}>
 
-                                <Text style={[styles.textGoToInscription, styles.textPolice]}>Vous avez déja un compte ?
+                                <Text style={[styles.textGoToLogin, styles.textPolice]}>Vous avez déja un compte ?
                                 cliquer ici pour vous connecter
                 </Text>
 

@@ -127,7 +127,7 @@ class Login extends Component {
               </LinearGradient>
               <TouchableOpacity style={styles.buttonGoToInscription} onPress={this.onPressGoToInscription}>
 
-                <Text style={[styles.textGoToInscription, styles.textPolice]}>Vous n’avez pas encore de compte ?
+                <Text style={[styles.textGoToRegister, styles.textPolice]}>Vous n’avez pas encore de compte ?
                 cliquer ici pour vous inscrire
                 </Text>
 

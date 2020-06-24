@@ -15,7 +15,7 @@ import React from 'react'
 export default createBottomTabNavigator(
   {
 
-    Explore: {
+    Favorie: {
       screen: FavorieRecetteContainer,
       navigationOptions: {
 
@@ -30,7 +30,7 @@ export default createBottomTabNavigator(
       },
     },
 
-    Trips: {
+    RecipeAdd: {
       screen: RecettePlusContainer,
       navigationOptions: {
         tabBarIcon: ({ tintColor }) => <RecettePlusIcon color={tintColor} size={25} />

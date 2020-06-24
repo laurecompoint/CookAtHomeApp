@@ -134,7 +134,7 @@ class ProfileContainer extends Component {
 
               </View>
 
-              <RecettesUser userrecette={userrecette} onPress={(recette) => navigation.navigate("RecetteUpdateContainer", recette)} />
+              <RecettesUser userrecette={userrecette} onPress={(recette) => navigation.navigate("RecetteDetailContainer", recette)} />
 
             </View>
           </ScrollView>
