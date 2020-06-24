@@ -361,6 +361,7 @@ const styles = StyleSheet.create({
   },
   titlecuisson: {
     textAlign: 'center',
+    paddingBottom: 10,
   },
   favorie: {
     width: 75,

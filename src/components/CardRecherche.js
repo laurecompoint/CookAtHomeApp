@@ -29,6 +29,7 @@ export default class CardRecherche extends Component {
             paragraphe,
             favorieid,
             onPress,
+
             cuissonrecette,
         } = this.props;
         const { secureTextEntry } = this.state;
@@ -38,6 +39,7 @@ export default class CardRecherche extends Component {
                 <Image style={styles.imageRecherche} source={imageCard} />
                 <View style={styles.viewRowrecette}>
                     <Text style={styles.titlereciperechercher}> {paragraphe} </Text>
+
                     <View style={styles.bouttonfavorie}>
                         <LinearGradient colors={['#DEDEDE', '#EFEFEF', '#FFFFFF']} style={styles.cuisson} >
                             <Text style={styles.titlecuisson}>{cuissonrecette} min</Text>

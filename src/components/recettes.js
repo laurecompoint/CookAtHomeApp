@@ -19,6 +19,7 @@ export default class Recettes extends Component {
                         cuissonrecette={recette.cuisson}
                         paragraphe={recette.title}
                         favorieid={recette.favorie_id}
+                    // user={recette.user.name}
 
                     ></CardRecherche>
                 ))}

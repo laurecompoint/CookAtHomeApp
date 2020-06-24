@@ -79,6 +79,15 @@ class TutoCookContainer extends Component {
 
 
                             </View>
+                            <View style={styles.containerHome} >
+                                <Image
+                                    style={styles.LogoCarouselCuisineCookAtHome}
+                                    source={require('../data/image/commentaire.png')}
+                                />
+                                <Text style={styles.textcarousel}>Laisser un avis sur la recette</Text>
+
+
+                            </View>
 
 
 
@@ -96,12 +105,6 @@ class TutoCookContainer extends Component {
 
 
                     </View>
-
-
-
-
-
-
 
                 </ImageBackground>
             </LinearGradient >

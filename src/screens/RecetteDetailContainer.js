@@ -295,8 +295,13 @@ class RecetteDetailContainer extends Component {
                     </View>
                     <View style={styles.usertitlerecette}>
                         <Text style={styles.titlerecette}>{navigation.getParam('title', '[MISSING_TITLE]')} </Text>
-                    </View>
 
+                    </View>
+                    {/* <View style={styles.usertitlerecette}>
+                        <LinearGradient style={styles.userrecette} colors={['#DEDEDE', '#EFEFEF', '#FFFFFF']}  >
+                            <Text>Crée par </Text>
+                        </LinearGradient>
+                    </View> */}
                     <TouchableOpacity style={styles.buttonGoToModal}
                         onPress={() => {
                             this.setModalVisible(true);
@@ -311,11 +316,7 @@ class RecetteDetailContainer extends Component {
 
                 </ImageBackground>
 
-                <View style={styles.usertitlerecette}>
-                    <LinearGradient style={styles.userrecette} colors={['#DEDEDE', '#EFEFEF', '#FFFFFF']}  >
-                        <Text>Crée par Laure</Text>
-                    </LinearGradient>
-                </View>
+
 
                 <ScrollView >
                     <View >

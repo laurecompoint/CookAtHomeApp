@@ -28,7 +28,7 @@ export default class Input extends Component {
   }
 
   render() {
-    const { textContentType, onChangeText, placeholder, onSubmitEditing, onBlur } = this.props;
+    const { defaultValue, value, textContentType, onChangeText, placeholder, onSubmitEditing, onBlur } = this.props;
     const { secureTextEntry } = this.state;
     return (
       <View style={[styles.champ]}>
@@ -53,6 +53,8 @@ export default class Input extends Component {
           placeholder={placeholder}
           secureTextEntry={textContentType === 'password' ? secureTextEntry : false}
           onChangeText={onChangeText}
+          defaultValue={defaultValue}
+          value={value}
         />
 
         {this.state.pressValid && (

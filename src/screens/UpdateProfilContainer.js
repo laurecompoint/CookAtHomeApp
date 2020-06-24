@@ -13,9 +13,9 @@ import * as axios from 'axios';
 class UpdateProfilContainer extends Component {
 
     state = {
-        name: '',
-        email: '',
-        password: '',
+        nameupdate: '',
+        emailupdate: '',
+        passwordupdate: '',
         error: null,
     };
 
@@ -52,34 +52,76 @@ class UpdateProfilContainer extends Component {
                 loading(false)
             })
     }
-    onChangeName = (name) => {
+    onChangeName = (nameupdate) => {
         this.setState({
-            name
+            nameupdate
         })
     }
-    onChangeEmail = (email) => {
+    onChangeEmail = (emailupdate) => {
         this.setState({
-            email
+            emailupdate
         })
     }
-    onChangePassword = (password) => {
+    onChangePassword = (passwordupdate) => {
         this.setState({
-            password
+            passwordupdate
         })
     }
     updaterecette = () => {
 
-        const { name, email, password } = this.state
+        const { nameupdate, emailupdate, passwordupdate } = this.state
 
         const { token } = this.props;
+        const { email, name } = this.props
+        console.log(email)
         var bearer_token = token;
-        console.log('TESTupdate' + token);
         var bearer = 'Bearer ' + bearer_token;
-        let data = JSON.stringify({
-            name: name,
-            email: email,
-            password: password,
-        })
+        if (nameupdate != '' & passwordupdate != '') {
+            var data = JSON.stringify({
+                name: nameupdate,
+                email: email,
+                password: passwordupdate,
+            })
+        }
+        if (nameupdate != '' & passwordupdate != '' & nameupdate != '') {
+            var data = JSON.stringify({
+                name: nameupdate,
+                email: emailupdate,
+                password: passwordupdate,
+            })
+        }
+        if (passwordupdate != '' & nameupdate != '') {
+            var data = JSON.stringify({
+                name: name,
+                email: emailupdate,
+                password: passwordupdate,
+            })
+        }
+        if (nameupdate != '') {
+            var data = JSON.stringify({
+                name: nameupdate,
+                email: email,
+
+            })
+        }
+        if (emailupdate != '') {
+            var data = JSON.stringify({
+                name: name,
+                email: emailupdate,
+
+            })
+        }
+        if (emailupdate != '' & nameupdate != '') {
+            var data = JSON.stringify({
+                name: nameupdate,
+                email: emailupdate,
+
+            })
+        }
+
+
+
+
         axios.post('https://cookathomeapp.herokuapp.com/api/updateuser', data, {
             headers: {
                 'Authorization': bearer,
@@ -101,12 +143,7 @@ class UpdateProfilContainer extends Component {
     }
 
 
-    register = () => {
-        const { loading, setToken } = this.props
-        const { password, email, name } = this.state
 
-
-    }
     onPressGoToBack = () => {
 
         const { navigation } = this.props
@@ -141,9 +178,9 @@ class UpdateProfilContainer extends Component {
                             onSubmitEditing={this.validateAndFocus}
                             onBlur={this.validateAndFocus}
                             textContentType={'name'}
-                            value={name}
+                            defaultValue={name}
                             onChangeText={this.onChangeName}
-                            placeholder={name} />
+                        />
 
                         <Input
                             ref={ref => { this.refEmail = ref }}
