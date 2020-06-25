@@ -24,6 +24,21 @@ import { filterRecettes } from '../reducers/recipe';
 
 class HomeContainer extends Component {
 
+    constructor(props) {
+
+        super(props);
+        this.state = {
+
+            colorActiveItemFiltrePlats: '#FFFFFF',
+            colorActiveItemFiltreApero: '#FFFFFF',
+            colorActiveItemFiltreEntree: '#FFFFFF',
+            colorActiveItemFiltreDessert: '#FFFFFF',
+
+        };
+
+
+    }
+
     componentDidMount() {
         //const { requestGetListings } = this.props;
         // return requestGetListings()
@@ -65,8 +80,30 @@ class HomeContainer extends Component {
         const { navigation } = this.props
         navigation.navigate('Home')
     }
+
     render() {
-        const { recettes, filterRecettes, filter, isLoading, navigation } = this.props;
+        const { recettes, filterRecettes, filter, isLoading, navigation, colorActiveItemFiltre } = this.props;
+
+        if (filter == 'plats') {
+            this.state.colorActiveItemFiltrePlats = '#FFB347'
+        } else {
+            this.state.colorActiveItemFiltrePlats = '#000000'
+        }
+        if (filter == 'entree') {
+            this.state.colorActiveItemFiltreEntree = '#FFB347'
+        } else {
+            this.state.colorActiveItemFiltreEntree = '#000000'
+        }
+        if (filter == 'apero') {
+            this.state.colorActiveItemFiltreApero = '#FFB347'
+        } else {
+            this.state.colorActiveItemFiltreApero = '#000000'
+        }
+        if (filter == 'dessert') {
+            this.state.colorActiveItemFiltreDessert = '#FFB347'
+        } else {
+            this.state.colorActiveItemFiltreDessert = '#000000'
+        }
         return (
             <LinearGradient colors={['#507E96', '#F7F8F8']} style={{ flex: 1 }} >
                 <ImageBackground style={styles.imgBackground}
@@ -91,16 +128,16 @@ class HomeContainer extends Component {
                             <View style={styles.structFiltre} >
 
                                 <TouchableOpacity style={styles.filtretype} title={""} onPress={() => filterRecettes("apero", "type-apero")}>
-                                    <Filtreapero style={styles.searchlogo} />
+                                    <Filtreapero style={{ color: this.state.colorActiveItemFiltreApero, textAlign: 'left', marginLeft: 25, marginTop: 3, }} />
                                 </TouchableOpacity >
                                 <TouchableOpacity style={styles.filtretype} title={""} onPress={() => filterRecettes("entree", "type-entree")}>
-                                    <Filtreentree style={styles.searchlogo} />
+                                    <Filtreentree style={{ color: this.state.colorActiveItemFiltreEntree, textAlign: 'left', marginLeft: 25, marginTop: 3, }} />
                                 </TouchableOpacity >
                                 <TouchableOpacity style={styles.filtretype} title={""} onPress={() => filterRecettes("plats", "type-plats")}>
-                                    <Filtre style={styles.searchlogo} />
+                                    <Filtre style={{ color: this.state.colorActiveItemFiltrePlats, textAlign: 'left', marginLeft: 25, marginTop: 3, }} />
                                 </TouchableOpacity >
                                 <TouchableOpacity style={styles.filtretype} title={""} onPress={() => filterRecettes("dessert", "type-dessert")}>
-                                    <Filtredessert style={styles.searchlogo} />
+                                    <Filtredessert style={{ color: this.state.colorActiveItemFiltreDessert, textAlign: 'left', marginLeft: 25, marginTop: 3, }} />
                                 </TouchableOpacity >
 
                             </View>

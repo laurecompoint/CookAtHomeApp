@@ -291,8 +291,22 @@ const styles = StyleSheet.create({
 
     flexDirection: 'column',
   },
+  cardEmptyFav: {
+    margin: 10,
+    flex: 1,
+    width: 227,
+
+    flexDirection: 'column',
+  },
   marginfav: {
     marginTop: 15,
+    borderBottomLeftRadius: 20,
+    borderTopLeftRadius: 20,
+    borderBottomRightRadius: 20,
+    borderTopRightRadius: 20,
+    backgroundColor: 'white',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   imageExp: {
     borderTopLeftRadius: 20,
@@ -301,15 +315,35 @@ const styles = StyleSheet.create({
     height: 230,
 
   },
+  imageFavVide: {
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+
+    color: '#000000',
+
+
+  },
   titlerecipe: {
     fontFamily: "Calibri",
     color: 'black',
     textAlign: 'center',
-    backgroundColor: 'white',
+
     height: 50,
     paddingTop: 15,
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
+
+  },
+  titleFavVide: {
+    fontFamily: "Calibri",
+    color: '#FFB347',
+    fontSize: 16,
+    textAlign: 'center',
+    backgroundColor: 'white',
+    height: 80,
+    width: 200,
+
+
 
   },
   titlereciperechercher: {
@@ -525,6 +559,7 @@ const styles = StyleSheet.create({
     marginLeft: 25,
     marginTop: 3,
 
+
   },
   goback: {
     textAlign: 'left',
@@ -612,5 +647,6 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
 
   },
+
 });
 export default styles;

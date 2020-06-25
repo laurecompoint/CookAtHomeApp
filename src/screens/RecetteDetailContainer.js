@@ -21,6 +21,7 @@ import RecetteCommentaire from '../components/recettecommentaire';
 import StartEmpty from '../data/image/startempty.svg';
 import StartNoEmpty from '../data/image/startnoempty.svg';
 import InputAdd from '../components/InputAdd';
+import Navbar from '../navigation/LoggedInTabNavigator';
 class RecetteDetailContainer extends Component {
 
     constructor(props) {
@@ -202,10 +203,9 @@ class RecetteDetailContainer extends Component {
     }
     render() {
 
-        const { navigation, favoriebyrecetteid, commentaire, commentaireuser } = this.props
+        const { nameuser, navigation, favoriebyrecetteid, commentaire, commentaireuser } = this.props
 
         this.favorieRecette = favoriebyrecetteid
-
 
         return (
             <LinearGradient colors={['#507E96', '#F7F8F8']} style={{ flex: 1 }} >
@@ -294,7 +294,7 @@ class RecetteDetailContainer extends Component {
                         </View>
                     </View>
                     <View style={styles.usertitlerecette}>
-                        <Text style={styles.titlerecette}>{navigation.getParam('title', '[MISSING_TITLE]')} </Text>
+                        <Text style={styles.titlerecette}>{navigation.getParam('title', '[MISSING_TITLE]')}</Text>
 
                     </View>
                     {/* <View style={styles.usertitlerecette}>
@@ -392,9 +392,8 @@ class RecetteDetailContainer extends Component {
 
                 </ScrollView>
 
-
-
             </LinearGradient >
+
 
         );
     }

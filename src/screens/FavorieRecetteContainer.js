@@ -26,6 +26,8 @@ class FavorieRecetteContainer extends Component {
     )
   });
 
+
+
   /**
    * Nous n'avons plus besoin d'initialiser un state local au component.
    * isLoading erst 
@@ -77,6 +79,7 @@ class FavorieRecetteContainer extends Component {
   render() {
     const { email } = this.props
     const { favorierecette, isLoading, navigation } = this.props;
+
     return (
       <LinearGradient colors={['#507E96', '#F7F8F8']} style={{ flex: 1 }} >
         <ImageBackground style={styles.imgBackground}
