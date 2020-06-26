@@ -38,34 +38,34 @@ class ProfileContainer extends Component {
 
     console.log("test");
 
-    // const { logout, navigation } = this.props
-    // const { token } = this.props;
-    // var bearer_token = token;
-    // var bearer = 'Bearer ' + bearer_token;
-    // let data = JSON.stringify({
-    // })
-    // axios.post('https://cookathomeapp.herokuapp.com/api/delete-compte', data, {
-    //   headers: {
-    //     'Authorization': bearer,
-    //     'Content-Type': 'application/json'
-    //   },
+    const { logout, navigation } = this.props
+    const { token } = this.props;
+    var bearer_token = token;
+    var bearer = 'Bearer ' + bearer_token;
+    let data = JSON.stringify({
+    })
+    axios.post('https://cookathomeapp.herokuapp.com/api/delete-compte', data, {
+      headers: {
+        'Authorization': bearer,
+        'Content-Type': 'application/json'
+      },
 
 
-    // })
-    //   .then(function (response) {
+    })
+      .then(function (response) {
 
-    //     console.log(response);
+        console.log(response);
 
-    //   })
-    //   .catch(function (error) {
+      })
+      .catch(function (error) {
 
-    //     console.log(error);
-    //   });
+        console.log(error);
+      });
 
-    // logout()
+    logout()
 
-    // this.setModalVisible(!this.state.modalVisible);
-    // navigation.navigate('Login')
+    this.setModalVisible(!this.state.modalVisible);
+    navigation.navigate('Login')
   }
   componentDidMount() {
     const { setRecetteUser, loading, token } = this.props;

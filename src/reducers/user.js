@@ -1,6 +1,8 @@
 import { Types } from "../actions"
 const initialState = {
     token: null,
+    email: null,
+    name: null,
 
 };
 
@@ -11,7 +13,9 @@ export default (state = initialState, action) => {
         case Types.LOGOUT:
             return {
                 ...state,
-                token: null
+                token: null,
+                email: null,
+                name: null
             };
         case Types.LOGIN:
             return {
