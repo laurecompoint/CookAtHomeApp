@@ -16,11 +16,18 @@ export default (state = initialState, action) => {
                 filter: action.payload.criteria,
                 sort: action.payload.sort,
             }
+
         case Types.SET_RECETTES:
             return {
                 ...state,
 
                 recettes: action.payload,
+
+            };
+        case Types.LOGOUT:
+            return {
+                ...state,
+                recettes: []
 
             };
         default:

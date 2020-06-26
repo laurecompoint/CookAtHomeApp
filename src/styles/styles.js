@@ -307,7 +307,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
   },
   cardEmptyFav: {
-    margin: 10,
+    margin: 40,
     flex: 1,
     width: 227,
 

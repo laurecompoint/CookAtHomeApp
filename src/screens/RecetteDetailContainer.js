@@ -276,7 +276,8 @@ class RecetteDetailContainer extends Component {
 
                 <ImageBackground style={styles.imgrecetteBackground}
                     resizeMode='cover'
-                    source={photos[navigation.getParam('photo', '[MISSING_PHOTO]')]}>
+                    source={require('../data/photos/' + 'cookie.png')}
+                >
 
                     <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'flex-start', }}>
 
