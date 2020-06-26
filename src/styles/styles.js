@@ -268,6 +268,21 @@ const styles = StyleSheet.create({
     marginTop: 15,
 
   },
+  boutondelete: {
+    width: 175,
+    height: 42,
+    borderRadius: 20,
+    marginTop: 215,
+    backgroundColor: '#5E0B00',
+
+  },
+  boutondeletealertmodal: {
+    width: 30,
+    height: 20,
+    position: "relative",
+    top: 5,
+    left: 30,
+  },
   boutonmodifrecette: {
     width: 110,
     height: 40,
@@ -298,8 +313,30 @@ const styles = StyleSheet.create({
 
     flexDirection: 'column',
   },
+  carddeletecompte: {
+    margin: 10,
+    flex: 1,
+    width: 327,
+
+    flexDirection: 'column',
+  },
+  titledeletecompte: {
+    fontFamily: "Calibri",
+    color: 'black',
+    fontSize: 17,
+    textAlign: 'center',
+    paddingTop: 20,
+    height: 80,
+    width: 200,
+
+  },
+  imageFavDeleteCompte: {
+    width: 100,
+    height: 100,
+    marginTop: 250,
+  },
   marginfav: {
-    marginTop: 15,
+
     borderBottomLeftRadius: 20,
     borderTopLeftRadius: 20,
     borderBottomRightRadius: 20,
@@ -318,10 +355,6 @@ const styles = StyleSheet.create({
   imageFavVide: {
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
-
-    color: '#000000',
-
-
   },
   titlerecipe: {
     fontFamily: "Calibri",
@@ -439,30 +472,23 @@ const styles = StyleSheet.create({
     fontFamily: 'Calibri',
     marginTop: -60,
   },
-  userrecette: {
+  usernamerecette: {
     textAlign: 'center',
     color: 'black',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#FFFFFF',
     height: 22,
-    width: 130,
-    borderRadius: 10,
-
-
+    width: 400,
+    marginTop: 205,
     fontFamily: "Calibri",
   },
   usertitlerecette: {
-
     textAlign: 'center',
-
     color: 'black',
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-
-
-
   },
   detailingredients: {
     width: 180,
@@ -632,7 +658,7 @@ const styles = StyleSheet.create({
   },
   buttonGoToModal: {
     paddingLeft: 15,
-    paddingBottom: 20,
+    paddingBottom: 35,
 
   },
   cardCommentaire: {

@@ -207,6 +207,8 @@ class RecetteDetailContainer extends Component {
 
         this.favorieRecette = favoriebyrecetteid
 
+        const user = navigation.getParam('user', {})
+
         return (
             <LinearGradient colors={['#507E96', '#F7F8F8']} style={{ flex: 1 }} >
 
@@ -294,14 +296,14 @@ class RecetteDetailContainer extends Component {
                         </View>
                     </View>
                     <View style={styles.usertitlerecette}>
-                        <Text style={styles.titlerecette}>{navigation.getParam('title', '[MISSING_TITLE]')}</Text>
+                        <Text style={styles.titlerecette}>{navigation.getParam('title', '[MISSING_INGREDIENT]')}</Text>
 
                     </View>
-                    {/* <View style={styles.usertitlerecette}>
-                        <LinearGradient style={styles.userrecette} colors={['#DEDEDE', '#EFEFEF', '#FFFFFF']}  >
-                            <Text>Crée par </Text>
+                    <View style={styles.usertitlerecette}>
+                        <LinearGradient style={styles.usernamerecette} colors={['#DEDEDE', '#EFEFEF', '#FFFFFF']}  >
+                            <Text>Crée par {user.name}</Text>
                         </LinearGradient>
-                    </View> */}
+                    </View>
                     <TouchableOpacity style={styles.buttonGoToModal}
                         onPress={() => {
                             this.setModalVisible(true);

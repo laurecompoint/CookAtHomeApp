@@ -5,7 +5,7 @@ import {
   ScrollView,
   Image,
   TouchableOpacity,
-  TextInput,
+  Modal,
 } from 'react-native';
 import styles from '../styles/styles';
 import { connect } from 'react-redux';
@@ -16,20 +16,57 @@ import { ImageBackground } from 'react-native';
 import StartEmpty from '../data/image/logout.svg';
 import RecettesUser from '../components/recetteuser';
 import ProfilRecetteUser from '../components/ProfilRecetteUser';
-
+import GoBack from '../data/image/goback.svg';
+import DeleteCompte from '../data/image/deletecompte.svg';
+import * as axios from 'axios';
 class ProfileContainer extends Component {
 
-  static navigationOptions = ({ navigation }) => ({
-    header: props => (
-      <View style={styles.containerConnect}>
-        <Icon size={20} style={styles.iconclose} name="close"></Icon>
-        <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-          <Text style={styles.connect}>Connexion</Text>
-        </TouchableOpacity>
-      </View>
-    ),
-  });
+  constructor(props) {
 
+    super(props);
+    this.state = {
+      modalVisible: false,
+    };
+
+
+  }
+  setModalVisible(visible) {
+    this.setState({ modalVisible: visible });
+    const { token, setRecetteCommentaire } = this.props;
+  }
+  DeleteCompte = () => {
+
+    console.log("test");
+
+    // const { logout, navigation } = this.props
+    // const { token } = this.props;
+    // var bearer_token = token;
+    // var bearer = 'Bearer ' + bearer_token;
+    // let data = JSON.stringify({
+    // })
+    // axios.post('https://cookathomeapp.herokuapp.com/api/delete-compte', data, {
+    //   headers: {
+    //     'Authorization': bearer,
+    //     'Content-Type': 'application/json'
+    //   },
+
+
+    // })
+    //   .then(function (response) {
+
+    //     console.log(response);
+
+    //   })
+    //   .catch(function (error) {
+
+    //     console.log(error);
+    //   });
+
+    // logout()
+
+    // this.setModalVisible(!this.state.modalVisible);
+    // navigation.navigate('Login')
+  }
   componentDidMount() {
     const { setRecetteUser, loading, token } = this.props;
     loading(true)
@@ -74,10 +111,78 @@ class ProfileContainer extends Component {
     navigation.navigate('UpdateProfilContainer')
   }
 
+
+
   render() {
     const { userrecette, email, name, token, isLoading, navigation } = this.props
     return (
       <LinearGradient colors={['#507E96', '#F7F8F8']} style={{ flex: 1 }} >
+
+        <Modal
+          animationType="slide"
+          transparent={false}
+          visible={this.state.modalVisible}
+          onRequestClose={() => {
+            Alert.alert('Modal has been closed.');
+          }}>
+          <View>
+            <LinearGradient colors={['#507E96', '#F7F8F8']}  >
+              <ScrollView >
+                <View style={{ height: 800 }}>
+                  <ImageBackground style={styles.imgBackground}
+                    resizeMode='cover'
+                    source={require('../data/image/imagefond.png')}>
+
+                    <TouchableOpacity
+                      onPress={() => {
+
+                        this.setModalVisible(!this.state.modalVisible);
+
+                      }}>
+                      <View style={styles.buttonGoToBack}>
+                        <GoBack style={[styles.textGoToBack]} size={25} />
+                      </View>
+                    </TouchableOpacity>
+
+
+
+                    <View style={styles.structGlobalModal}>
+                      <Image
+                        style={styles.LogoCookAtHome}
+                        source={require('../data/image/logocookathome.png')}
+                      />
+
+                      <View style={styles.carddeletecompte}>
+                        <View style={styles.marginfav}>
+                          <Image style={styles.imageFavDeleteCompte} source={require('../data/image/avatar.png')} />
+
+                          <Text style={styles.titledeletecompte}>Etes vous sur de vouloir supprimer vôtre compte ?</Text>
+
+                        </View>
+
+
+
+                      </View>
+
+                      <TouchableOpacity
+                        onPress={this.DeleteCompte} style={styles.boutondelete}>
+                        <Text style={styles.boutontext}>Supprimer vôtre compte</Text>
+                      </TouchableOpacity>
+
+
+
+                    </View>
+
+                  </ImageBackground>
+
+
+                </View>
+              </ScrollView>
+            </LinearGradient>
+          </View>
+        </Modal>
+
+
         <ImageBackground style={styles.imgBackground}
           resizeMode='cover'
           source={require('../data/image/imagefond.png')}>
@@ -104,6 +209,16 @@ class ProfileContainer extends Component {
               </View>
               <View style={styles.viewRowInfo}>
                 <View style={{ width: 150, }}>
+
+
+                  <TouchableOpacity onPress={() => {
+                    this.setModalVisible(true);
+                  }} style={styles.boutondeletealertmodal}>
+
+                    <DeleteCompte style={[styles.textGoToBack]} size={25} />
+                  </TouchableOpacity>
+
+
                   <Image
                     style={styles.AvatarCookAtHome}
                     source={require('../data/image/avatar.png')}
@@ -118,6 +233,7 @@ class ProfileContainer extends Component {
                       <Text style={styles.boutontext}>Modifier</Text>
                     </TouchableOpacity>
                   </LinearGradient>
+
 
                 </View>
 

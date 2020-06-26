@@ -11,6 +11,7 @@ export default class RecettesUser extends Component {
         if (this.props.userrecette.length == 0) {
 
             return (
+
                 <View style={styles.cardEmptyFav}>
                     <View style={styles.marginfav}>
                         <Image style={styles.imageFavVide} source={require('../data/photos/defaultimage.png')} />
