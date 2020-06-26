@@ -656,6 +656,13 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     marginRight: 10,
   },
+  AvatarCookAtHomeUserUpdate: {
+    width: 110,
+    height: 100,
+    flexDirection: 'row',
+    alignContent: 'center',
+    marginRight: 10,
+  },
   buttonGoToModal: {
     paddingLeft: 15,
     paddingBottom: 35,

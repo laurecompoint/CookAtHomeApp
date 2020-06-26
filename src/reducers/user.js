@@ -4,6 +4,7 @@ const initialState = {
     email: null,
     name: null,
 
+
 };
 
 
@@ -15,7 +16,8 @@ export default (state = initialState, action) => {
                 ...state,
                 token: null,
                 email: null,
-                name: null
+                name: null,
+
             };
         case Types.LOGIN:
             return {

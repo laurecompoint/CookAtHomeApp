@@ -14,6 +14,13 @@ export default (state = initialState, action) => {
                 email: action.payload.email,
                 name: action.payload.name,
             }
+        case Types.LOGOUT:
+            return {
+                ...state,
+                email: null,
+                name: null,
+
+            };
         default:
             return state;
     }

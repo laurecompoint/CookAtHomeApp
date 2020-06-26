@@ -15,6 +15,13 @@ export default (state = initialState, action) => {
                 favoriebyrecetteid: action.payload.favorie,
             }
 
+        case Types.LOGOUT:
+            return {
+                ...state,
+                favoriebyrecetteid: null,
+
+            };
+
         default:
             return state;
     }

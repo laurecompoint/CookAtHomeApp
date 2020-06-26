@@ -15,6 +15,13 @@ export default (state = initialState, action) => {
                 userrecette: action.payload,
 
             };
+
+        case Types.LOGOUT:
+            return {
+                ...state,
+                userrecette: [],
+
+            };
         default:
             return state;
     }

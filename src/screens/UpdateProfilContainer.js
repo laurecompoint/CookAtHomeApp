@@ -9,15 +9,22 @@ import LinearGradient from 'react-native-linear-gradient';
 import { ImageBackground } from 'react-native';
 import GoBack from '../data/image/goback.svg';
 import * as axios from 'axios';
-
+import ImagePicker from 'react-native-image-picker';
 class UpdateProfilContainer extends Component {
 
-    state = {
-        nameupdate: '',
-        emailupdate: '',
-        passwordupdate: '',
-        error: null,
-    };
+
+    constructor(props) {
+        super(props)
+        this.state = {
+            nameupdate: '',
+            emailupdate: '',
+            passwordupdate: '',
+            error: null,
+            profil: require('../data/image/avatar.png')
+        };
+        this._profilClicked = this._profilClicked.bind(this)
+    }
+
 
     componentDidMount() {
         const { setUserProfil, loading, token } = this.props;
@@ -118,10 +125,6 @@ class UpdateProfilContainer extends Component {
 
             })
         }
-
-
-
-
         axios.post('https://cookathomeapp.herokuapp.com/api/updateuser', data, {
             headers: {
                 'Authorization': bearer,
@@ -142,7 +145,26 @@ class UpdateProfilContainer extends Component {
 
     }
 
+    _profilClicked() {
+        // Ici nous appellerons la librairie react-native-image-picker pour récupérer un avatar
+        ImagePicker.showImagePicker({}, (response) => {
+            if (response.didCancel) {
+                console.log('Lutilisateur a annulé')
+            }
+            else if (response.error) {
+                console.log('Erreur : ', response.error)
+            }
+            else {
+                console.log('Photo : ', response.uri)
+                let requireSource = { uri: response.uri }
+                this.setState({
+                    profil: requireSource,
 
+                })
+                console.log(this.state.profil)
+            }
+        })
+    }
 
     onPressGoToBack = () => {
 
@@ -173,6 +195,12 @@ class UpdateProfilContainer extends Component {
                             source={require('../data/image/logocookathome.png')}
                         />
                         <Text style={[styles.titreauth, styles.textPolice]}>Modifier vos informations</Text>
+                        <TouchableOpacity
+                            style={styles.profilUpdateImage}
+                            onPress={this._profilClicked}>
+                            <Image source={this.state.profil} style={styles.AvatarCookAtHomeUserUpdate} />
+                        </TouchableOpacity>
+
                         <Input
                             ref={ref => { this.refEmail = ref }}
                             onSubmitEditing={this.validateAndFocus}

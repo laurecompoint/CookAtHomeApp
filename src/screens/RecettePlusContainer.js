@@ -208,6 +208,7 @@ class RecettePlusContainer extends Component {
                             source={require('../data/image/logocookathome.png')}
                         />
                         <Text style={styles.titre}>Ajouter une recette</Text>
+
                         <ScrollView>
                             <InputAdd
                                 ref={ref => { this.refTitle = ref }}
