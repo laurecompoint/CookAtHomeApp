@@ -118,6 +118,7 @@ class Register extends Component {
                             source={require('../data/image/logocookathome.png')}
                         />
                         <Text style={[styles.titreauth, styles.textPolice]}>Veuillez vous s'inscrire</Text>
+                        <Error message={error ? ErrorMessages[error] : null} />
                         <Input
                             ref={ref => { this.refEmail = ref }}
                             onSubmitEditing={this.validateAndFocus}
@@ -125,6 +126,7 @@ class Register extends Component {
                             textContentType={'name'}
                             onChangeText={this.onChangeName}
                             placeholder={"Name"} />
+
                         <Input
                             ref={ref => { this.refEmail = ref }}
                             onSubmitEditing={this.validateAndFocus}
@@ -132,7 +134,7 @@ class Register extends Component {
                             textContentType={'emailAddress'}
                             onChangeText={this.onChangeEmail}
                             placeholder={"E-mail"} />
-                        <Error message={error ? ErrorMessages[error] : null} />
+
                         <Input
                             ref={ref => { this.refPassword = ref }}
                             textContentType={'password'}

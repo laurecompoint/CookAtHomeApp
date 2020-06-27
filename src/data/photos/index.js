@@ -24,6 +24,8 @@ const photos = {
     carrotte: require('./carrotte.jpeg'),
     tartechevre: require('./tartechevre.jpeg'),
     crumble: require('./crumble.jpeg'),
+    saumonbrogolie: require('./saumonbrogolie.jpeg'),
+    tagliatelles: require('./tagliatelles.jpeg'),
 }
 
 export default photos

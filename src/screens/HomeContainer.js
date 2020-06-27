@@ -40,12 +40,10 @@ class HomeContainer extends Component {
     }
 
     componentDidMount() {
-        //const { requestGetListings } = this.props;
-        // return requestGetListings()
+
         const { setRecettes, loading, token } = this.props;
         loading(true)
         var bearer_token = token;
-        console.log('TEST' + token);
         var bearer = 'Bearer ' + bearer_token;
         return fetch('https://cookathomeapp.herokuapp.com/api/recettes', {
             method: 'GET',

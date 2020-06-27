@@ -38,6 +38,7 @@ class RecettePlusContainer extends Component {
             type: '',
             cuisson: '',
             nbpersonne: '',
+            materiel: '',
             error: null,
             picturerecipe: require('../data/image/photorecetteadd.png')
         };
@@ -147,10 +148,15 @@ class RecettePlusContainer extends Component {
             nbpersonne
         })
     }
+    onChangeMateriel = (materiel) => {
+        this.setState({
+            materiel
+        })
+    }
 
     addrecette = () => {
 
-        const { title, ingredient1, ingredient2, ingredient3, ingredient4, ingredient5, ingredient6, preparation1, preparation2, preparation3, preparation4, preparation5, cuisson, type, nbpersonne } = this.state
+        const { materiel, title, ingredient1, ingredient2, ingredient3, ingredient4, ingredient5, ingredient6, preparation1, preparation2, preparation3, preparation4, preparation5, cuisson, type, nbpersonne } = this.state
 
         if (title == "") {
             alert('Error: le titre de la recette ne peut pas etre vide');
@@ -169,6 +175,9 @@ class RecettePlusContainer extends Component {
         }
         if (cuisson == "") {
             alert('Error: pour combien de personne, la recette est réalisable ne peut pas etre vide');
+        }
+        if (materiel == "") {
+            alert('Error: materiel ne peut pas etre vide');
         }
         const { token } = this.props;
         var bearer_token = token;
@@ -191,6 +200,7 @@ class RecettePlusContainer extends Component {
             cuisson: cuisson,
             type: type,
             nbpersonne: nbpersonne,
+            materiel: materiel,
         })
         axios.post('https://cookathomeapp.herokuapp.com/api/recettes', data, {
             headers: {
@@ -210,6 +220,7 @@ class RecettePlusContainer extends Component {
             });
         const { navigation } = this.props
         navigation.navigate('Home')
+
     }
 
     render() {
@@ -318,6 +329,11 @@ class RecettePlusContainer extends Component {
                                 ref={ref => { this.refNbpersonne = ref }}
                                 onChangeText={this.onChangeNbpersonne}
                                 placeholder={"Combien de personne"} />
+
+                            <InputAdd
+                                ref={ref => { this.refNbpersonne = ref }}
+                                onChangeText={this.onChangeMateriel}
+                                placeholder={"Matériel"} />
                         </ScrollView>
                         <LinearGradient colors={['#4F147B', '#704C8B']} style={styles.addRecette}>
                             <TouchableOpacity
