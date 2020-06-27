@@ -173,7 +173,7 @@ class UpdateProfilContainer extends Component {
     }
     render() {
 
-        const { email, token, name } = this.props
+        const { email, name } = this.props
 
 
         return (

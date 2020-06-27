@@ -15,38 +15,56 @@ import * as axios from 'axios';
 import { connect } from 'react-redux';
 import { Actions } from '../actions';
 import { ImageBackground } from 'react-native';
+
+import ImagePicker from 'react-native-image-picker';
 class RecettePlusContainer extends Component {
 
-    state = {
-        title: '',
-        photo: '',
-        ingredient1: '',
-        ingredient2: '',
-        ingredient3: '',
-        ingredient4: '',
-        ingredient5: '',
-        ingredient6: '',
-        preparation1: '',
-        preparation2: '',
-        preparation3: '',
-        preparation4: '',
-        preparation5: '',
-        type: '',
-        cuisson: '',
-        nbpersonne: '',
-        error: null
-    };
+    constructor(props) {
+        super(props)
+        this.state = {
+            title: '',
+            photo: '',
+            ingredient1: '',
+            ingredient2: '',
+            ingredient3: '',
+            ingredient4: '',
+            ingredient5: '',
+            ingredient6: '',
+            preparation1: '',
+            preparation2: '',
+            preparation3: '',
+            preparation4: '',
+            preparation5: '',
+            type: '',
+            cuisson: '',
+            nbpersonne: '',
+            error: null,
+            picturerecipe: require('../data/image/photorecetteadd.png')
+        };
+        this._picturerecipeClicked = this._picturerecipeClicked.bind(this)
+    }
 
-    static navigationOptions = ({ navigation }) => ({
-        header: props => (
-            <View style={styles.containerConnect}>
-                <Icon size={20} style={styles.iconclose} name="close"></Icon>
-                <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-                    <Text style={styles.connect}>Connexion</Text>
-                </TouchableOpacity>
-            </View>
-        ),
-    });
+    _picturerecipeClicked() {
+        // Ici nous appellerons la librairie react-native-image-picker pour récupérer un avatar
+        ImagePicker.showImagePicker({}, (response) => {
+            if (response.didCancel) {
+                console.log('Lutilisateur a annulé')
+            }
+            else if (response.error) {
+                console.log('Erreur : ', response.error)
+            }
+            else {
+                console.log('Photo : ', response.uri)
+                let requireSource = { uri: response.uri }
+                this.setState({
+                    picturerecipe: requireSource,
+
+                })
+
+            }
+        })
+    }
+
 
     onChangeTitle = (title) => {
         this.setState({
@@ -208,6 +226,13 @@ class RecettePlusContainer extends Component {
                             source={require('../data/image/logocookathome.png')}
                         />
                         <Text style={styles.titre}>Ajouter une recette</Text>
+
+                        <TouchableOpacity
+
+                            onPress={this._picturerecipeClicked}>
+                            <Image source={this.state.picturerecipe} style={styles.Picturerecipeadd} />
+                        </TouchableOpacity>
+
 
                         <ScrollView>
                             <InputAdd

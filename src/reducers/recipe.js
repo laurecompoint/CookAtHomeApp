@@ -24,12 +24,7 @@ export default (state = initialState, action) => {
                 recettes: action.payload,
 
             };
-        case Types.LOGOUT:
-            return {
-                ...state,
-                recettes: []
 
-            };
         default:
             return state;
     }

@@ -16,6 +16,15 @@ export default (state = initialState, action) => {
                 commentaireuser: action.payload.user
 
             };
+
+        case Types.LOGOUT:
+            return {
+                ...state,
+                commentaireuser: [],
+                commentaire: [],
+
+            };
+
         default:
             return state;
     }

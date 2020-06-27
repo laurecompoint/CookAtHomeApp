@@ -1,8 +1,7 @@
 import { Types } from "../actions"
 const initialState = {
     token: null,
-    email: null,
-    name: null,
+
 
 
 };
@@ -15,8 +14,7 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 token: null,
-                email: null,
-                name: null,
+
 
             };
         case Types.LOGIN:

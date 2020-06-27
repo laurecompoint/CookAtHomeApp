@@ -11,13 +11,7 @@ import CardRecherche from './CardRecherche';
 class CardRecetteUser extends Component {
     constructor(props) {
         super(props);
-        const {
-            favorieid
-        } = this.props
-        this.state = {
-            secureTextEntry: true,
 
-        };
     }
 
     updatebutton = () => {
@@ -29,14 +23,10 @@ class CardRecetteUser extends Component {
         const {
             imageCard,
             paragraphe,
-            favorieid,
             onPress,
-            recette,
-            navigation,
-            cuissonrecette,
+
         } = this.props;
-        const { secureTextEntry } = this.state;
-        const { colorTitleCard } = this.props;
+
         return (
 
             <TouchableOpacity style={styles.card} onPress={onPress}>
@@ -45,10 +35,7 @@ class CardRecetteUser extends Component {
                     <Text style={styles.titlereciperechercher}> {paragraphe} </Text>
                     <View style={styles.bouttonfavorie}>
 
-
-
                         <Edit style={styles.boutonmodifrecette} size={25} />
-
 
                     </View>
                 </View>

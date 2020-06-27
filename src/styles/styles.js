@@ -680,6 +680,15 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
 
   },
+  Picturerecipeadd: {
+    width: 70,
+    height: 55,
+
+    flexDirection: 'row',
+    alignContent: 'center',
+    marginRight: 10,
+    marginTop: 30,
+  }
 
 });
 export default styles;
