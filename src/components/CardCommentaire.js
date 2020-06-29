@@ -16,15 +16,15 @@ export default class CardCommentaire extends Component {
         const { colorTitleCard } = this.props;
         return (
 
-            <View style={styles.commentaire}>
+            <View style={styles.comment}>
 
                 <Image
                     style={styles.AvatarCookAtHomeUser}
                     source={require('../data/image/avatar.png')}
                 />
-                <View style={styles.commentaireview}>
-                    <Text style={styles.commentairecontent}>{user}</Text>
-                    <Text style={styles.commentairecontent}>{content}</Text>
+                <View style={styles.commentview}>
+                    <Text style={styles.commentcontent}>{user}</Text>
+                    <Text style={styles.commentcontent}>{content}</Text>
                 </View>
 
             </View>

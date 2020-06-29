@@ -141,7 +141,8 @@ class UpdateProfilContainer extends Component {
             });
 
         const { navigation } = this.props
-        navigation.navigate('Profile')
+        navigation.navigate('Home')
+
 
     }
 

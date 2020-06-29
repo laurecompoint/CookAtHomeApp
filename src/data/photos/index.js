@@ -18,7 +18,11 @@ const photos = {
     hamburger: require('./hamburger.png'),
     salade: require('./salade.jpeg'),
     poisson: require('./poisson.jpeg'),
-    photodefault: require('./defaultimage.png'),
+    photodefaultapero: require('./photodefaultapero.jpg'),
+    photodefaultdessert: require('./photodefaultdessert.png'),
+    photodefaultdejeuner: require('./photodefaultdejeuner.jpg'),
+    photodefaultplats: require('./photodefaultplats.png'),
+    photodefaultentree: require('./photodefaultentree.png'),
     clafoutis: require('./clafoutis.png'),
     betrave: require('./betrave.jpeg'),
     carrotte: require('./carrotte.jpeg'),
@@ -26,6 +30,7 @@ const photos = {
     crumble: require('./crumble.jpeg'),
     saumonbrogolie: require('./saumonbrogolie.jpeg'),
     tagliatelles: require('./tagliatelles.jpeg'),
+    faritas: require('./faritas.jpg'),
 }
 
 export default photos

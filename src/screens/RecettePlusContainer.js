@@ -156,7 +156,7 @@ class RecettePlusContainer extends Component {
 
     addrecette = () => {
 
-        const { materiel, title, ingredient1, ingredient2, ingredient3, ingredient4, ingredient5, ingredient6, preparation1, preparation2, preparation3, preparation4, preparation5, cuisson, type, nbpersonne } = this.state
+        const { photo, materiel, title, ingredient1, ingredient2, ingredient3, ingredient4, ingredient5, ingredient6, preparation1, preparation2, preparation3, preparation4, preparation5, cuisson, type, nbpersonne } = this.state
 
         if (title == "") {
             alert('Error: le titre de la recette ne peut pas etre vide');
@@ -179,13 +179,28 @@ class RecettePlusContainer extends Component {
         if (materiel == "") {
             alert('Error: materiel ne peut pas etre vide');
         }
+        if (type == "apero") {
+            this.photo = "photodefaultapero"
+        }
+        if (type == "entree") {
+            this.photo = "photodefaultentree"
+        }
+        if (type == "plats") {
+            this.photo = "photodefaultplats"
+        }
+        if (type == "dessert") {
+            this.photo = "photodefaultdessert"
+        }
+        if (type == "dejeuner") {
+            this.photo = "photodefaultdejeuner"
+        }
         const { token } = this.props;
         var bearer_token = token;
         console.log('TEST' + token);
         var bearer = 'Bearer ' + bearer_token;
         let data = JSON.stringify({
             title: title,
-            photo: "photodefault",
+            photo: this.photo,
             ingredient1: ingredient1,
             ingredient2: ingredient2,
             ingredient3: ingredient3,

@@ -14,6 +14,8 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 token: null,
+                email: '',
+                name: '',
 
 
             };

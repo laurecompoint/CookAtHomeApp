@@ -16,6 +16,7 @@ import Searchlogo from '../data/image/search.svg';
 import Filtreentree from '../data/image/filtrentree.svg';
 import Filtredessert from '../data/image/filtredessert.svg';
 import Filtreapero from '../data/image/filtreapero.svg';
+import Filtrdej from '../data/image/filtredej.svg';
 import Filtre from '../data/image/testplats.svg';
 import { ImageBackground } from 'react-native';
 import Recettes from '../components/recettes';
@@ -33,6 +34,7 @@ class HomeContainer extends Component {
             colorActiveItemFiltreApero: '#FFFFFF',
             colorActiveItemFiltreEntree: '#FFFFFF',
             colorActiveItemFiltreDessert: '#FFFFFF',
+            colorActiveItemFiltreDejeuner: '#FFFFFF',
 
         };
 
@@ -102,6 +104,11 @@ class HomeContainer extends Component {
         } else {
             this.state.colorActiveItemFiltreDessert = '#000000'
         }
+        if (filter == 'dejeuner') {
+            this.state.colorActiveItemFiltreDejeuner = '#FFB347'
+        } else {
+            this.state.colorActiveItemFiltreDejeuner = '#000000'
+        }
         return (
             <LinearGradient colors={['#507E96', '#F7F8F8']} style={{ flex: 1 }} >
                 <ImageBackground style={styles.imgBackground}
@@ -125,6 +132,9 @@ class HomeContainer extends Component {
                             </View>
                             <View style={styles.structFiltre} >
 
+                                <TouchableOpacity style={styles.filtretype} title={""} onPress={() => filterRecettes("dejeuner", "type-apero")}>
+                                    <Filtrdej style={{ color: this.state.colorActiveItemFiltreDejeuner, textAlign: 'left', marginLeft: 25, marginTop: 3, }} />
+                                </TouchableOpacity >
                                 <TouchableOpacity style={styles.filtretype} title={""} onPress={() => filterRecettes("apero", "type-apero")}>
                                     <Filtreapero style={{ color: this.state.colorActiveItemFiltreApero, textAlign: 'left', marginLeft: 25, marginTop: 3, }} />
                                 </TouchableOpacity >

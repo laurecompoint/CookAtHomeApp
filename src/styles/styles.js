@@ -207,7 +207,7 @@ const styles = StyleSheet.create({
   },
   containerHome: {
     width: 350,
-    height: 332,
+    height: 250,
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
@@ -341,6 +341,7 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 20,
     borderBottomRightRadius: 20,
     borderTopRightRadius: 20,
+    marginTop: 20,
     backgroundColor: 'white',
     justifyContent: 'center',
     alignItems: 'center',
@@ -470,7 +471,7 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 35,
     fontFamily: 'Calibri',
-    marginTop: -60,
+    marginTop: 50,
   },
   usernamerecette: {
     textAlign: 'center',
@@ -551,8 +552,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
-    padding: 20,
-    paddingLeft: 5,
+    padding: 25,
+    paddingRight: 47,
   },
   bouttonSearch: {
     backgroundColor: 'white',
@@ -597,6 +598,7 @@ const styles = StyleSheet.create({
     height: 40,
 
   },
+
   //ajouter une recette
 
   textInputAddRecette: {
@@ -617,37 +619,29 @@ const styles = StyleSheet.create({
   },
   //commentaire modal
 
-  textInputAddCommentaire: {
-    backgroundColor: 'white',
-    color: 'black',
-    fontSize: 14,
-    borderRadius: 22,
-    width: 309,
-    paddingLeft: 20,
-    marginTop: 20,
-  },
-  commentaire: {
+
+  comment: {
 
     justifyContent: 'space-around',
-
-    alignItems: 'center',
     flexDirection: 'row',
-    width: 300,
+    width: 310,
     marginTop: 20,
     borderRadius: 15,
     backgroundColor: 'white',
 
 
   },
-  commentaireview: {
+  commentview: {
 
     justifyContent: 'center',
     alignItems: 'flex-start',
     flexDirection: 'column',
     width: 230,
+    minHeight: 80,
   },
-  commentairecontent: {
+  commentcontent: {
     textAlign: 'left',
+    backgroundColor: 'white',
   },
   AvatarCookAtHomeUser: {
     width: 55,
