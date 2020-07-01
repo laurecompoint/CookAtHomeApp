@@ -194,7 +194,7 @@ class RecettePlusContainer extends Component {
         var bearer_token = token;
         var bearer = 'Bearer ' + bearer_token;
         let data = JSON.stringify({
-            title: "title,",
+            title: title,
             photo: this.photo,
             ingredient1: ingredient1,
             ingredient2: ingredient2,
