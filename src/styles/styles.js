@@ -601,14 +601,42 @@ const styles = StyleSheet.create({
 
   //ajouter une recette
 
-  textInputAddRecette: {
+  textInputAddRecipe: {
+    backgroundColor: 'white',
+
+    color: 'black',
+    fontSize: 14,
+    borderRadius: 22,
+    width: 350,
+    paddingLeft: 20,
+    marginTop: 20,
+  },
+
+  textInputAddRecipeCuissonPersonne: {
     backgroundColor: 'white',
     color: 'black',
     fontSize: 14,
     borderRadius: 22,
-    width: 309,
+    width: 160,
     paddingLeft: 20,
     marginTop: 20,
+  },
+  structAddRecipe: {
+    flex: 1,
+    justifyContent: 'space-between',
+    alignContent: 'space-between',
+    flexDirection: 'row',
+
+
+  },
+  structAddTypeRecipe: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+    marginTop: 50,
+    marginBottom: 20,
+    paddingRight: 33,
   },
   addRecette: {
     width: 209,

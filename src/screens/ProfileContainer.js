@@ -9,7 +9,6 @@ import {
 } from 'react-native';
 import styles from '../styles/styles';
 import { connect } from 'react-redux';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import { Actions } from '../actions';
 import LinearGradient from 'react-native-linear-gradient';
 import { ImageBackground } from 'react-native';
@@ -272,6 +271,6 @@ const mapDispatchToProps = dispatch => ({
   logout: () => dispatch(Actions.logout()),
   setRecetteUser: results => dispatch(Actions.setRecetteUser(results)),
   loading: (isLoading) => dispatch(Actions.loading(isLoading)),
-  //requestGetRecetteCreatedByUser: () => dispatch(requestGetRecetteCreatedByUser())
+
 });
 export default connect(mapStateToProps, mapDispatchToProps)(ProfileContainer)

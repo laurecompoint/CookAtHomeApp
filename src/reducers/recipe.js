@@ -33,6 +33,11 @@ export default (state = initialState, action) => {
                 recettes: [],
 
             };
+        case Types.RESETFILTER:
+            return {
+                ...state,
+                filter: "",
+            };
         default:
             return state;
     }

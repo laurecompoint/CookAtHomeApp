@@ -36,7 +36,11 @@ export default (state = initialState, action) => {
             }
 
 
-
+        case Types.RESETFILTER:
+            return {
+                ...state,
+                filter: "",
+            };
         default:
             return state;
     }

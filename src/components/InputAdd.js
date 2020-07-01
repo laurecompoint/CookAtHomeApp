@@ -13,7 +13,7 @@ export default class InputAdd extends Component {
 
 
     render() {
-        const { textContentType, multiline, numberOfLines, onChangeText, placeholder, onSubmitEditing, onBlur } = this.props;
+        const { textContentType, style, multiline, numberOfLines, onChangeText, placeholder, onSubmitEditing, onBlur } = this.props;
         const { secureTextEntry } = this.state;
         return (
             <View style={[styles.champ]}>
@@ -24,7 +24,7 @@ export default class InputAdd extends Component {
                     }}
                     onBlur={onBlur}
                     onSubmitEditing={onSubmitEditing}
-                    style={[styles.textInputAddRecette]}
+                    style={style}
                     placeholder={placeholder}
                     onChangeText={onChangeText}
                     multiline={multiline}

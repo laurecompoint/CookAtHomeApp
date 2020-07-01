@@ -251,7 +251,8 @@ class RecetteDetailContainer extends Component {
                                                 onChangeText={this.onChangeComment}
                                                 placeholder={"Votre commentaire"}
                                                 multiline={true}
-                                                numberOfLines={4} />
+                                                numberOfLines={4}
+                                                style={styles.textInputAddRecipe} />
                                             <LinearGradient colors={['#4F147B', '#704C8B']} style={styles.addRecette}>
                                                 <TouchableOpacity
                                                     onPress={this.addcomment}>

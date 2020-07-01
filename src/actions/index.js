@@ -8,6 +8,7 @@ export const Types = {
   SET_COMMENTAIRE: 'SET_COMMENTAIRE',
   LOADING: 'LOADING',
   LOGOUT: 'LOGOUT',
+  RESETFILTER: 'RESETFILTER',
   LOGIN: 'LOGIN',
   USERPROFIL: 'USERPROFIL',
   REGISTER: 'REGISTER',
@@ -45,6 +46,9 @@ export const Actions = {
     payload: {
       isLoading
     }
+  }),
+  resetfilter: () => ({
+    type: Types.RESETFILTER
   }),
   logout: () => ({
     type: Types.LOGOUT
