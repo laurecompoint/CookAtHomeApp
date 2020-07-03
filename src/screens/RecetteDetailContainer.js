@@ -28,7 +28,6 @@ class RecetteDetailContainer extends Component {
 
         super(props);
         this.state = {
-
             favorieRecette: '',
             modalVisible: false,
             comment: '',
@@ -74,36 +73,40 @@ class RecetteDetailContainer extends Component {
     }
 
     componentDidMount() {
-        const { token, setFavoriebyrecette } = this.props;
-        const { navigation } = this.props
-        var bearer_token = token;
-        var bearer = 'Bearer ' + bearer_token;
-        return fetch('https://cookathomeapp.herokuapp.com/api/favoriebyrecette/' + navigation.getParam('id', '[MISSING_ID]'), {
-            method: 'GET',
-            withCredentials: true,
-            credentials: 'include',
-            headers: {
-                'Authorization': bearer,
-                'Content-Type': 'application/json'
-            }
-        })
-            .then((response) => {
-                if (!response.ok) {
-                    throw Error(response.statusText);
+        this.focusListener = this.props.navigation.addListener('didFocus', () => {
+            const { token, setFavoriebyrecette } = this.props;
+            const { navigation } = this.props
+            var bearer_token = token;
+            var bearer = 'Bearer ' + bearer_token;
+            return fetch('https://cookathomeapp.herokuapp.com/api/favoriebyrecette/' + navigation.getParam('id', '[MISSING_ID]'), {
+                method: 'GET',
+                withCredentials: true,
+                credentials: 'include',
+                headers: {
+                    'Authorization': bearer,
+                    'Content-Type': 'application/json'
                 }
-                return response;
             })
-            .then(response => response.json())
-            .then(response => {
-                console.log(response)
-                setFavoriebyrecette(response);
+                .then((response) => {
+                    if (!response.ok) {
+                        throw Error(response.statusText);
+                    }
+                    return response;
+                })
+                .then(response => response.json())
+                .then(response => {
+                    console.log(response)
+                    setFavoriebyrecette(response);
 
-            })
-            .catch((err) => {
-                console.log('An error occured', err)
-            });
+                })
+                .catch((err) => {
+                    console.log('An error occured', err)
+                });
+        });
     }
-
+    componentWillUnmount() {
+        this.focusListener.remove();
+    }
     addfavorie = () => {
 
         const { navigation } = this.props
@@ -118,14 +121,11 @@ class RecetteDetailContainer extends Component {
                 'Authorization': bearer,
                 'Content-Type': 'application/json'
             },
-
-
         })
             .then(function (response) {
-
                 console.log(response);
-
             })
+            .then(response => navigation.navigate('Home'))
             .catch(function (error) {
 
                 console.log(error);
@@ -154,12 +154,13 @@ class RecetteDetailContainer extends Component {
                 console.log(response);
 
             })
+            .then(response => navigation.navigate('Home'))
             .catch(function (error) {
 
                 console.log(error);
             });
 
-        navigation.navigate('Home')
+
 
     }
     addcomment = () => {
@@ -189,12 +190,13 @@ class RecetteDetailContainer extends Component {
                 console.log(response);
 
             })
+            .then(response => this.setModalVisible(!this.state.modalVisible))
             .catch(function (error) {
 
                 console.log(error);
             });
 
-        this.setModalVisible(!this.state.modalVisible);
+
     }
     onPressGoToBack = () => {
 
@@ -203,7 +205,7 @@ class RecetteDetailContainer extends Component {
     }
     render() {
 
-        const { nameuser, navigation, favoriebyrecetteid, commentaire, commentaireuser } = this.props
+        const { navigation, favoriebyrecetteid, commentaire } = this.props
 
         this.favorieRecette = favoriebyrecetteid
 

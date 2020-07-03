@@ -65,37 +65,43 @@ class ProfileContainer extends Component {
     navigation.navigate('Login')
   }
   componentDidMount() {
-    const { setRecetteUser, loading, token } = this.props;
-    loading(true)
-    var bearer_token = token;
-    var bearer = 'Bearer ' + bearer_token;
-    return fetch('https://cookathomeapp.herokuapp.com/api/recettebyuser', {
-      method: 'GET',
-      withCredentials: true,
-      credentials: 'include',
-      headers: {
-        'Authorization': bearer,
-        'Content-Type': 'application/json'
-      }
-    }) // requête vers l'API
-      .then((response) => {
-        // Si un code erreur a été détecté on déclenche une erreur
-        if (!response.ok) {
-          throw Error(response.statusText);
+
+    this.focusListener = this.props.navigation.addListener('didFocus', () => {
+      const { setRecetteUser, loading, token } = this.props;
+      loading(true)
+      var bearer_token = token;
+      var bearer = 'Bearer ' + bearer_token;
+      return fetch('https://cookathomeapp.herokuapp.com/api/recettebyuser', {
+        method: 'GET',
+        withCredentials: true,
+        credentials: 'include',
+        headers: {
+          'Authorization': bearer,
+          'Content-Type': 'application/json'
         }
-        return response;
-      })
-      .then(response => response.json())
-      .then(response => {
-        // On cache le loading spinner à la fin de la requête
-        loading(false)
-        setRecetteUser(response);
-      })
-      .catch((err) => {
-        console.log('An error occured', err)
-        // En cas d'erreur on cache le loading spinner également
-        loading(false)
-      })
+      }) // requête vers l'API
+        .then((response) => {
+          // Si un code erreur a été détecté on déclenche une erreur
+          if (!response.ok) {
+            throw Error(response.statusText);
+          }
+          return response;
+        })
+        .then(response => response.json())
+        .then(response => {
+          // On cache le loading spinner à la fin de la requête
+          loading(false)
+          setRecetteUser(response);
+        })
+        .catch((err) => {
+          console.log('An error occured', err)
+          // En cas d'erreur on cache le loading spinner également
+          loading(false)
+        })
+    });
+  }
+  componentWillUnmount() {
+    this.focusListener.remove();
   }
   doLogout = () => {
     const { logout, navigation } = this.props

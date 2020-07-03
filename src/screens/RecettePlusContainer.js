@@ -139,9 +139,6 @@ class RecettePlusContainer extends Component {
             materiel
         })
     }
-
-
-
     addrecette = () => {
 
         const { materiel, title, ingredient1, ingredient2, ingredient3, ingredient4, ingredient5, ingredient6, preparation1, preparation2, preparation3, preparation4, preparation5, cuisson, type, nbpersonne } = this.state
@@ -155,7 +152,6 @@ class RecettePlusContainer extends Component {
         if (preparation1 == "" & preparation2 == "" & preparation3 == "" & preparation4 == "" & preparation5 == "") {
             alert('Error: aucun des preparations de la recette ne peut pas etre vide');
         }
-
         if (cuisson == "") {
             alert('Error: le temps de cuisson de la recette ne peut pas etre vide');
         }
@@ -184,9 +180,8 @@ class RecettePlusContainer extends Component {
         if (filter == "dejeuner") {
             this.photo = "photodefaultdejeuner"
             this.type = "dejeuner"
-
         }
-        const { token } = this.props;
+        const { resetfilter, navigation, token } = this.props;
         var bearer_token = token;
         var bearer = 'Bearer ' + bearer_token;
         let data = JSON.stringify({
@@ -220,19 +215,11 @@ class RecettePlusContainer extends Component {
 
                 console.log(response);
             })
+            .then(response => navigation.navigate('Home'), resetfilter())
             .catch(function (error) {
 
                 console.log(error);
             });
-
-        if (this.type != "" & materiel != "" & nbpersonne != "" & cuisson != "" & preparation5 != "" & preparation4 != "" & preparation3 != "" & preparation2 != "" & preparation1 != "" & ingredient6 != "" & ingredient5 != "" & ingredient4 != "" & ingredient3 != "" & ingredient2 != "" & ingredient1 != "" & title != "") {
-
-            const { resetfilter, navigation } = this.props
-            resetfilter()
-            navigation.navigate('Home')
-
-        }
-
 
     }
 

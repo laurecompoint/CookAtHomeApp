@@ -148,16 +148,15 @@ class RecetteUpdateContainer extends Component {
 
         })
             .then(function (response) {
-
                 console.log(response);
-
             })
+            .then(response => navigation.navigate('Profile'))
             .catch(function (error) {
 
                 console.log(error);
             });
 
-        navigation.navigate('Home')
+
     }
 
     Updaterecette = () => {
@@ -212,18 +211,17 @@ class RecetteUpdateContainer extends Component {
                 },
             })
             .then(function (response) {
-
                 console.log(response);
-
             })
+            .then(response => navigation.navigate('Profile'), resetfilter())
             .catch(function (error) {
 
                 console.log(error);
             });
 
 
-        resetfilter()
-        navigation.navigate('Home')
+
+
 
     }
 
