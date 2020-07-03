@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="29.968" height="33.977" viewBox="0 0 59.968 63.977">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#800f00"/>
+      <stop offset="1" stop-color="#400800"/>
+    </linearGradient>
+  </defs>
+  <g id="noun_Trash_3422494" transform="translate(-2)">
+    <path id="Tracé_138" data-name="Tracé 138" d="M4,11.61H5.69V58.53a2,2,0,0,0,2,2H39.25A13.65,13.65,0,1,0,51.27,37V11.61h1.67a2,2,0,0,0,0-4H39.72V2a2,2,0,0,0-2-2H19.24a2,2,0,0,0-2,2V7.61H4a2,2,0,1,0,0,4ZM58,50.33a9.67,9.67,0,1,1-9.67-9.66A9.67,9.67,0,0,1,58,50.33ZM47.27,36.72a13.59,13.59,0,0,0-7.37,2.87V23.67a2,2,0,0,0-4,0v21a13.55,13.55,0,0,0,.25,11.88H9.69V11.61H47.27ZM21.24,4H35.72V7.61H21.24Z" fill="url(#linear-gradient)"/>
+    <path id="Tracé_139" data-name="Tracé 139" d="M28.48,18.84a2,2,0,0,0-2,2V48.17a2,2,0,0,0,4,0V20.84A2,2,0,0,0,28.48,18.84Z" fill="url(#linear-gradient)"/>
+    <path id="Tracé_140" data-name="Tracé 140" d="M19.06,21.67a2,2,0,0,0-2,2V45.34a2,2,0,0,0,4,0V23.67A2,2,0,0,0,19.06,21.67Z" fill="url(#linear-gradient)"/>
+    <path id="Tracé_141" data-name="Tracé 141" d="M45.23,44.42a2,2,0,1,0-2.83,2.83l3.09,3.08L42.4,53.42a2,2,0,1,0,2.83,2.83l3.08-3.09,3.09,3.09a2,2,0,1,0,2.83-2.83l-3.09-3.09,3.09-3.08a2,2,0,0,0-2.83-2.83l-3.09,3.09Z" fill="url(#linear-gradient)"/>
+  </g>
+</svg>

@@ -5,7 +5,6 @@ import {
     Image,
     ScrollView,
     TouchableOpacity,
-
 } from 'react-native';
 import styles from '../styles/styles';
 import { connect } from 'react-redux';
@@ -15,14 +14,11 @@ import Filtredessert from '../data/image/filtredessert.svg';
 import Filtreapero from '../data/image/filtreapero.svg';
 import Filtrdej from '../data/image/filtredej.svg';
 import Filtre from '../data/image/testplats.svg';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import LinearGradient from 'react-native-linear-gradient';
 import InputAdd from '../components/InputAdd';
 import * as axios from 'axios';
-
 import { ImageBackground } from 'react-native';
 import { filterRecettes } from '../reducers/recipe';
-import ImagePicker from 'react-native-image-picker';
 
 class RecettePlusContainer extends Component {
 
@@ -229,13 +225,13 @@ class RecettePlusContainer extends Component {
                 console.log(error);
             });
 
-        // if (this.type != "" & materiel != "" & nbpersonne != "" & cuisson != "" & preparation5 != "" & preparation4 != "" & preparation3 != "" & preparation2 != "" & preparation1 != "" & ingredient6 != "" & ingredient5 != "" & ingredient4 != "" & ingredient3 != "" & ingredient2 != "" & ingredient1 != "" & title != "") {
-        //supprimer donner redux du filtre
-        const { resetfilter, navigation } = this.props
-        resetfilter()
-        navigation.navigate('Home')
+        if (this.type != "" & materiel != "" & nbpersonne != "" & cuisson != "" & preparation5 != "" & preparation4 != "" & preparation3 != "" & preparation2 != "" & preparation1 != "" & ingredient6 != "" & ingredient5 != "" & ingredient4 != "" & ingredient3 != "" & ingredient2 != "" & ingredient1 != "" & title != "") {
 
-        // }
+            const { resetfilter, navigation } = this.props
+            resetfilter()
+            navigation.navigate('Home')
+
+        }
 
 
     }

@@ -515,6 +515,10 @@ const styles = StyleSheet.create({
     paddingLeft: 15,
     paddingTop: 10,
   },
+  buttonDeleteRecipe: {
+    paddingRight: 15,
+    paddingTop: 10,
+  },
   textGoToBack: {
     width: 20,
     color: 'white',
@@ -626,6 +630,12 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignContent: 'space-between',
     flexDirection: 'row',
+  },
+  structDeletRecipe: {
+
+    justifyContent: 'space-between',
+    alignContent: 'space-between',
+    flexDirection: 'row',
 
 
   },
@@ -711,6 +721,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
     marginTop: 30,
   }
+
 
 });
 export default styles;

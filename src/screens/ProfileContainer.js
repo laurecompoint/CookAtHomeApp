@@ -35,8 +35,6 @@ class ProfileContainer extends Component {
   }
   DeleteCompte = () => {
 
-    console.log("test");
-
     const { logout, navigation } = this.props
     const { token } = this.props;
     var bearer_token = token;
@@ -249,7 +247,7 @@ class ProfileContainer extends Component {
 
               </View>
 
-              <RecettesUser userrecette={userrecette} onPress={(recette) => navigation.navigate("RecetteDetailContainer", recette)} />
+              <RecettesUser userrecette={userrecette} onPress={(recette) => navigation.navigate("RecetteUpdateContainer", recette)} />
 
             </View>
           </ScrollView>
