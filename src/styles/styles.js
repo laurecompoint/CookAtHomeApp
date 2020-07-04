@@ -565,7 +565,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 30,
     paddingTop: 11,
 
-    height: 48.8,
+    height: 48.5,
     width: 65,
   },
   //card

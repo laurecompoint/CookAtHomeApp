@@ -184,43 +184,45 @@ class RecettePlusContainer extends Component {
         const { resetfilter, navigation, token } = this.props;
         var bearer_token = token;
         var bearer = 'Bearer ' + bearer_token;
-        let data = JSON.stringify({
-            title: title,
-            photo: this.photo,
-            ingredient1: ingredient1,
-            ingredient2: ingredient2,
-            ingredient3: ingredient3,
-            ingredient4: ingredient4,
-            ingredient5: ingredient5,
-            ingredient6: ingredient6,
-            preparation1: preparation1,
-            preparation2: preparation2,
-            preparation3: preparation3,
-            preparation4: preparation4,
-            preparation5: preparation5,
-            cuisson: cuisson,
-            type: this.type,
-            nbpersonne: nbpersonne,
-            materiel: materiel,
-        })
-        axios.post('https://cookathomeapp.herokuapp.com/api/recettes', data, {
-            headers: {
-                'Authorization': bearer,
-                'Content-Type': 'application/json'
-            },
-
-
-        })
-            .then(function (response) {
-
-                console.log(response);
+        if (this.type != "" & materiel != "" & nbpersonne != "" & cuisson != "" & preparation5 != "" & preparation4 != "" & preparation3 != "" & preparation2 != "" & preparation1 != "" & ingredient6 != "" & ingredient5 != "" & ingredient4 != "" & ingredient3 != "" & ingredient2 != "" & ingredient1 != "" & title != " ") {
+            let data = JSON.stringify({
+                title: title,
+                photo: this.photo,
+                ingredient1: ingredient1,
+                ingredient2: ingredient2,
+                ingredient3: ingredient3,
+                ingredient4: ingredient4,
+                ingredient5: ingredient5,
+                ingredient6: ingredient6,
+                preparation1: preparation1,
+                preparation2: preparation2,
+                preparation3: preparation3,
+                preparation4: preparation4,
+                preparation5: preparation5,
+                cuisson: cuisson,
+                type: this.type,
+                nbpersonne: nbpersonne,
+                materiel: materiel,
             })
-            .then(response => navigation.navigate('Home'), resetfilter())
-            .catch(function (error) {
 
-                console.log(error);
-            });
+            axios.post('https://cookathomeapp.herokuapp.com/api/recettes', data, {
+                headers: {
+                    'Authorization': bearer,
+                    'Content-Type': 'application/json'
+                },
 
+
+            })
+                .then(function (response) {
+
+                    console.log(response);
+                })
+                .then(response => navigation.navigate('Home'), resetfilter())
+                .catch(function (error) {
+
+                    console.log(error);
+                });
+        }
     }
 
     render() {

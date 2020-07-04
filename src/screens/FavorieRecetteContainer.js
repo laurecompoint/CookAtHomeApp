@@ -96,7 +96,7 @@ class FavorieRecetteContainer extends Component {
                 style={styles.LogoCookAtHome}
                 source={require('../data/image/logocookathome.png')}
               />
-              <Text style={styles.titre}>Vos recette préférer</Text>
+              <Text style={styles.titre}>Vos recettes préférées</Text>
 
 
               <RecetteFavorie favorierecette={favorierecette} onPress={(recette) => navigation.navigate("RecetteDetailContainer", recette)} />
