@@ -26,59 +26,51 @@ class FavorieRecetteContainer extends Component {
     )
   });
 
-
-
-  /**
-   * Nous n'avons plus besoin d'initialiser un state local au component.
-   * isLoading erst 
-   */
   gotodetailrecipe = () => {
     const { navigation } = this.props
     navigation.navigate('RecetteDetailContainer')
   }
 
-
-
   componentDidMount() {
-    this.focusListener = this.props.navigation.addListener('didFocus', () => {
-      const { setFavories, loading, token } = this.props;
-      loading(true)
-      var bearer_token = token;
-      console.log('TEST' + token);
-      var bearer = 'Bearer ' + bearer_token;
-      return fetch('https://cookathomeapp.herokuapp.com/api/favories', {
-        method: 'GET',
-        withCredentials: true,
-        credentials: 'include',
-        headers: {
-          'Authorization': bearer,
-          'Content-Type': 'application/json'
+    // this.focusListener = this.props.navigation.addListener('didFocus', () => {
+    const { setFavories, loading, token } = this.props;
+    loading(true)
+    var bearer_token = token;
+    console.log('TEST' + token);
+    var bearer = 'Bearer ' + bearer_token;
+    return fetch('https://cookathomeapp.herokuapp.com/api/favories', {
+      method: 'GET',
+      withCredentials: true,
+      credentials: 'include',
+      headers: {
+        'Authorization': bearer,
+        'Content-Type': 'application/json'
+      }
+    })
+      .then((response) => {
+
+        if (!response.ok) {
+          throw Error(response.statusText);
         }
+        return response;
       })
-        .then((response) => {
+      .then(response => response.json())
+      .then(response => {
 
-          if (!response.ok) {
-            throw Error(response.statusText);
-          }
-          return response;
-        })
-        .then(response => response.json())
-        .then(response => {
+        loading(false)
+        setFavories(response);
+      })
+      .catch((err) => {
+        console.log('An error occured', err)
 
-          loading(false)
-          setFavories(response);
-        })
-        .catch((err) => {
-          console.log('An error occured', err)
-
-          loading(false)
-        })
-    });
+        loading(false)
+      })
+    // });
   }
 
-  componentWillUnmount() {
-    this.focusListener.remove();
-  }
+  // componentWillUnmount() {
+  //   this.focusListener.remove();
+  // }
 
   render() {
 
